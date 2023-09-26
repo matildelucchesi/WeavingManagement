@@ -4,6 +4,7 @@
  */
 package model;
 
+import model.Client;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,9 +25,10 @@ public final class Item implements Observer{
     private LocalDate deliveryDate;
     private LocalDate expectedEndDate;
     private List<LocalDate> date;
+    private Client client;
     
     //constructor
-    public Item(String name, int meters, int rowNumber, int hits, LocalDate deliveryDate){
+    public Item(String name, int meters, int rowNumber, int hits, LocalDate deliveryDate, Client client){
         this.name = name;
         this.meters = meters;
         this.disponibility = meters;
@@ -38,6 +40,7 @@ public final class Item implements Observer{
         this.calculateTotalHits();
         this.expectedEndDate = LocalDate.now();
         this.endDate = LocalDate.now();
+        this.client = client;
     }
     
     //getter methods
