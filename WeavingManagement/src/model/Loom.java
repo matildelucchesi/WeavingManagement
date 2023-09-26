@@ -123,6 +123,10 @@ public final class Loom implements Observable{
         return this.metersRun;
     }
     
+    public int getTotalMeters(){
+        return this.totalMeters;
+    }
+    
     public int getMetersToGo(){
         return this.metersToGo;
     }
@@ -133,6 +137,10 @@ public final class Loom implements Observable{
     
     public LocalDate getEndDate(){
         return this.endDate;
+    }
+    
+    public LocalDate getExpectedEndDate(){
+        return this.expectedEndDate;
     }
     
     //other methods

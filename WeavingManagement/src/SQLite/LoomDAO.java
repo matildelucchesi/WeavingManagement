@@ -17,5 +17,5 @@ public interface LoomDAO {
     void insertLoom(Loom loom);
     void removeLoom(Loom loom);
     void updateMetersToGo(Loom loom);
-    List<Loom> getLoomList(List<Item> itemList);
+    List<Loom> getLoomList();
 }

@@ -12,8 +12,8 @@ import model.Client;
  * @author Matilde
  */
 public interface ClientDAO {
-    void insertClient(String name, List<String> referents, List<String> phoneNumber);
+    void insertClient(Client client);
     List<Client> getClientList();
-    void changeData(String name, List<String> referents, List<String> phone);
-    void removeClient(String name);
+    void changeData(Client client, List<String> referents, List<String> phone);
+    void removeClient(Client client);
 }
