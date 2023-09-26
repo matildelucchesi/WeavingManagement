@@ -18,6 +18,9 @@ public class ItemBuilder {
     private int hits;
     private LocalDate deliveryDate;
     private Client client;
+    private LocalDate expectedEndDate;
+    private int disponibility;
+    private int metersToGo;
     
     public ItemBuilder setName(String name){
         this.name = name;
@@ -26,6 +29,11 @@ public class ItemBuilder {
     
     public ItemBuilder setMeters(int meters){
         this.meters = meters;
+        return this;
+    }
+    
+     public ItemBuilder setMetersToGo(int meters){
+        this.metersToGo = meters;
         return this;
     }
     
@@ -45,6 +53,17 @@ public class ItemBuilder {
         return this;
     }
     
+    public ItemBuilder setExpectedEndDate(LocalDate expectedEndDate){
+        this.expectedEndDate = expectedEndDate;
+        return this;
+    }
+    
+    public ItemBuilder setDisponibility(int disponibility){
+        this.disponibility = disponibility;
+        return this;
+    }
+   
+    
     public ItemBuilder setClient(String clientName, List<Client> clientList){
         if(!clientList.isEmpty()){
             for(int i=0; i < clientList.size(); i++){
@@ -62,6 +81,6 @@ public class ItemBuilder {
     }
    
     public Item build(){
-        return new Item(this.name, this.meters, this.rowNumber, this.hits, this.deliveryDate, this.client);
+        return new Item(this.name, this.meters, this.metersToGo, this.disponibility, this.rowNumber, this.hits, this.deliveryDate, this.expectedEndDate, this.client);
     }
 }

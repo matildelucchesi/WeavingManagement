@@ -20,26 +20,22 @@ public final class Item implements Observer{
     private int meters;
     private int metersToGo;
     private int disponibility;
-    private LocalDate creationDate;
-    private LocalDate endDate;
     private LocalDate deliveryDate;
     private LocalDate expectedEndDate;
     private List<LocalDate> date;
     private Client client;
     
     //constructor
-    public Item(String name, int meters, int rowNumber, int hits, LocalDate deliveryDate, Client client){
+    public Item(String name, int meters, int metersToGo, int disponibility, int rowNumber, int hits, LocalDate deliveryDate, LocalDate expectedEndDate, Client client){
         this.name = name;
         this.meters = meters;
-        this.disponibility = meters;
-        this.metersToGo = meters;
+        this.disponibility = disponibility;
+        this.metersToGo = metersToGo;
         this.rowNumber = rowNumber;
         this.hits = hits;
         this.deliveryDate = deliveryDate;
-        this.creationDate = LocalDate.now();
         this.calculateTotalHits();
-        this.expectedEndDate = LocalDate.now();
-        this.endDate = LocalDate.now();
+        this.expectedEndDate = expectedEndDate;
         this.client = client;
     }
     
@@ -68,12 +64,13 @@ public final class Item implements Observer{
         return this.metersToGo;
     }
     
-    public LocalDate getCreationDate(){
-        return this.creationDate;
+    public int getDisponibility(){
+        return this.disponibility;
     }
     
-    public LocalDate getEndDate(){
-        return this.endDate;
+    
+    public LocalDate getExpectedEndDate(){
+        return this.expectedEndDate;
     }
     
     public LocalDate getDeliveryDate(){
@@ -111,14 +108,6 @@ public final class Item implements Observer{
     
     public void setMeters(int meters){
         this.meters = meters;
-    }
-    
-    public void setCreationDate(LocalDate creationDate){
-        this.creationDate = creationDate;
-    }
-    
-    public void setEndDate(LocalDate endDate){
-        this.endDate = endDate;
     }
     
     public void setDeliveryDate(LocalDate deliveryDate){
