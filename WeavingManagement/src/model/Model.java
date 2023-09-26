@@ -35,6 +35,10 @@ public class Model {
         return loomList;
     }
     
+    public static void setLoomList(List<Loom> loomList){
+        Model.loomList = loomList;
+    }
+    
     //Item
     public static void addItem(Item item){
         itemList.add(item);
@@ -54,6 +58,10 @@ public class Model {
         return itemList;
     }
     
+    public static void setItemList(List<Item> itemList){
+        Model.itemList = itemList;
+    }
+    
     //Client
     public static void addClient(Client client){
         clientList.add(client);
@@ -71,5 +79,9 @@ public class Model {
     
     public static List<Client> getClientList(){
         return clientList;
+    }
+    
+    public static void setClientList(List<Client> clientList){
+        Model.clientList = clientList;
     }
 }
