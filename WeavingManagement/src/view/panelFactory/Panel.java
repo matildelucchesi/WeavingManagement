@@ -25,8 +25,10 @@ public abstract class Panel extends JPanel {
     private String type;
     
     void createPanel(String layout, String buttonType){
+        
         setBackground(Color.WHITE);
         this.plusButton = ButtonFactory.createPlusButton();
+        add(this.plusButton);
         
         if(layout.equals("grid")){
            setLayout(new GridLayout(0, 5, 90, 90));
@@ -36,7 +38,7 @@ public abstract class Panel extends JPanel {
         }
         
         this.type = buttonType;
-        if(buttonType.equals(this.type)){
+        if(this.type.equals("item")){
             if(!Model.getItemList().isEmpty()){
                 for (int i = 0; i < Model.getItemList().size(); i++) {
                     JButton iButton = ButtonFactory.createItemButton(Model.getItemList().get(i).getName());
@@ -46,7 +48,7 @@ public abstract class Panel extends JPanel {
            }
             add(this.plusButton);
         }
-        if(buttonType.equals(this.type)){
+        if(this.type.equals("loom")){
                 if(!Model.getLoomList().isEmpty()){
                     for (int i = 0; i < Model.getLoomList().size(); i++) {
                         JButton lButton = ButtonFactory.createLoomButton(Model.getLoomList().get(i).getNumber());
@@ -56,7 +58,7 @@ public abstract class Panel extends JPanel {
                }
             add(this.plusButton);
         }
-        if(buttonType.equals(this.type)){
+        if(this.type.equals("client")){
                 if(!Model.getClientList().isEmpty()){
                     for (int i = 0; i < Model.getClientList().size(); i++) {
                         JButton cButton = ButtonFactory.createClientButton(Model.getClientList().get(i).getName());
@@ -66,6 +68,10 @@ public abstract class Panel extends JPanel {
                }
             add(this.plusButton);
         }
+        
+        setVisible(true);
+        revalidate();
+        repaint();
         
     }
     
