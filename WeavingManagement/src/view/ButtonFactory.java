@@ -14,11 +14,8 @@ import javax.swing.border.EmptyBorder;
  */
 public class ButtonFactory {
     
-    
     public static JButton createLoomButton(int loomCode){
-        String text = Integer.toString(loomCode);
-        String iconPath = "././icon/loom.png";
-        return ButtonUtility.createButton(text, iconPath);
+        return ButtonUtility.createButton(Integer.toString(loomCode), "././icon/loom.png");
     }
     
     public static JButton createItemButton(String itemName){

@@ -76,62 +76,7 @@ public class MainForm extends JFrame {
         frame.add(mainPanel);
         frame.setVisible(true);
         
-    }
-    
-    /*public ImageIcon changeIconColor(Image image){
-        BufferedImage bufferedImage = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = bufferedImage.createGraphics();
-        g.drawImage(image, 0, 0, null);
-        
-        // Cambiare il colore dell'immagine
-        Color newColor = Color.BLUE; // Cambia il colore desiderato
-        for (int y = 0; y < bufferedImage.getHeight(); y++) {
-            for (int x = 0; x < bufferedImage.getWidth(); x++) {
-                int rgba = bufferedImage.getRGB(x, y);
-                Color color = new Color(rgba, true);
-                if (color.getAlpha() > 0) {
-                    bufferedImage.setRGB(x, y, newColor.getRGB());
-                }
-            }
-        }
-
-        ImageIcon coloredIcon = new ImageIcon(bufferedImage);
-        return coloredIcon;
-    }
-        
-    public JButton getButton(){
-        return this.button;
-    }
-    
-    public JPanel getCentralPanel(){
-        return this.centralPanel;
-    }
-  
-    public void changeButtonPosition(int loomListSize, int loomCode){
-        for (Component loom : this.saveButton) {
-                    this.centralPanel.add(loom);
-        }
+    }  
        
-        this.centralPanel.remove(this.button);
-        LoomButton lbutton = new LoomButton(loomCode);
-        centralPanel.add(lbutton);
-        
-        
-        centralPanel.add(this.button);
-        
-        int emptyCells = 5 * 5 - loomListSize;
-        for (int i = 0; i < emptyCells; i++) {
-            JPanel panel = new JPanel();
-            panel.setBackground(Color.WHITE);
-            centralPanel.add(panel); 
-        }
-
-        centralPanel.revalidate();
-        centralPanel.repaint();
-    }
-   
-    public void saveComponents(JButton button){
-       this.saveButton = Arrays.asList(button);
-    }*/
 }
  
