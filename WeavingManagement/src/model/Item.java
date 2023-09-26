@@ -37,6 +37,7 @@ public final class Item implements Observer{
         this.calculateTotalHits();
         this.expectedEndDate = expectedEndDate;
         this.client = client;
+        this.client.getItem().add(this);
     }
     
     //getter methods
@@ -75,6 +76,10 @@ public final class Item implements Observer{
     
     public LocalDate getDeliveryDate(){
         return this.deliveryDate;
+    }
+    
+    public Client getClient(){
+        return this.client;
     }
     
     //setter methods

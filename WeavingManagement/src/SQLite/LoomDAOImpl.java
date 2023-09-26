@@ -23,19 +23,10 @@ import model.LoomBuilder;
 public class LoomDAOImpl implements LoomDAO {
     
     @Override
-    public void insertLoom(int lcode, int s, String sd, int sr, int totmt, int mt, String in, String ed) {
+    public void insertLoom(Loom loom){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatementAssociation = null;
-        
-        int loom_code = lcode;
-        int speed = s;
-        String start_date = sd;
-        int surrender = sr;
-        int totalMeters = totmt;
-        int metersToGo = mt;
-        String item_name = in;
-        String expected_end_date = ed;
         
         try {
             Class.forName("org.sqlite.JDBC");
@@ -43,27 +34,24 @@ public class LoomDAOImpl implements LoomDAO {
             connection = DriverManager.getConnection(dbURL);
             
             // insert Query
-            String insertQuery = "INSERT INTO Loom (loom_code, speed, start_date, surrender, totalMeters, metersToGo, item_name, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO Loom (loom_code, speed, start_date, surrender, totalMeters, metersToGo, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
      
             preparedStatement = connection.prepareStatement(insertQuery);
-            preparedStatement.setInt(1, loom_code);
-            preparedStatement.setInt(2, speed);
-            preparedStatement.setString(3, start_date);
-            preparedStatement.setInt(4, surrender);
-            preparedStatement.setInt(5, totalMeters);
-            preparedStatement.setInt(6, metersToGo);
-            preparedStatement.setString(7, item_name);
-            preparedStatement.setString(8, expected_end_date);
-            
+            preparedStatement.setInt(1, loom.getNumber());
+            preparedStatement.setInt(2, loom.getSpeed());
+            preparedStatement.setString(3, loom.getStartDate().toString());
+            preparedStatement.setInt(4, loom.getSurrender());
+            preparedStatement.setInt(5, loom.getTotalMeters());
+            preparedStatement.setInt(6, loom.getMetersToGo());
+            preparedStatement.setString(7, loom.getExpectedEndDate().toString());            
             preparedStatement.executeUpdate();
             
             //Loom assocition
-            String insertAssociationQuery = "INSERT INTO LoomAssociation (loom_code, item_name, expectedEndDate) VALUES (?, ?, ?)";
+            String insertAssociationQuery = "INSERT INTO LoomAssociation (loom_code, item_name) VALUES (?, ?)";
  
             preparedStatementAssociation = connection.prepareStatement(insertAssociationQuery);
-            preparedStatementAssociation.setInt(1, loom_code);
-            preparedStatementAssociation.setString(2, item_name); 
-            preparedStatementAssociation.setString(3, expected_end_date); 
+            preparedStatementAssociation.setInt(1, loom.getNumber());
+            preparedStatementAssociation.setString(2, loom.getItem().getName()); 
             
             preparedStatementAssociation.executeUpdate();
             
@@ -146,7 +134,7 @@ public class LoomDAOImpl implements LoomDAO {
     }
     
     @Override
-    public List<Loom> getLoomList(List<Item> itemList){
+    public List<Loom> getLoomList(){
         List<Loom> loomList = new ArrayList<>();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -168,9 +156,15 @@ public class LoomDAOImpl implements LoomDAO {
             int surrender = resultSet.getInt("surrender");
             int totalMeters = resultSet.getInt("totalMeters");
             int metersToGo = resultSet.getInt("metersToGo");
-            String itemName = resultSet.getString("item_name");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate expectedEndDate = LocalDate.parse(resultSet.getString("expectedEndDate"), formatter);
+            
+            String selectItem = "SELECT item_name FROM LoomAssociation WHERE loom_code = ?";
+            preparedStatement = connection.prepareStatement(selectItem);
+            preparedStatement.setInt(1, loomId);
+            ResultSet resultSet1 = preparedStatement.executeQuery();
+            String itemName = resultSet1.getString("item_name");
+            
             
             Loom loom = new LoomBuilder()
                         .setNumber(loomId)
@@ -180,7 +174,7 @@ public class LoomDAOImpl implements LoomDAO {
                         .setTotalMeters(totalMeters)
                         .setMetersToGo(metersToGo)
                         .setMetersToGo(metersToGo)
-                        .setItem(itemName, itemList)
+                        .setItem(itemName)
                         .setExpectedEndDate(expectedEndDate)
                         .build();
                         
@@ -200,7 +194,7 @@ public class LoomDAOImpl implements LoomDAO {
     }
     
     @Override
-    public void removeLoom(int lcode){
+    public void removeLoom(Loom loom){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -212,7 +206,7 @@ public class LoomDAOImpl implements LoomDAO {
             String sql = "DELETE FROM LoomAssociation WHERE loom_code = ?";
             
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, lcode);
+            preparedStatement.setInt(1, loom.getNumber());
             int rowsDeleted = preparedStatement.executeUpdate();
 
             if (rowsDeleted > 0) {
@@ -224,7 +218,7 @@ public class LoomDAOImpl implements LoomDAO {
             String sql1 = "DELETE FROM Loom WHERE loom_code = ?";
             preparedStatement = connection.prepareStatement(sql1);
 
-            preparedStatement.setInt(1, lcode);
+            preparedStatement.setInt(1, loom.getNumber());
 
             int rowsDeleted1 = preparedStatement.executeUpdate();
 

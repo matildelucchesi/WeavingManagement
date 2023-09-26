@@ -24,20 +24,10 @@ import model.Loom;
 public class ItemDAOImpl implements ItemDAO {
     
    @Override
-   public void insertItem(String iName, int m, int mtg, int disp, int r, int h, String c, String d, String ed) {
+   public void insertItem(Item item) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatementAssociation = null;
-        
-        String item_name = iName;
-        int meters = m;
-        int metersToGo = mtg;
-        int disponibility = disp;
-        int rowNumber = r;
-        int hits = h;
-        String client = c;
-        String deliveryDate = d;
-        String expectedEndDate = ed;
         
         try {
             Class.forName("org.sqlite.JDBC");
@@ -45,18 +35,17 @@ public class ItemDAOImpl implements ItemDAO {
             connection = DriverManager.getConnection(dbURL);
             
             // insert Query
-            String insertQuery = "INSERT INTO Item (item_name, meters, metersToGo, disponibility, rowNumber, hits, client, deliveryDate, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO Item (item_name, meters, metersToGo, disponibility, rowNumber, hits, deliveryDate, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
      
             preparedStatement = connection.prepareStatement(insertQuery);
-            preparedStatement.setString(1, item_name);
-            preparedStatement.setInt(2, meters);
-            preparedStatement.setInt(3, metersToGo);
-            preparedStatement.setInt(4, disponibility);
-            preparedStatement.setInt(5, rowNumber);
-            preparedStatement.setInt(6, hits);
-            preparedStatement.setString(7, client);
-            preparedStatement.setString(8, deliveryDate);
-            preparedStatement.setString(9, expectedEndDate);
+            preparedStatement.setString(1, item.getName());
+            preparedStatement.setInt(2, item.getMeters());
+            preparedStatement.setInt(3, item.getMetersToGo());
+            preparedStatement.setInt(4, item.getDisponibility());
+            preparedStatement.setInt(5, item.getRowNumber());
+            preparedStatement.setInt(6, item.getHits());
+            preparedStatement.setString(7, item.getDeliveryDate().toString());
+            preparedStatement.setString(8, item.getExpectedEndDate().toString());
             
             // Esegui la query di inserimento
             int rowsAffected = preparedStatement.executeUpdate();
@@ -69,8 +58,8 @@ public class ItemDAOImpl implements ItemDAO {
             
             String insertAssociationQuery = "INSERT INTO ClientAssociation (client_name, item_name) VALUES (?, ?)";
             preparedStatementAssociation = connection.prepareStatement(insertAssociationQuery);
-            preparedStatementAssociation.setString(1, client);
-            preparedStatementAssociation.setString(2, item_name); 
+            preparedStatementAssociation.setString(1, item.getClient().getName());
+            preparedStatementAssociation.setString(2, item.getName()); 
             
             rowsAffected = preparedStatement.executeUpdate();
             
@@ -309,5 +298,72 @@ public class ItemDAOImpl implements ItemDAO {
             }
         }
    }
+    
+    @Override
+    public void removeItem(Item item){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+            Class.forName("org.sqlite.JDBC");
+            String dbURL = "jdbc:sqlite:././Information.db";
+            connection = DriverManager.getConnection(dbURL);
+            
+            String sql0 = "DELETE FROM ClientAssociation WHERE item_name = ?";
+            
+            preparedStatement = connection.prepareStatement(sql0);
+            preparedStatement.setString(1, item.getName());
+            int rowsDeleted = preparedStatement.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("success deleting in ClientAssociation");
+            } else {
+                System.out.println("fail deleting in ClientAssociation");
+            }
+            
+            String sql1 = "DELETE FROM ItemAssociation WHERE item_name = ?";
+            
+            preparedStatement = connection.prepareStatement(sql1);
+            preparedStatement.setString(1, item.getName());
+            rowsDeleted = preparedStatement.executeUpdate();
+
+            if (rowsDeleted > 0) {
+                System.out.println("success deleting in LoomAssociation");
+            } else {
+                System.out.println("fail deleting in LoomAssociation");
+            }
+            
+            String sql2 = "DELETE FROM Item WHERE item_name = ?";
+            preparedStatement = connection.prepareStatement(sql2);
+
+            preparedStatement.setString(1, item.getName());
+
+            int rowsDeleted1 = preparedStatement.executeUpdate();
+
+            if (rowsDeleted1 > 0) {
+                System.out.println("success deleting in Item");
+            } else {
+                System.out.println("fail deleting in Item");
+            }
+            
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
 
 }

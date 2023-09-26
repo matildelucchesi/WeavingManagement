@@ -52,11 +52,11 @@ public class LoomBuilder {
         return this;
     }
     
-    public LoomBuilder setItem(String itemName, List<Item> itemList){
-        if(!itemList.isEmpty()){
-            for(int i=0; i < itemList.size(); i++){
-                if(itemList.get(i).getName().equals(itemName)){
-                    this.item = itemList.get(i);
+    public LoomBuilder setItem(String itemName){
+        if(!Model.getItemList().isEmpty()){
+            for(int i=0; i < Model.getItemList().size(); i++){
+                if(Model.getItemList().get(i).getName().equals(itemName)){
+                    this.item = Model.getItemList().get(i);
                 }
                 else{
                     throw new IllegalArgumentException("item must be created");

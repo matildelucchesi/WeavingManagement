@@ -14,8 +14,8 @@ import model.Loom;
  * @author Matilde
  */
 public interface LoomDAO {
-    void insertLoom(int lcode, int s, String sd, int sr, int totmt, int mt, String ic, String ed);
-    void removeLoom(int lcode);
+    void insertLoom(Loom loom);
+    void removeLoom(Loom loom);
     void updateMetersToGo(Loom loom);
     List<Loom> getLoomList(List<Item> itemList);
 }

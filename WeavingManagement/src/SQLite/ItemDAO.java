@@ -14,10 +14,11 @@ import model.Loom;
  * @author Matilde
  */
 public interface ItemDAO {
-    void insertItem(String iName, int m , int mtg, int disp, int r, int h, String c, String d, String ed);
+    void insertItem(Item item);
     List<Item> getItemList();
     void updateMetersToGo(Item item);
     void updateExpectedEndDate(Item item);
     //void setDisponibility();
     void updateDisponibility(Item item);
+    void removeItem(Item item);
 }

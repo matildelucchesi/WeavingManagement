@@ -5,7 +5,7 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -64,18 +64,16 @@ public class ItemBuilder {
     }
    
     
-    public ItemBuilder setClient(String clientName, List<Client> clientList){
-        if(!clientList.isEmpty()){
-            for(int i=0; i < clientList.size(); i++){
-                if(clientList.get(i).getName().equals(clientName)){
-                    this.client = clientList.get(i);
-                }
-                else{
-                    throw new IllegalArgumentException("item must be created");
+    public ItemBuilder setClient(String clientName){
+        if(!Model.getClientList().isEmpty()){
+            for(int i=0; i < Model.getClientList().size(); i++){
+                if(Model.getClientList().get(i).getName().equals(clientName)){
+                    this.client = Model.getClientList().get(i);
                 }
             }
         }else{
-            throw new IllegalArgumentException("item must be created");
+            this.client = new Client(clientName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+            Model.getClientList().add(this.client);
         }
         return this;
     }
