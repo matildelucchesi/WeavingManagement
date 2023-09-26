@@ -64,6 +64,10 @@ public final class Item implements Observer{
         return this.meters;
     }
     
+    public int getMetersToGo(){
+        return this.metersToGo;
+    }
+    
     public LocalDate getCreationDate(){
         return this.creationDate;
     }
@@ -133,6 +137,13 @@ public final class Item implements Observer{
     
     @Override
     public void updateExpectedEndDate(LocalDate expectedEndDate){
+        for(int k = 0; k < this.date.size(); k++){
+            if(this.date.get(k).equals(expectedEndDate)){
+                this.date.remove(this.date.get(k));
+                break;
+            }
+        }
+        
         this.date.add(expectedEndDate);
         LocalDate max = this.date.get(0);
         for(int i=0; i< date.size(); i++){
