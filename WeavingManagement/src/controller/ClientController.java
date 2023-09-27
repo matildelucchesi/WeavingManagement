@@ -16,7 +16,7 @@ import view.ClientForm;
 import view.ClientPanel;
 import view.ErrorDialog;
 import view.ItemData;
-import view.MainForm;
+import view.MainView;
 
 /**
  *
@@ -32,7 +32,7 @@ public class ClientController {
     static boolean modify;
     private Client client;
     
-    public ClientController(MainForm view, Model model, ClientDAOImpl cdb, ItemDAOImpl idb){
+    public ClientController(MainView view, Model model, ClientDAOImpl cdb, ItemDAOImpl idb){
         view.getLeftPanel().getClientButton().addActionListener(e -> {
             ClientController.modify = false;
             

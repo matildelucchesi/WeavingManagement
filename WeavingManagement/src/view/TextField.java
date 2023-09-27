@@ -5,17 +5,16 @@
 package view;
 
 import java.awt.Dimension;
-import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Matilde
  */
-public class Label extends JLabel{
-    public Label(String text){
-        setText(text);
-        Dimension labelSize = new Dimension(150, 30);
-        setPreferredSize(labelSize);
+public class TextField extends JTextField{
+    public TextField(){
+        setPreferredSize(new Dimension(250, 30));
     }
+    
+   
 }

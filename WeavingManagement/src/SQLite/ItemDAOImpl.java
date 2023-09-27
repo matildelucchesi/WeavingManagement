@@ -9,13 +9,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import model.Item;
 import model.ItemBuilder;
-import model.Loom;
 
 /**
  *
@@ -35,7 +35,7 @@ public class ItemDAOImpl implements ItemDAO {
             connection = DriverManager.getConnection(dbURL);
             
             // insert Query
-            String insertQuery = "INSERT INTO Item (item_name, meters, metersToGo, disponibility, rowNumber, hits, deliveryDate, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO Item (item_name, meters, metersToGo, disponibility, rowNumber, hits, deliveryDate, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
      
             preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1, item.getName());
@@ -113,7 +113,33 @@ public class ItemDAOImpl implements ItemDAO {
             int hits = resultSet.getInt("hits");
             String deliveryDate = resultSet.getString("deliveryDate");
             String expectedEndDate = resultSet.getString("expectedEndDate");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            
+            SimpleDateFormat originalDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date delivDate = new Date();
+            Date expDate = new Date();
+            String formattedDelivDate = new String();
+            String formattedExpDate = new String();
+            try{
+                delivDate = originalDateFormat.parse(deliveryDate);
+                expDate = originalDateFormat.parse(expectedEndDate);
+                SimpleDateFormat desiredDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                formattedDelivDate = desiredDateFormat.format(delivDate);
+                formattedExpDate =  desiredDateFormat.format(expDate);
+                
+            }catch(ParseException e){
+                System.err.println("Errore durante il parsing della data");
+            }
+            
+            String clientQuery = "SELECT client_name FROM ClientAssociation WHERE item_name = ?";
+            preparedStatement = connection.prepareStatement(clientQuery);
+            preparedStatement.setString(1, itemName);
+            resultSet = preparedStatement.executeQuery();
+            
+            String clientName = new String();
+            
+            while (resultSet.next()) {
+                    clientName = resultSet.getString("client_name");
+                }
             
             Item item = new ItemBuilder()
                     .setName(itemName)
@@ -122,8 +148,9 @@ public class ItemDAOImpl implements ItemDAO {
                     .setDisponibility(disponibility)
                     .setRowNumber(rowNumber)
                     .setHits(hits)
-                    .setDeliveryDate(LocalDate.parse(deliveryDate, formatter))
-                    .setExpectedEndDate(LocalDate.parse(expectedEndDate, formatter))
+                    .setDeliveryDate(formattedDelivDate)
+                    .setExpectedEndDate(formattedExpDate)
+                    .setClient(clientName)
                     .build();
             
             itemList.add(item);

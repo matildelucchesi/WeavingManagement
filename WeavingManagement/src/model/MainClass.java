@@ -19,11 +19,12 @@ public class MainClass {
      */
     public static void main(String[] args) {
         Model model = new Model();
-        MainForm view = new MainForm();
+        MainView view = new MainView();
         LoomDAOImpl db = new LoomDAOImpl();
         ItemDAOImpl idb = new ItemDAOImpl();
        
         LoomController loom = new LoomController(view,model, db, idb );
+        ItemController item = new ItemController(view, model, db, idb);
         
     }
     

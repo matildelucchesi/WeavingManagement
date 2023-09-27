@@ -5,6 +5,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -48,13 +49,20 @@ public class ItemBuilder {
         
     }
     
-    public ItemBuilder setDeliveryDate(LocalDate deliveryDate){
-        this.deliveryDate = deliveryDate;
+    public ItemBuilder setDeliveryDate(String deliveryDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        this.deliveryDate = LocalDate.parse(deliveryDate, formatter);
         return this;
     }
     
-    public ItemBuilder setExpectedEndDate(LocalDate expectedEndDate){
-        this.expectedEndDate = expectedEndDate;
+    public ItemBuilder setExpectedEndDate(String expectedEndDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        if(expectedEndDate.isEmpty()){
+            this.expectedEndDate = LocalDate.now();
+        }else{
+          this.expectedEndDate = LocalDate.parse(expectedEndDate, formatter);  
+        }
+        
         return this;
     }
     

@@ -188,7 +188,16 @@ public class LoomDAOImpl implements LoomDAO {
     } catch (ClassNotFoundException | SQLException e) {
         e.printStackTrace();
     } finally {
-        // Chiudi le risorse
+        try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
     }
     return loomList;
     }

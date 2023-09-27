@@ -2,25 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package view.panelFactory;
-
-import javax.swing.JPanel;
+package view.formFactory;
 
 /**
  *
  * @author Matilde
  */
-public class PanelFactory {
+public class FormPanelFactory {
     
-    public Panel createPanel(String type){
-        if(type.equals("item")){
-            return new ItemPanel();
-        }
+    public FormPanel createFormPanel(String type){
         if(type.equals("loom")){
-            return new LoomPanel();
+            return new LoomFormPanel();
+        }
+        if(type.equals("item")){
+            return new ItemFormPanel();
         }
         if(type.equals("client")){
-            return new ClientPanel();
+            return new ClientFormPanel();
         }
         
         return null;

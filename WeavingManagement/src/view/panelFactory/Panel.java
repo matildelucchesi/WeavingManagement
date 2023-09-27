@@ -75,7 +75,7 @@ public abstract class Panel extends JPanel {
         
     }
     
-    JButton getPlusButton(){
+    public JButton getPlusButton(){
         return this.plusButton;
     }
     

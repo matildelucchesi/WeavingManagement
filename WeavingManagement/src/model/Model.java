@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,17 @@ public class Model {
     private static List<Client> clientList = new ArrayList<>();
     
     //Loom
-    public static void addLoom(Loom loom){
+    public static void addLoom(List<String> data){
+        Loom loom = new LoomBuilder()
+                .setNumber(Integer.parseInt(data.get(0)))
+                .setItem(data.get(1))
+                .setSpeed(Integer.parseInt(data.get(2)))
+                .setStartDate(LocalDate.now())
+                .setSurrender(Integer.parseInt(data.get(3)))
+                .setTotalMeters(Integer.parseInt(data.get(4)))
+                .setMetersToGo(Integer.parseInt(data.get(4)))
+                .build();
+        
         loomList.add(loom);
     }
     
@@ -40,7 +51,19 @@ public class Model {
     }
     
     //Item
-    public static void addItem(Item item){
+    public static void addItem(List<String> data){
+        Item item = new ItemBuilder()
+                .setName(data.get(0))
+                .setMeters(Integer.parseInt(data.get(1)))
+                .setMetersToGo(Integer.parseInt(data.get(1)))
+                .setDisponibility(Integer.parseInt(data.get(1)))
+                .setRowNumber(Integer.parseInt(data.get(2)))
+                .setHits(Integer.parseInt(data.get(3)))
+                .setDeliveryDate(data.get(4))
+                .setExpectedEndDate("")
+                .setClient(data.get(5))
+                .build();
+        
         itemList.add(item);
     }
     

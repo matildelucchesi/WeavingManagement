@@ -5,7 +5,7 @@
 package controller;
 
 import model.Loom;
-import view.MainForm;
+import view.MainView;
 import model.Model;
 import SQLite.*;
 import java.awt.BorderLayout;
@@ -29,10 +29,18 @@ public class LoomController {
     private List<Loom> loomList;
     private PanelFactory factory ;
     
-    public LoomController(MainForm view, Model model, LoomDAOImpl db, ItemDAOImpl idb){
-        this.factory = new PanelFactory();
-        this.loomPanel = factory.createPanel("loom");
-        this.loomPanel.setSize(view.getCentralPanel().getSize());
-        ControllerUtility.changePanel(view, this.loomPanel);
+    public LoomController(MainView view, Model model, LoomDAOImpl db, ItemDAOImpl idb){
+        Model.setLoomList(db.getLoomList());
+        view.addPanel("loom");
+        
+        view.getPanel().getPlusButton().addActionListener(e0 -> {
+            view.addForm("loom");
+            
+            view.getFormPanel().getSaveButton().addActionListener(e1 ->{
+                Model.addLoom(view.getFormPanel().getData());
+                db.insertLoom(Model.getLoomList().get(Model.getLoomList().size() - 1));
+            });
+        });
+        
     }
 }
