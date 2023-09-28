@@ -5,17 +5,9 @@
 package controller;
 
 import SQLite.ClientDAOImpl;
-import SQLite.ItemDAOImpl;
-import java.awt.BorderLayout;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import model.Client;
 import model.Model;
-import view.ClientData;
-import view.ClientForm;
-import view.ErrorDialog;
-import view.ItemData;
 import view.MainView;
+
 
 /**
  *
@@ -23,4 +15,29 @@ import view.MainView;
  */
 public class ClientController {
     
+    public ClientController(MainView view, Model model, ClientDAOImpl cdb){
+        Model.setClientList(cdb.getClientList());
+        view.getLeftPanel().getClientButton().addActionListener(e0 ->{
+            view.addPanel("client");
+            
+            view.getPanel().getPlusButton().addActionListener(e1 ->{
+                view.addForm("client");
+                
+                view.getFormPanel().getAddPhone().addActionListener(e2 ->{
+                    view.getFormPanel().updateField("phone");
+                });
+                
+                view.getFormPanel().getAddRef().addActionListener(e3 ->{
+                    view.getFormPanel().updateField("referents");
+                });
+                
+                view.getFormPanel().getSaveButton().addActionListener(e4 ->{
+                    Model.addClient(view.getFormPanel().getData("client"));
+                    cdb.insertClient(Model.getClientList().get(Model.getClientList().size() - 1));
+                });
+                
+            });
+        });
+        
+    }
 }

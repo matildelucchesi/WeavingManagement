@@ -24,10 +24,6 @@ public class LoomFormPanel extends FormPanel{
         this.label.add(new Label("surrender:"));
         this.label.add(new Label("total meters:"));
         
-        for(int i=0; i < this.label.size(); i++){
-            this.text.add(new TextField());
-        }
-        
-        createFormPanel(this.label, this.text);
+        createFormPanel(this.label, "loom");
     }
 }

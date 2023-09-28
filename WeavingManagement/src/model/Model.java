@@ -88,7 +88,8 @@ public class Model {
     }
     
     //Client
-    public static void addClient(Client client){
+    public static void addClient(List<List<String>> data){
+        Client client = new Client(data.get(0).get(0), data.get(1), data.get(2), new ArrayList<>());
         clientList.add(client);
     }
     

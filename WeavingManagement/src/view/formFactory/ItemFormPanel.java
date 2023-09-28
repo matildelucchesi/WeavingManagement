@@ -25,10 +25,6 @@ public class ItemFormPanel extends FormPanel{
         this.label.add(new Label("delivery date:"));
         this.label.add(new Label("client name:"));
         
-        for(int i=0; i < this.label.size(); i++){
-            this.text.add(new TextField());
-        }
-        
-        createFormPanel(this.label, this.text);
+        createFormPanel(this.label, "item");
     }
 }

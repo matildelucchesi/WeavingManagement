@@ -39,8 +39,11 @@ public class LoomController {
             view.getFormPanel().getSaveButton().addActionListener(e1 ->{
                 Model.addLoom(view.getFormPanel().getData());
                 db.insertLoom(Model.getLoomList().get(Model.getLoomList().size() - 1));
+                view.addPanel("loom");
             });
         });
+        
+        
         
     }
 }
