@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package view;
+import view.dataFactory.NonEditableTextArea;
 import SQLite.AssociationDB;
 import java.awt.*;
 import java.util.ArrayList;

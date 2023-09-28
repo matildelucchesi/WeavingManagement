@@ -13,9 +13,9 @@ import javax.swing.border.EmptyBorder;
  * @author Matilde
  */
 public class Label extends JLabel{
-    public Label(String text){
+    public Label(String text, int x){
         setText(text);
-        Dimension labelSize = new Dimension(150, 30);
+        Dimension labelSize = new Dimension(x, 30);
         setPreferredSize(labelSize);
     }
 }

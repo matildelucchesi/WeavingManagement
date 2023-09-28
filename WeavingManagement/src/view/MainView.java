@@ -8,6 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.util.List;
+import view.dataFactory.DataPanelFactory;
 import view.formFactory.FormPanelFactory;
 import view.panelFactory.PanelFactory;
 
@@ -21,6 +22,7 @@ public class MainView extends JFrame {
     private LeftPanel leftPanel;
     private view.panelFactory.Panel panel;
     private view.formFactory.FormPanel formPanel;
+    private view.dataFactory.DataPanel dataPanel;
     List<JButton> saveButton = new ArrayList<>();
 
     
@@ -102,6 +104,25 @@ public class MainView extends JFrame {
     
     public view.formFactory.FormPanel getFormPanel(){
         return this.formPanel;
+    }
+    
+    public void addData(String type, String buttonText){
+        DataPanelFactory factory = new DataPanelFactory();
+        this.centralPanel.removeAll();
+        
+        if(type.equals("loom")){
+            this.dataPanel = factory.createDataPanel("loom", buttonText);
+        }
+        if(type.equals("item")){
+            this.dataPanel = factory.createDataPanel("item", buttonText);
+        }
+        if(type.equals("client")){
+            this.dataPanel = factory.createDataPanel("client", buttonText);
+        }
+        
+        this.centralPanel.add(this.dataPanel);
+        this.centralPanel.revalidate();
+        this.centralPanel.repaint();
     }
 }
  

@@ -45,7 +45,7 @@ public class LoomController {
         
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
-                view.addData("loom");
+                view.addData("loom", button.getText());
             });
         }
         

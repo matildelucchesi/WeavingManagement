@@ -9,15 +9,15 @@ package view.dataFactory;
  * @author Matilde
  */
 public class DataPanelFactory {
-    public DataPanel createDataPanel(String type){
+    public DataPanel createDataPanel(String type, String buttonText){
         if(type.equals("loom")){
-            return new LoomDataPanel();
+            return new LoomDataPanel(buttonText);
         }
         if(type.equals("item")){
-            return new ItemDataPanel();
+            return new ItemDataPanel(buttonText);
         }
         if(type.equals("client")){
-            return new ClientDataPanel();
+            return new ClientDataPanel(buttonText);
         }
         
         return null;

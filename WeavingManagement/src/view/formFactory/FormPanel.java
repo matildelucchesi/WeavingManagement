@@ -38,7 +38,6 @@ public abstract class FormPanel extends JPanel{
         setLayout(new GridBagLayout());
         this.save = new JButton("save");
         
-        
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.anchor = GridBagConstraints.CENTER;
         

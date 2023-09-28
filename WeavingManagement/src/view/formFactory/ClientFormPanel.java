@@ -22,9 +22,9 @@ public class ClientFormPanel extends FormPanel{
     private JButton addPhone;
     
     public ClientFormPanel(){
-        this.label.add(new Label("name:"));
-        this.label.add(new Label("referent:"));
-        this.label.add(new Label("phone number:"));
+        this.label.add(new Label("name:", 150));
+        this.label.add(new Label("referent:", 150));
+        this.label.add(new Label("phone number:", 150));
         
         createFormPanel(this.label, "client");
      

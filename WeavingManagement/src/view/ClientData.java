@@ -4,6 +4,7 @@
  */
 package view;
 
+import view.dataFactory.NonEditableTextArea;
 import SQLite.AssociationDB;
 import java.awt.Color;
 import java.awt.Dimension;

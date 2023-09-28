@@ -52,6 +52,16 @@ public class Model {
         Model.loomList = loomList;
     }
     
+    public static Loom getLoom(String number){
+        Loom loom = null;
+        for(int i=0; i< Model.getLoomList().size(); i++){
+            if(Integer.parseInt(number) == Model.getLoomList().get(i).getNumber()){
+                loom = Model.getLoomList().get(i);
+            }
+        }
+        return loom;
+    }
+    
     //Item
     public static void addItem(List<String> data){
         Item item = new ItemBuilder()
