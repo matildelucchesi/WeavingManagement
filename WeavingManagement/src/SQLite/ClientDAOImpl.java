@@ -357,5 +357,40 @@ public class ClientDAOImpl implements ClientDAO{
         }
     }
     
+    @Override
+    public int countClientWithName(String name){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int number = 1;
+        try {
+            Class.forName("org.sqlite.JDBC");
+            String dbURL = "jdbc:sqlite:././Information.db";
+            connection = DriverManager.getConnection(dbURL);
+            String checkClientQuery = "SELECT COUNT(*) FROM Client WHERE name = ?";
+            PreparedStatement checkClientStatement = connection.prepareStatement(checkClientQuery);
+            checkClientStatement.setString(1, name);
+            ResultSet resultSet = checkClientStatement.executeQuery();
+            resultSet.next();
+            number = resultSet.getInt(1);
+            connection.close();
+        
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return number;
+    }
     
 }

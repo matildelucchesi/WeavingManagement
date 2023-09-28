@@ -16,4 +16,5 @@ public interface ClientDAO {
     List<Client> getClientList();
     void changeData(Client client, List<String> referents, List<String> phone);
     void removeClient(Client client);
+    int countClientWithName(String name);
 }

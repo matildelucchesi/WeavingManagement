@@ -5,6 +5,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class Model {
                 .setSurrender(Integer.parseInt(data.get(3)))
                 .setTotalMeters(Integer.parseInt(data.get(4)))
                 .setMetersToGo(Integer.parseInt(data.get(4)))
+                .setExpectedEndDate(LocalDate.parse("11/11/1111", DateTimeFormatter.ofPattern("dd/MM/yyyy")))
                 .build();
         
         loomList.add(loom);

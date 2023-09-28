@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package model;
+import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
 import controller.*;
@@ -22,9 +23,10 @@ public class MainClass {
         MainView view = new MainView();
         LoomDAOImpl db = new LoomDAOImpl();
         ItemDAOImpl idb = new ItemDAOImpl();
+        ClientDAOImpl cdb = new ClientDAOImpl();
        
         LoomController loom = new LoomController(view,model, db, idb );
-        ItemController item = new ItemController(view, model, db, idb);
+        ItemController item = new ItemController(view, model, db, idb, cdb);
         
     }
     

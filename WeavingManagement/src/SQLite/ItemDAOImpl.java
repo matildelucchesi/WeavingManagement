@@ -24,7 +24,7 @@ import model.ItemBuilder;
 public class ItemDAOImpl implements ItemDAO {
     
    @Override
-   public void insertItem(Item item) {
+   public void insertItem(Item item, ClientDAOImpl cdb) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatementAssociation = null;
@@ -61,12 +61,16 @@ public class ItemDAOImpl implements ItemDAO {
             preparedStatementAssociation.setString(1, item.getClient().getName());
             preparedStatementAssociation.setString(2, item.getName()); 
             
-            rowsAffected = preparedStatement.executeUpdate();
+            rowsAffected = preparedStatementAssociation.executeUpdate();
             
             if (rowsAffected > 0) {
                 System.out.println("success");
             } else {
                 System.out.println("No data insert");
+            }
+            
+            if(cdb.countClientWithName(item.getClient().getName()) == 0){
+                cdb.insertClient(item.getClient());
             }
             
             connection.close();

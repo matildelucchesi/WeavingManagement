@@ -14,7 +14,7 @@ import model.Loom;
  * @author Matilde
  */
 public interface ItemDAO {
-    void insertItem(Item item);
+    void insertItem(Item item, ClientDAOImpl cdb);
     List<Item> getItemList();
     void updateMetersToGo(Item item);
     void updateExpectedEndDate(Item item);

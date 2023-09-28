@@ -34,7 +34,7 @@ public class LoomDAOImpl implements LoomDAO {
             connection = DriverManager.getConnection(dbURL);
             
             // insert Query
-            String insertQuery = "INSERT INTO Loom (loom_code, speed, start_date, surrender, totalMeters, metersToGo, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO Loom (loom_code, speed, start_date, surrender, totalMeters, metersToGo, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?)";
      
             preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setInt(1, loom.getNumber());

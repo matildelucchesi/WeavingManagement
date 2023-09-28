@@ -87,6 +87,7 @@ public class ItemBuilder {
     }
    
     public Item build(){
+        System.out.print(this.client);
         return new Item(this.name, this.meters, this.metersToGo, this.disponibility, this.rowNumber, this.hits, this.deliveryDate, this.expectedEndDate, this.client);
     }
 }

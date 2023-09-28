@@ -4,8 +4,8 @@
  */
 package model;
 
-import model.Client;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ public final class Item implements Observer{
     private int disponibility;
     private LocalDate deliveryDate;
     private LocalDate expectedEndDate;
-    private List<LocalDate> date;
+    private List<LocalDate> date = new ArrayList<>();
     private Client client;
     
     //constructor
@@ -131,21 +131,26 @@ public final class Item implements Observer{
     
     @Override
     public void updateExpectedEndDate(LocalDate expectedEndDate){
-        for(int k = 0; k < this.date.size(); k++){
-            if(this.date.get(k).equals(expectedEndDate)){
-                this.date.remove(this.date.get(k));
-                break;
+        if(!this.date.isEmpty()){
+            for(int k = 0; k < this.date.size(); k++){
+                if(this.date.get(k).equals(expectedEndDate)){
+                    this.date.remove(this.date.get(k));
+                }
             }
+        
+            this.date.add(expectedEndDate);
+            LocalDate max = this.expectedEndDate;
+            for(int i=0; i< date.size(); i++){
+                if(max.isBefore(this.date.get(i))){
+                    max = this.date.get(i);
+                }
+            }
+            this.expectedEndDate = max;
+        }else{
+            this.date.add(expectedEndDate);
+            this.expectedEndDate = expectedEndDate;
         }
         
-        this.date.add(expectedEndDate);
-        LocalDate max = this.date.get(0);
-        for(int i=0; i< date.size(); i++){
-            if(max.isBefore(this.date.get(i))){
-                max = this.date.get(i);
-            }
-        }
-        this.expectedEndDate = max;
     }
     
     @Override 
