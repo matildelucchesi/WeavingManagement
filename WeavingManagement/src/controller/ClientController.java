@@ -34,6 +34,7 @@ public class ClientController {
                 view.getFormPanel().getSaveButton().addActionListener(e4 ->{
                     Model.addClient(view.getFormPanel().getData("client"));
                     cdb.insertClient(Model.getClientList().get(Model.getClientList().size() - 1));
+                    view.addPanel("client");
                 });
                 
             });

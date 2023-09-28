@@ -26,6 +26,7 @@ public class ItemController {
                 view.getFormPanel().getSaveButton().addActionListener(e2 ->{
                     Model.addItem(view.getFormPanel().getData());
                     idb.insertItem(Model.getItemList().get(Model.getItemList().size() - 1), cdb);
+                    view.addPanel("item");
                 });
                 
             });

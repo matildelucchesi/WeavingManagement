@@ -120,7 +120,7 @@ public abstract class Panel extends JPanel {
         repaint();
     }
     
-    List<JButton> getSaveIconButtonList(){
+    public List<JButton> getSaveIconButtonList(){
         return this.saveIconButton;
     }
     
@@ -147,5 +147,7 @@ public abstract class Panel extends JPanel {
         
         restore();
     }
+    
+   
    
 }

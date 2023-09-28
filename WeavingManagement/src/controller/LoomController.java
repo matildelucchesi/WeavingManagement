@@ -8,8 +8,8 @@ import model.Loom;
 import view.MainView;
 import model.Model;
 import SQLite.*;
-import java.awt.BorderLayout;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import view.LoomData;
 import view.panelFactory.PanelFactory;
@@ -42,6 +42,12 @@ public class LoomController {
                 view.addPanel("loom");
             });
         });
+        
+        for(JButton button : view.getPanel().getSaveIconButtonList()){
+            button.addActionListener(e ->{
+                view.addData("loom");
+            });
+        }
         
         
         
