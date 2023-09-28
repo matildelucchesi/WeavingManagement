@@ -5,6 +5,7 @@
 package controller;
 
 import SQLite.ClientDAOImpl;
+import javax.swing.JButton;
 import model.Model;
 import view.MainView;
 
@@ -38,7 +39,15 @@ public class ClientController {
                 });
                 
             });
+            
+            for(JButton button : view.getPanel().getSaveIconButtonList()){
+                button.addActionListener(e ->{
+                    view.addData("client", button.getText());
+                });
+            }
+            
         });
         
-    }
+        }
 }
+

@@ -97,6 +97,16 @@ public class Model {
         Model.itemList = itemList;
     }
     
+    public static Item getItem(String itemName){
+        Item item = null;
+        for(int i=0; i< Model.getItemList().size(); i++){
+            if(itemName.equals(Model.getItemList().get(i).getName())){
+                item = Model.getItemList().get(i);
+            }
+        }
+        return item;
+    }
+    
     //Client
     public static void addClient(List<List<String>> data){
         Client client = new Client(data.get(0).get(0), data.get(1), data.get(2), new ArrayList<>());
@@ -119,5 +129,15 @@ public class Model {
     
     public static void setClientList(List<Client> clientList){
         Model.clientList = clientList;
+    }
+    
+     public static Client getClient(String name){
+        Client client = null;
+        for(int i=0; i< Model.getClientList().size(); i++){
+            if(name.equals(Model.getClientList().get(i).getName())){
+                client = Model.getClientList().get(i);
+            }
+        }
+        return client;
     }
 }

@@ -14,4 +14,5 @@ public interface Observer {
    public void updateMetersToGo(int meters);
    public void updateExpectedEndDate(LocalDate expectedEndDate);
    public void updateDisponibility(int meters);
+   public void addLoomAtWork(int loomNumber);
 }

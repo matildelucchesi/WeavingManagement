@@ -7,6 +7,7 @@ package controller;
 import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
+import javax.swing.JButton;
 import model.Model;
 import view.MainView;
 
@@ -30,6 +31,12 @@ public class ItemController {
                 });
                 
             });
+            
+            for(JButton button : view.getPanel().getSaveIconButtonList()){
+            button.addActionListener(e ->{
+                view.addData("item", button.getText());
+            });
+        }
         });
         
     }

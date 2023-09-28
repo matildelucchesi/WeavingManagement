@@ -4,15 +4,10 @@
  */
 package controller;
 
-import model.Loom;
 import view.MainView;
 import model.Model;
 import SQLite.*;
-import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-import view.LoomData;
-import view.panelFactory.PanelFactory;
        
 
 /**
@@ -20,14 +15,6 @@ import view.panelFactory.PanelFactory;
  * @author Matilde
  */
 public class LoomController {
-    
-    static boolean isLoomPanelVisible;
-    private Loom l;
-    private JPanel loomPanel;
-    private LoomData data;
-    static boolean isDataPanelVisible;
-    private List<Loom> loomList;
-    private PanelFactory factory ;
     
     public LoomController(MainView view, Model model, LoomDAOImpl db, ItemDAOImpl idb){
         Model.setLoomList(db.getLoomList());

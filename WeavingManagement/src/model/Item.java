@@ -24,6 +24,7 @@ public final class Item implements Observer{
     private LocalDate expectedEndDate;
     private List<LocalDate> date = new ArrayList<>();
     private Client client;
+    private List<Integer> loomAtWork = new ArrayList<>();
     
     //constructor
     public Item(String name, int meters, int metersToGo, int disponibility, int rowNumber, int hits, LocalDate deliveryDate, LocalDate expectedEndDate, Client client){
@@ -80,6 +81,10 @@ public final class Item implements Observer{
     
     public Client getClient(){
         return this.client;
+    }
+    
+    public List<Integer> getLoomAtWork(){
+        return this.loomAtWork;
     }
     
     //setter methods
@@ -156,6 +161,11 @@ public final class Item implements Observer{
     @Override 
     public void updateDisponibility(int meters){
         this.disponibility = this.disponibility - meters;
+    }
+    
+    @Override
+    public void addLoomAtWork(int loomNumber){
+        this.loomAtWork.add(loomNumber);
     }
 }
 

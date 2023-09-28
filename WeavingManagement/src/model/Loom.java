@@ -43,6 +43,7 @@ public final class Loom implements Observable{
        this.addObserver(item);
        this.notifyExpectedEndDate();
        this.notifyDisponibility(totalMeters);
+       this.notifyLoomAtWork();
     }
     
     //setter methods
@@ -195,6 +196,13 @@ public final class Loom implements Observable{
     public void notifyDisponibility(int meters){
         for (Observer observer : this.observer) {
             observer.updateDisponibility(meters);
+        }
+    }
+    
+    @Override
+    public void notifyLoomAtWork(){
+        for(Observer observer : this.observer){
+            observer.addLoomAtWork(this.number);
         }
     }
     

@@ -14,4 +14,5 @@ public interface Observable {
     public void notifyMetersRun(int metersRun);
     public void notifyExpectedEndDate();
     public void notifyDisponibility(int meters);
+    public void notifyLoomAtWork();
 }

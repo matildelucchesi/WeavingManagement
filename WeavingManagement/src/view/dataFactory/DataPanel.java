@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.List;
+import javax.swing.Box;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import view.Label;
@@ -38,8 +39,26 @@ public abstract class DataPanel extends JPanel{
         }
     }
     
-    public void createDataPanelWithList(List<Label> label, List<List<NonEditableTextArea>> text){
+    public void createDataPanelWithList(List<Label> label, List<List<JTextArea>> text){
+        setBackground(Color.WHITE);
+        setLayout(new GridBagLayout());
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.anchor = GridBagConstraints.CENTER;
+        
+        this.gbc.gridx = 0;
+        this.gbc.gridy = 0;
+        
+        for(int i = 0; i< label.size(); i++){
+            add(label.get(i), this.gbc);
+            this.gbc.gridx++;
+            
+            for(int k = 0; k < text.size(); k++){
+                for(int j=0; j < text.get(i).size(); j++){
+                    add(text.get(i).get(j), this.gbc);
+                    this.gbc.gridy++;
+                }
+            }
+            gbc.gridx--;
+        }
     }
 }
