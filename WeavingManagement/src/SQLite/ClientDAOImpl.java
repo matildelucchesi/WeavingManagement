@@ -393,4 +393,115 @@ public class ClientDAOImpl implements ClientDAO{
         return number;
     }
     
+    @Override
+    public void changeData(Client cient){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int client_id = 0;
+
+        try {
+            Class.forName("org.sqlite.JDBC");
+            String dbURL = "jdbc:sqlite:././Information.db";
+            connection = DriverManager.getConnection(dbURL);
+
+            String selectId = "SELECT id FROM Client WHERE name = ?";
+            
+            preparedStatement = connection.prepareStatement(selectId);
+            preparedStatement.setString(1, name);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                client_id = resultSet.getInt("id");
+            } else {
+                System.out.print("failed");
+            }
+            
+            if(!referents.isEmpty()){
+                
+                String delete = "DELETE FROM Referents WHERE client_id = ?";
+                preparedStatement = connection.prepareStatement(delete);
+                preparedStatement.setInt(1, client_id);
+                
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        System.out.println("success");
+                    } else {
+                        System.out.println("No data insert");
+                    }
+                 
+                String insertReferent = "INSERT INTO Referents (client_id, referent_name) VALUES(?, ?)";
+
+                for(int i=0; i < referents.size(); i++){
+                    if(referents.get(i).isBlank()){
+                        i++;
+                    }else{
+                       preparedStatement = connection.prepareStatement(insertReferent);
+                        preparedStatement.setInt(1, client_id);
+                        preparedStatement.setString(2, referents.get(i));
+
+                        rowsAffected = preparedStatement.executeUpdate();
+
+                        if (rowsAffected > 0) {
+                            System.out.println("success");
+                        } else {
+                            System.out.println("No data insert");
+                        } 
+                    }
+                    
+                }
+            }
+            
+            if(!phone.isEmpty()){
+                String delete = "DELETE FROM PhoneNumbers WHERE client_id = ?";
+                preparedStatement = connection.prepareStatement(delete);
+                preparedStatement.setInt(1, client_id);
+                
+                int rowsAffected = preparedStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        System.out.println("success");
+                    } else {
+                        System.out.println("No data insert");
+                    }
+                    
+                String insertPhone = "INSERT INTO PhoneNumbers (client_id, number) VALUES (?, ?)";
+
+                for(int k=0; k < phone.size(); k++){
+                    if(phone.get(k).isBlank()){
+                        k++;
+                    }else{
+                        preparedStatement = connection.prepareStatement(insertPhone);
+                        preparedStatement.setInt(1, client_id);
+                        preparedStatement.setString(2, phone.get(k));
+
+                        rowsAffected = preparedStatement.executeUpdate();
+
+                        if (rowsAffected > 0) {
+                            System.out.println("success");
+                        } else {
+                            System.out.println("No data insert");
+                        }
+                    }
+                    
+                }
+            }
+
+            resultSet.close();
+            connection.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+        }
+    }
 }

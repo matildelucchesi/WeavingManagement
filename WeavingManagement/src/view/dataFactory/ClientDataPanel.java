@@ -40,6 +40,6 @@ public class ClientDataPanel extends DataPanel {
             }
         
         createDataPanelWithList(this.label, this.text);
-        
+        addModifyButton();
     }
 }

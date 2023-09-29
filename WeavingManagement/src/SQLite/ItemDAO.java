@@ -18,7 +18,7 @@ public interface ItemDAO {
     List<Item> getItemList();
     void updateMetersToGo(Item item);
     void updateExpectedEndDate(Item item);
-    //void setDisponibility();
-    void updateDisponibility(Item item);
+    void setDisponibility();
+    void updateDisponibility(Item item, int metersUsed);
     void removeItem(Item item);
 }

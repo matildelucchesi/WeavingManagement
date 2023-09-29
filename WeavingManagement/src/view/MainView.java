@@ -73,7 +73,7 @@ public class MainView extends JFrame {
             this.panel = factory.createPanel("client");
         }
         
-        this.centralPanel.add(this.panel);
+        this.centralPanel.add(this.panel.getScrollPane());
         this.centralPanel.revalidate();
         this.centralPanel.repaint();
         
@@ -85,7 +85,6 @@ public class MainView extends JFrame {
     
     public void addForm(String type){
         FormPanelFactory factory = new FormPanelFactory();
-        this.centralPanel.removeAll();
         
         if(type.equals("loom")){
             this.formPanel = factory.createFormPanel("loom");
@@ -123,6 +122,10 @@ public class MainView extends JFrame {
         this.centralPanel.add(this.dataPanel);
         this.centralPanel.revalidate();
         this.centralPanel.repaint();
+    }
+    
+    public view.dataFactory.DataPanel getDataPanel(){
+        return this.dataPanel;
     }
 }
  

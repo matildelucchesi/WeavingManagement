@@ -35,7 +35,8 @@ public final class Loom implements Observable{
        this.metersToGo = metersToGo;
        this.metersRun = 0;
        this.item = item;
-       if(expectedEndDate.equals(11/11/1111)){
+       LocalDate data = LocalDate.of(1111, 11, 11);
+       if(expectedEndDate.isEqual(data)){
            this.calculateExpectedEndDate();
        }else{
            this.expectedEndDate = expectedEndDate;

@@ -137,12 +137,12 @@ public class ItemDAOImpl implements ItemDAO {
             String clientQuery = "SELECT client_name FROM ClientAssociation WHERE item_name = ?";
             preparedStatement = connection.prepareStatement(clientQuery);
             preparedStatement.setString(1, itemName);
-            resultSet = preparedStatement.executeQuery();
+            ResultSet clientResultSet = preparedStatement.executeQuery();
             
             String clientName = new String();
             
-            while (resultSet.next()) {
-                    clientName = resultSet.getString("client_name");
+            while (clientResultSet.next()) {
+                    clientName = clientResultSet.getString("client_name");
                 }
             
             Item item = new ItemBuilder()
@@ -253,7 +253,7 @@ public class ItemDAOImpl implements ItemDAO {
         }
    }
    
-   /*@Override
+   @Override
    public void setDisponibility(){
        Connection connection = null;
        PreparedStatement preparedStatement = null;
@@ -285,10 +285,10 @@ public class ItemDAOImpl implements ItemDAO {
             }
         }
 
-   }*/
+   }
    
     @Override
-    public void updateDisponibility(Item item){
+    public void updateDisponibility(Item item, int metersUsed){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {

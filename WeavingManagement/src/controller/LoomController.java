@@ -21,22 +21,21 @@ public class LoomController {
         view.addPanel("loom");
         
         view.getPanel().getPlusButton().addActionListener(e0 -> {
+            view.getPanel().setVisible(false);
             view.addForm("loom");
             
             view.getFormPanel().getSaveButton().addActionListener(e1 ->{
                 Model.addLoom(view.getFormPanel().getData());
                 db.insertLoom(Model.getLoomList().get(Model.getLoomList().size() - 1));
-                view.addPanel("loom");
+                idb.updateExpectedEndDate(Model.getLoomList().get(Model.getLoomList().size() - 1).getItem());
+                idb.updateDisponibility(Model.getLoomList().get(Model.getLoomList().size() - 1).getItem(), Model.getLoomList().get(Model.getLoomList().size() - 1).getTotalMeters());
+                view.remove(view.getFormPanel());
+                view.getFormPanel().setVisible(false);
+                view.getPanel().addIconButton();
+                view.getPanel().setVisible(true);
             });
         });
         
-        for(JButton button : view.getPanel().getSaveIconButtonList()){
-            button.addActionListener(e ->{
-                view.addData("loom", button.getText());
-            });
-        }
-        
-        
-        
+        ControllerUtility.iconListener(view, db);
     }
 }

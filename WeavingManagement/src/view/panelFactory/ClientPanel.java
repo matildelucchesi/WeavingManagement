@@ -4,6 +4,7 @@
  */
 package view.panelFactory;
 
+import javax.swing.JScrollPane;
 import view.panelFactory.Panel;
 
 /**

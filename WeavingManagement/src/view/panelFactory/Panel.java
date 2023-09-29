@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import model.Model;
 import view.ButtonFactory;
 
@@ -23,9 +24,11 @@ public abstract class Panel extends JPanel {
     private List<JButton> saveIconButton = new ArrayList<>();
     private JButton plusButton;
     private String type;
+    private JScrollPane scrollPane;
     
     void createPanel(String layout, String buttonType){
-        
+        scrollPane = new JScrollPane();
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         setBackground(Color.WHITE);
         this.plusButton = ButtonFactory.createPlusButton();
         add(this.plusButton);
@@ -70,6 +73,9 @@ public abstract class Panel extends JPanel {
         }
         
         setVisible(true);
+        
+        scrollPane.setViewportView(this);
+        
         revalidate();
         repaint();
         
@@ -92,7 +98,7 @@ public abstract class Panel extends JPanel {
         repaint();
     }
     
-    void addIconButton(){
+    public void addIconButton(){
         if(this.type.equals("item")){
             JButton iButton = ButtonFactory.createItemButton(Model.getItemList().get(Model.getItemList().size() - 1).getName());
             this.saveIconButton.add(iButton);
@@ -148,6 +154,9 @@ public abstract class Panel extends JPanel {
         restore();
     }
     
+    public JScrollPane getScrollPane(){
+        return this.scrollPane;
+    }
    
    
 }

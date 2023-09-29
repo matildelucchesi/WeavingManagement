@@ -54,6 +54,7 @@ public class LoomDAOImpl implements LoomDAO {
             preparedStatementAssociation.setString(2, loom.getItem().getName()); 
             
             preparedStatementAssociation.executeUpdate();
+         
             
             connection.close();
         } catch (ClassNotFoundException e) {
@@ -165,7 +166,6 @@ public class LoomDAOImpl implements LoomDAO {
             ResultSet resultSet1 = preparedStatement.executeQuery();
             String itemName = resultSet1.getString("item_name");
             
-            
             Loom loom = new LoomBuilder()
                         .setNumber(loomId)
                         .setSpeed(speed)
@@ -177,8 +177,22 @@ public class LoomDAOImpl implements LoomDAO {
                         .setItem(itemName)
                         .setExpectedEndDate(expectedEndDate)
                         .build();
-                        
+                      
             loomList.add(loom);
+            
+            String insertLoomExpectedEndDate = "UPDATE Loom SET expectedEndDate = ? WHERE loom_code = ?";
+            preparedStatement = connection.prepareStatement(insertLoomExpectedEndDate);
+            LocalDate exp = loom.getExpectedEndDate();
+            
+            preparedStatement.setString(1, exp.toString());
+            preparedStatement.setInt(2, loom.getNumber());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Il valore di expectedEndDate è stato aggiornato con successo.");
+            } else {
+                System.out.println("Nessuna riga è stata modificata.");
+            }
         }
         
         

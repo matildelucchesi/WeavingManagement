@@ -41,6 +41,7 @@ public class LoomDataPanel extends DataPanel {
         this.text.add(new NonEditableTextArea(Model.getLoom(number).getExpectedEndDate().toString()));
         
         createDataPanel(this.label, this.text);
+        addMetersRunButton();
         
     }
 }

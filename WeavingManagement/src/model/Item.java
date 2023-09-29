@@ -137,16 +137,10 @@ public final class Item implements Observer{
     @Override
     public void updateExpectedEndDate(LocalDate expectedEndDate){
         if(!this.date.isEmpty()){
-            for(int k = 0; k < this.date.size(); k++){
-                if(this.date.get(k).equals(expectedEndDate)){
-                    this.date.remove(this.date.get(k));
-                }
-            }
-        
             this.date.add(expectedEndDate);
             LocalDate max = this.expectedEndDate;
             for(int i=0; i< date.size(); i++){
-                if(max.isBefore(this.date.get(i))){
+                if(this.date.get(i).isAfter(max)){
                     max = this.date.get(i);
                 }
             }

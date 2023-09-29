@@ -79,6 +79,9 @@ public class ItemBuilder {
                     this.client = Model.getClientList().get(i);
                 }
             }
+            if(this.client == null){
+                this.client = new Client(clientName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+            }
         }else{
             this.client = new Client(clientName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
             Model.getClientList().add(this.client);

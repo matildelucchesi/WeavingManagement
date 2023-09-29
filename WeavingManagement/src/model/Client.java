@@ -57,4 +57,8 @@ public class Client {
         return this.item;
     }
     
+    public void update(List<String> referents, List<String> phone){
+        this.referents = referents;
+        this.phoneNumber = phone;
+    }
 }

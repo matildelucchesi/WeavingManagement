@@ -20,8 +20,10 @@ public class ClientController {
         Model.setClientList(cdb.getClientList());
         view.getLeftPanel().getClientButton().addActionListener(e0 ->{
             view.addPanel("client");
+            view.getPanel().setVisible(true);
             
             view.getPanel().getPlusButton().addActionListener(e1 ->{
+                view.getPanel().setVisible(false);
                 view.addForm("client");
                 
                 view.getFormPanel().getAddPhone().addActionListener(e2 ->{
@@ -35,19 +37,17 @@ public class ClientController {
                 view.getFormPanel().getSaveButton().addActionListener(e4 ->{
                     Model.addClient(view.getFormPanel().getData("client"));
                     cdb.insertClient(Model.getClientList().get(Model.getClientList().size() - 1));
-                    view.addPanel("client");
+                    view.remove(view.getFormPanel());
+                    view.getFormPanel().setVisible(false);
+                    view.getPanel().addIconButton();
+                    view.getPanel().setVisible(true);
+                    ControllerUtility.iconListener(view, "client");
                 });
                 
             });
-            
-            for(JButton button : view.getPanel().getSaveIconButtonList()){
-                button.addActionListener(e ->{
-                    view.addData("client", button.getText());
-                });
-            }
-            
+            ControllerUtility.iconListener(view, "client");
         });
         
         }
 }
-
+    
