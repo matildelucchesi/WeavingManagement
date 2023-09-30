@@ -34,6 +34,7 @@ public abstract class DataPanel extends JPanel{
     JButton modify = new JButton("modify");
     JButton addRef = new JButton("add");
     JButton addPhone = new JButton("add");
+    JButton delete = new JButton("delete");
     List<JTextArea> text = new ArrayList<>();
     List<Label> label = new ArrayList<>();
     List<List<JTextArea>> textList = new ArrayList<>();
@@ -61,6 +62,10 @@ public abstract class DataPanel extends JPanel{
             this.gbc.gridx--;
             this.gbc.gridy++;
         }
+        
+        this.gbc.gridx = 1;
+        this.gbc.gridy++;
+        add(this.delete, this.gbc);
         
         this.endGBCX = this.gbc.gridx;
         this.endGBCY = this.gbc.gridy;
@@ -104,7 +109,11 @@ public abstract class DataPanel extends JPanel{
             gbc.gridx--;
         }
         
-        this.endGBCX = this.gbc.gridx + 1;
+        this.gbc.gridy++;
+        this.gbc.gridx++;
+        add(this.delete, this.gbc);
+        
+        this.endGBCX = this.gbc.gridx;
         this.endGBCY = this.gbc.gridy + 1;
     }
     
@@ -153,7 +162,7 @@ public abstract class DataPanel extends JPanel{
     public void addModifyComponents(){
         float[] lighterGrayRGB = Color.RGBtoHSB(192, 192, 192, null);
         Color lighterGray = Color.getHSBColor(lighterGrayRGB[0], lighterGrayRGB[1], lighterGrayRGB[2]);
-        //remove(this.delete);
+        remove(this.delete);
         this.makeTextEditable();
         this.modify.setText("save");
         
@@ -325,7 +334,9 @@ public abstract class DataPanel extends JPanel{
             this.gbc.gridx--;
         }
         this.gbc.gridx++;
-        add(this.modify, gbc);
+        add(this.delete, this.gbc);
+        this.gbc.gridy++;
+        add(this.modify, this.gbc);
             
         for(int i = 1; i < this.textList.size(); i++){
             for(int j=0; j < this.textList.get(i).size(); j++){
@@ -334,9 +345,11 @@ public abstract class DataPanel extends JPanel{
             }
             
         }
-            
         revalidate();
         repaint();
     }
     
+    public JButton getDeleteButton(){
+        return this.delete;
+    }
 }

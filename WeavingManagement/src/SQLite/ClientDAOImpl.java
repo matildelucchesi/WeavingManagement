@@ -327,7 +327,7 @@ public class ClientDAOImpl implements ClientDAO{
                 System.out.println("fail deleting in ClientAssociation");
             }
             
-            String sql3 = "DELETE FROM Client WHERE client_name = ?";
+            String sql3 = "DELETE FROM Client WHERE name = ?";
             preparedStatement = connection.prepareStatement(sql3);
             preparedStatement.setString(1, client.getName());
             rowsDeleted = preparedStatement.executeUpdate();

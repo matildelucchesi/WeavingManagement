@@ -27,6 +27,17 @@ public class ControllerUtility {
                     Model.getLoom(number).updateBecauseMetersRun(view.getDataPanel().getMetersRun());
                     db.updateMetersToGo(Model.getLoom(number));
                     view.getDataPanel().adjournMetersToGo(Model.getLoom(number).getMetersToGo());
+                    
+                });
+                
+                view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
+                    db.removeLoom(Model.getLoom(button.getText()));
+                    Model.removeLoom(Integer.parseInt(button.getText()));
+                    view.remove(view.getDataPanel());
+                    view.getDataPanel().setVisible(false);
+                    view.getPanel().removeIconButton(button.getText());
+                    view.getPanel().setVisible(true);
+                    view.getCentralPanel().add(view.getPanel());
                 });
             });
         }
@@ -51,16 +62,38 @@ public class ControllerUtility {
                     }
                 });
                 
+                view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
+                    cdb.removeClient(Model.getClient(button.getText()));
+                    Model.removeClient(button.getText());
+                    view.remove(view.getDataPanel());
+                    view.getDataPanel().setVisible(false);
+                    view.getPanel().removeIconButton(button.getText());
+                    view.getPanel().setVisible(true);
+                    view.getCentralPanel().add(view.getPanel());
+                });
+                
                 
             });
         }
     }
     
-    static void iconListener(MainView view){
+    static void iconListener(MainView view, ItemDAOImpl idb){
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
                 view.addData("item", button.getText());
+                
+                view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
+                    idb.removeItem(Model.getItem(button.getText()));
+                    Model.removeItem(button.getText());
+                    view.remove(view.getDataPanel());
+                    view.getDataPanel().setVisible(false);
+                    view.getPanel().removeIconButton(button.getText());
+                    view.getPanel().setVisible(true);
+                    view.getCentralPanel().add(view.getPanel());
+                });
             });
         }
     }
+    
+    
 }

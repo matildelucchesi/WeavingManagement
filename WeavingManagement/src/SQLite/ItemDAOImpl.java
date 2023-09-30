@@ -352,7 +352,7 @@ public class ItemDAOImpl implements ItemDAO {
                 System.out.println("fail deleting in ClientAssociation");
             }
             
-            String sql1 = "DELETE FROM ItemAssociation WHERE item_name = ?";
+            String sql1 = "DELETE FROM LoomAssociation WHERE item_name = ?";
             
             preparedStatement = connection.prepareStatement(sql1);
             preparedStatement.setString(1, item.getName());

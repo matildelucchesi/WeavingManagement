@@ -34,10 +34,10 @@ public class Model {
         loomList.add(loom);
     }
     
-    public static void removeLoom(Loom loom){
+    public static void removeLoom(int number){
         int s=0;
         for(int i=0; i < loomList.size(); i++){
-            if(loomList.get(i).getNumber() == loom.getNumber()){
+            if(loomList.get(i).getNumber() == number){
                 s = i;
             }
         }
@@ -79,10 +79,10 @@ public class Model {
         itemList.add(item);
     }
     
-    public static void removeItem(Item item){
+    public static void removeItem(String name){
         int s=0;
         for(int i=0; i < itemList.size(); i++){
-            if(itemList.get(i).getName().equals(item.getName())){
+            if(itemList.get(i).getName().equals(name)){
                 s = i;
             }
         }
@@ -113,14 +113,12 @@ public class Model {
         clientList.add(client);
     }
     
-    public static void removeClient(Client client){
-        int s=0;
-        for(int i=0; i < clientList.size(); i++){
-            if(clientList.get(i).getName().equals(client.getName())){
-                s = i;
+    public static void removeClient(String name){
+        for(int i=0; i< Model.getClientList().size(); i++){
+            if(name.equals(Model.getClientList().get(i).getName())){
+                Model.getClientList().remove(i);
             }
         }
-        clientList.remove(s);
     }
     
     public static List<Client> getClientList(){

@@ -130,7 +130,7 @@ public abstract class Panel extends JPanel {
         return this.saveIconButton;
     }
     
-    void removeIconButton(String name){
+    public void removeIconButton(String name){
         int s=0;
         for(int i=0; i < this.saveIconButton.size(); i++){
             if(this.saveIconButton.get(i).getText().equals(name)){
@@ -138,11 +138,11 @@ public abstract class Panel extends JPanel {
             }
         }
         this.saveIconButton.remove(s);
+        this.restore();
         
-        restore();
     }
     
-    void removeIconButton(int number){
+    public void removeIconButton(int number){
         int s=0;
         for(int i=0; i < this.saveIconButton.size(); i++){
             if(this.saveIconButton.get(i).getText().equals(Integer.toString(number))){
@@ -150,8 +150,7 @@ public abstract class Panel extends JPanel {
             }
         }
         this.saveIconButton.remove(s);
-        
-        restore();
+        this.restore();
     }
     
     public JScrollPane getScrollPane(){
