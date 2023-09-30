@@ -32,6 +32,8 @@ public abstract class DataPanel extends JPanel{
     private int phoneGBCY = 0;
     JButton addMetersRun = new JButton("add");
     JButton modify = new JButton("modify");
+    JButton addRef = new JButton("add");
+    JButton addPhone = new JButton("add");
     List<JTextArea> text = new ArrayList<>();
     List<Label> label = new ArrayList<>();
     List<List<JTextArea>> textList = new ArrayList<>();
@@ -151,8 +153,6 @@ public abstract class DataPanel extends JPanel{
     public void addModifyComponents(){
         float[] lighterGrayRGB = Color.RGBtoHSB(192, 192, 192, null);
         Color lighterGray = Color.getHSBColor(lighterGrayRGB[0], lighterGrayRGB[1], lighterGrayRGB[2]);
-        JButton addRef = new JButton("add");
-        JButton addPhone = new JButton("add");
         //remove(this.delete);
         this.makeTextEditable();
         this.modify.setText("save");
@@ -262,6 +262,81 @@ public abstract class DataPanel extends JPanel{
             }
         }
         
+    }
+    
+    public List<String> getReferentsList(){
+        List<String> referents = new ArrayList<>();
+        for(int i = 1; i < this.textList.size(); i ++){
+            for(int j = 0; j < this.textList.get(i).size(); j++){
+                if( i == 1 && !this.textList.get(i).get(j).getText().isBlank()){
+                    referents.add(this.textList.get(i).get(j).getText());
+                }
+            }
+        }
+        return referents;
+    }
+    
+    public List<String> getPhoneList(){
+        List<String> phone = new ArrayList<>();
+        for(int i = 1; i < this.textList.size(); i ++){
+            for(int j = 0; j < this.textList.get(i).size(); j++){
+                if( i == 2 && !this.textList.get(i).get(j).getText().isBlank()){
+                    phone.add(this.textList.get(i).get(j).getText());
+                }
+            }
+        }
+        return phone;
+    }
+    
+    public void restoreComponents(){
+        remove(this.addPhone);
+        remove(this.addRef);
+        this.modify.setText("modify");
+        
+        for(int i = 1; i < this.label.size(); i++){
+            remove(this.label.get(i));
+            for(int j = 0; j < this.textList.get(i).size(); j++){
+                remove(this.textList.get(i).get(j));
+            }
+        }
+        
+        //add
+        this.gbc.gridy = this.refGBCY;
+        this.gbc.gridx = this.refGBCX;
+        
+        for(int i = 1; i < this.textList.size(); i ++){
+            for(int j = 0; j < this.textList.get(i).size(); j++){
+                if(this.textList.get(i).get(j).getText().isBlank()){
+                    this.textList.get(i).remove(j);
+                }
+            }
+            if(this.textList.get(i).isEmpty()){
+                this.textList.get(i).add(new JTextArea());
+            }
+        }
+        
+        for(int i=1; i < this.label.size(); i++){
+            add(this.label.get(i), this.gbc);
+            gbc.gridx++;
+            for(int j = 0; j < this.textList.get(i).size(); j++){
+                add(this.textList.get(i).get(j), this.gbc);
+                this.gbc.gridy++;
+            }
+            this.gbc.gridx--;
+        }
+        this.gbc.gridx++;
+        add(this.modify, gbc);
+            
+        for(int i = 1; i < this.textList.size(); i++){
+            for(int j=0; j < this.textList.get(i).size(); j++){
+                this.textList.get(i).get(j).setEditable(false);
+                this.textList.get(i).get(j).setBackground(Color.WHITE);
+            }
+            
+        }
+            
+        revalidate();
+        repaint();
     }
     
 }

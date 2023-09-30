@@ -35,10 +35,10 @@ public class ItemController {
                     view.getFormPanel().setVisible(false);
                     view.getPanel().addIconButton();
                     view.getPanel().setVisible(true);
-                    ControllerUtility.iconListener(view, "item");
+                    ControllerUtility.iconListener(view);
                 });
             });
-            ControllerUtility.iconListener(view, "item");
+            ControllerUtility.iconListener(view);
         });
     }
         

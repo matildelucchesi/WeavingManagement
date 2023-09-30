@@ -394,51 +394,37 @@ public class ClientDAOImpl implements ClientDAO{
     }
     
     @Override
-    public void changeData(Client cient){
+    public void changeData(Client client){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        int client_id = 0;
 
         try {
             Class.forName("org.sqlite.JDBC");
             String dbURL = "jdbc:sqlite:././Information.db";
             connection = DriverManager.getConnection(dbURL);
-
-            String selectId = "SELECT id FROM Client WHERE name = ?";
             
-            preparedStatement = connection.prepareStatement(selectId);
-            preparedStatement.setString(1, name);
-            
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                client_id = resultSet.getInt("id");
+            String delete = "DELETE FROM Referents WHERE client_name = ?";
+            preparedStatement = connection.prepareStatement(delete);
+            preparedStatement.setString(1, client.getName());
+                
+            int rowsAffected = preparedStatement.executeUpdate();
+                
+            if (rowsAffected > 0) {
+                System.out.println("success!!");
             } else {
-                System.out.print("failed");
+                System.out.println("No data deleted");
             }
             
-            if(!referents.isEmpty()){
-                
-                String delete = "DELETE FROM Referents WHERE client_id = ?";
-                preparedStatement = connection.prepareStatement(delete);
-                preparedStatement.setInt(1, client_id);
-                
-                int rowsAffected = preparedStatement.executeUpdate();
+            if(!client.getReferents().isEmpty()){     
+                String insertReferent = "INSERT INTO Referents (client_name, referent_name) VALUES(?, ?)";
 
-                    if (rowsAffected > 0) {
-                        System.out.println("success");
-                    } else {
-                        System.out.println("No data insert");
-                    }
-                 
-                String insertReferent = "INSERT INTO Referents (client_id, referent_name) VALUES(?, ?)";
-
-                for(int i=0; i < referents.size(); i++){
-                    if(referents.get(i).isBlank()){
+                for(int i=0; i < client.getReferents().size(); i++){
+                    if(client.getReferents().get(i).isBlank()){
                         i++;
                     }else{
                        preparedStatement = connection.prepareStatement(insertReferent);
-                        preparedStatement.setInt(1, client_id);
-                        preparedStatement.setString(2, referents.get(i));
+                        preparedStatement.setString(1, client.getName());
+                        preparedStatement.setString(2, client.getReferents().get(i));
 
                         rowsAffected = preparedStatement.executeUpdate();
 
@@ -452,28 +438,28 @@ public class ClientDAOImpl implements ClientDAO{
                 }
             }
             
-            if(!phone.isEmpty()){
-                String delete = "DELETE FROM PhoneNumbers WHERE client_id = ?";
-                preparedStatement = connection.prepareStatement(delete);
-                preparedStatement.setInt(1, client_id);
+            String delete1 = "DELETE FROM PhoneNumbers WHERE client_name = ?";
+            preparedStatement = connection.prepareStatement(delete1);
+            preparedStatement.setString(1, client.getName());
                 
-                int rowsAffected = preparedStatement.executeUpdate();
+            rowsAffected = preparedStatement.executeUpdate();
 
-                    if (rowsAffected > 0) {
-                        System.out.println("success");
-                    } else {
-                        System.out.println("No data insert");
-                    }
-                    
-                String insertPhone = "INSERT INTO PhoneNumbers (client_id, number) VALUES (?, ?)";
+            if (rowsAffected > 0) {
+                System.out.println("success");
+            } else {
+                System.out.println("No data deleted");
+            }
+                   
+            if(!client.getPhoneNumber().isEmpty()){ 
+                String insertPhone = "INSERT INTO PhoneNumbers (client_name, number) VALUES (?, ?)";
 
-                for(int k=0; k < phone.size(); k++){
-                    if(phone.get(k).isBlank()){
+                for(int k=0; k < client.getPhoneNumber().size(); k++){
+                    if(client.getPhoneNumber().get(k).isBlank()){
                         k++;
                     }else{
                         preparedStatement = connection.prepareStatement(insertPhone);
-                        preparedStatement.setInt(1, client_id);
-                        preparedStatement.setString(2, phone.get(k));
+                        preparedStatement.setString(1, client.getName());
+                        preparedStatement.setString(2, client.getPhoneNumber().get(k));
 
                         rowsAffected = preparedStatement.executeUpdate();
 
@@ -487,7 +473,6 @@ public class ClientDAOImpl implements ClientDAO{
                 }
             }
 
-            resultSet.close();
             connection.close();
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

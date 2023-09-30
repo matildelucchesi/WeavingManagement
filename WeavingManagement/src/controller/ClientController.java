@@ -41,11 +41,11 @@ public class ClientController {
                     view.getFormPanel().setVisible(false);
                     view.getPanel().addIconButton();
                     view.getPanel().setVisible(true);
-                    ControllerUtility.iconListener(view, "client");
+                    ControllerUtility.iconListener(view, cdb);
                 });
                 
             });
-            ControllerUtility.iconListener(view, "client");
+            ControllerUtility.iconListener(view, cdb);
         });
         
         }
