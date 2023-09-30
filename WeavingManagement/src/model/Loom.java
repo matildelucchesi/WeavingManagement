@@ -43,7 +43,6 @@ public final class Loom implements Observable{
        }
        this.addObserver(item);
        this.notifyExpectedEndDate();
-       this.notifyDisponibility(totalMeters);
        this.notifyLoomAtWork();
     }
     

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import model.Model;
+import view.ErrorDialog;
 import view.Label;
 import view.TextField;
 
@@ -181,5 +183,75 @@ public abstract class FormPanel extends JPanel{
             add(this.save, this.gbc);
             revalidate();
             repaint();
+    }
+    
+    public boolean controlErrors(){
+        boolean anyConditionMet = false;
+        int s = 0;
+        
+        if(this.type.equals("loom")){
+            for(int i = 0; i < this.label.size(); i++){
+                if(this.label.get(i).getText().equals("number:")){
+                    if(this.text.get(i).getText().isBlank()){
+                        ErrorDialog.showErrorDialog("ERROR: the number cannot be null");
+                        anyConditionMet = true;
+                    }else{
+                        boolean isUnique = true;
+                        for(int k = 0; k < Model.getLoomList().size(); k++){
+                            if(Model.getLoomList().get(k).getNumber() == Integer.parseInt(this.text.get(i).getText())){
+                                isUnique = false;
+                            }
+                        }
+                        if(isUnique == false){
+                            ErrorDialog.showErrorDialog("ERROR: the loom must be unique");
+                            anyConditionMet = true;
+                        }
+                    }
+                }
+                else if(this.label.get(i).getText().equals("item name:")){
+                    if(this.text.get(i).getText().isBlank()){
+                        ErrorDialog.showErrorDialog("ERROR: the item cannot be null");
+                        anyConditionMet = true;
+                    }else{
+                        boolean exist = false;
+                        for(int k = 0; k < Model.getItemList().size(); k++){
+                            if(Model.getItemList().get(k).getName().equals(this.text.get(i).getText())){
+                                exist = true;
+                                s = k;
+                            }
+                        }
+                        if(exist == false){
+                            ErrorDialog.showErrorDialog("ERROR: the item must exist");
+                            anyConditionMet = true;
+                        }else{
+                            
+                        }
+                    }
+                }
+                else if(this.label.get(i).getText().equals("total meters:")){
+                    if(this.text.get(i).getText().isBlank()){
+                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        anyConditionMet = true;
+                    }else{
+                        if(Integer.parseInt(this.text.get(i).getText()) > Model.getItemList().get(s).getDisponibility()){
+                            ErrorDialog.showErrorDialog("ERROR: the value is greater than the item's disponibility; there are" + Model.getItemList().get(s).getDisponibility() + "meters available");
+                            anyConditionMet = true;
+                        }
+                    }
+                }
+                else{
+                    if(this.text.get(i).getText().isBlank()){
+                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        anyConditionMet = true;
+                    }else{
+                        if(Integer.parseInt(this.text.get(i).getText()) < 0){
+                            ErrorDialog.showErrorDialog("ERROR: the value cannot be less than zero");
+                        anyConditionMet = true;
+                        }
+                }
+                }
+            }
+        }
+        return anyConditionMet;
     }
 }

@@ -25,15 +25,21 @@ public class LoomController {
             view.addForm("loom");
             
             view.getFormPanel().getSaveButton().addActionListener(e1 ->{
-                Model.addLoom(view.getFormPanel().getData());
-                db.insertLoom(Model.getLoomList().get(Model.getLoomList().size() - 1));
-                idb.updateExpectedEndDate(Model.getLoomList().get(Model.getLoomList().size() - 1).getItem());
-                idb.updateDisponibility(Model.getLoomList().get(Model.getLoomList().size() - 1).getItem(), Model.getLoomList().get(Model.getLoomList().size() - 1).getTotalMeters());
-                view.remove(view.getFormPanel());
-                view.getFormPanel().setVisible(false);
-                view.getPanel().addIconButton();
-                view.getPanel().setVisible(true);
+                if(!view.getFormPanel().controlErrors()){
+                    Model.addLoom(view.getFormPanel().getData());
+                    Model.getLoomList().get(Model.getLoomList().size() - 1).notifyDisponibility(Model.getLoomList().get(Model.getLoomList().size() - 1).getTotalMeters());
+                    db.insertLoom(Model.getLoomList().get(Model.getLoomList().size() - 1));
+                    idb.updateExpectedEndDate(Model.getLoomList().get(Model.getLoomList().size() - 1).getItem());
+                    idb.updateDisponibility(Model.getLoomList().get(Model.getLoomList().size() - 1).getItem(), Model.getLoomList().get(Model.getLoomList().size() - 1).getTotalMeters());
+                    view.remove(view.getFormPanel());
+                    view.getFormPanel().setVisible(false);
+                    view.getPanel().addIconButton();
+                    view.getPanel().setVisible(true);
+                }
+                
+                ControllerUtility.iconListener(view, db);
             });
+            
         });
         
         ControllerUtility.iconListener(view, db);
