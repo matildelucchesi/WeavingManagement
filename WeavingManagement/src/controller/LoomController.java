@@ -36,7 +36,6 @@ public class LoomController {
                     view.getPanel().addIconButton();
                     view.getPanel().setVisible(true);
                 }
-                
                 ControllerUtility.iconListener(view, db);
             });
             

@@ -124,6 +124,10 @@ public final class Item implements Observer{
         this.deliveryDate = deliveryDate;
     }
     
+    public void setDisponibility(int disponibility){
+        this.disponibility = disponibility;
+    }
+    
     //other methods
     public void calculateTotalHits(){
         this.totalHits = this.hits * 10 * this.meters;

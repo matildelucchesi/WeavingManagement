@@ -251,6 +251,22 @@ public class LoomDAOImpl implements LoomDAO {
                 System.out.println("fail deleting in Loom");
             }
             
+            String updateDisponibility = "UPDATE Item SET disponibility = ? WHERE item_name = ?";
+            preparedStatement = connection.prepareStatement(updateDisponibility);
+            
+            int newDisponibility = loom.getItem().getDisponibility() + loom.getMetersToGo();
+
+            preparedStatement.setInt(1, newDisponibility);
+            preparedStatement.setString(2, loom.getItem().getName());
+            
+            int rowsUpdate1 = preparedStatement.executeUpdate();
+
+            if (rowsUpdate1 > 0) {
+                System.out.println("success deleting in Loom");
+            } else {
+                System.out.println("fail deleting in Loom");
+            }
+            
             connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -41,6 +41,8 @@ public class Model {
                 s = i;
             }
         }
+        int newDisponibility = loomList.get(s).getItem().getDisponibility() + loomList.get(s).getMetersToGo();
+        loomList.get(s).getItem().setDisponibility(newDisponibility);
         loomList.remove(s);
     }
     

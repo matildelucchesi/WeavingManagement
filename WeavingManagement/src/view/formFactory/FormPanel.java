@@ -188,6 +188,7 @@ public abstract class FormPanel extends JPanel{
     public boolean controlErrors(){
         boolean anyConditionMet = false;
         int s = 0;
+        String item  = new String();
         
         if(this.type.equals("loom")){
             for(int i = 0; i < this.label.size(); i++){
@@ -217,6 +218,7 @@ public abstract class FormPanel extends JPanel{
                         for(int k = 0; k < Model.getItemList().size(); k++){
                             if(Model.getItemList().get(k).getName().equals(this.text.get(i).getText())){
                                 exist = true;
+                                item = this.text.get(i).getText();
                                 s = k;
                             }
                         }
@@ -233,7 +235,7 @@ public abstract class FormPanel extends JPanel{
                         ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
                         anyConditionMet = true;
                     }else{
-                        if(Integer.parseInt(this.text.get(i).getText()) > Model.getItemList().get(s).getDisponibility()){
+                        if(item != null && Integer.parseInt(this.text.get(i).getText()) > Model.getItemList().get(s).getDisponibility()){
                             ErrorDialog.showErrorDialog("ERROR: the value is greater than the item's disponibility; there are" + Model.getItemList().get(s).getDisponibility() + "meters available");
                             anyConditionMet = true;
                         }
@@ -252,6 +254,15 @@ public abstract class FormPanel extends JPanel{
                 }
             }
         }
+        
+        if(this.type.equals("item")){
+            
+        }
+        
+        if(this.type.equals("client")){
+            
+        }
+        
         return anyConditionMet;
     }
 }
