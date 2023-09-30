@@ -7,6 +7,8 @@ package view.formFactory;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -256,11 +258,46 @@ public abstract class FormPanel extends JPanel{
         }
         
         if(this.type.equals("item")){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            for(int i = 0; i < this.label.size(); i++){
+                if(this.label.get(i).getText().equals("delivery date:")){
+                    if(this.text.get(i).getText().isBlank()){
+                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        anyConditionMet = true;
+                    }else{
+                        if(LocalDate.parse(this.text.get(i).getText(), formatter).isBefore(LocalDate.now())){
+                            ErrorDialog.showErrorDialog("ERROR: delivery date cannot be before today");
+                            anyConditionMet = true;
+                        }
+                    }
+                }
+                else if(this.label.get(i).getText().equals("client name:") || this.label.get(i).getText().equals("name:")){
+                    if(this.text.get(i).getText().isBlank()){
+                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        anyConditionMet = true;
+                    }
+                }
+                else{
+                    if(this.text.get(i).getText().isBlank()){
+                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        anyConditionMet = true;
+                    }else{
+                        if(Integer.parseInt(this.text.get(i).getText()) < 0){
+                            ErrorDialog.showErrorDialog("ERROR: the value cannot be less than zero");
+                            anyConditionMet = true;
+                    }
+                }
+            }
+                
+            }
             
         }
         
         if(this.type.equals("client")){
-            
+            if(this.clientText.get(0).get(0).getText().isBlank()){
+                    ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                    anyConditionMet = true;           
+            }
         }
         
         return anyConditionMet;

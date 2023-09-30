@@ -35,13 +35,15 @@ public class ClientController {
                 });
                 
                 view.getFormPanel().getSaveButton().addActionListener(e4 ->{
-                    Model.addClient(view.getFormPanel().getData("client"));
-                    cdb.insertClient(Model.getClientList().get(Model.getClientList().size() - 1));
-                    view.remove(view.getFormPanel());
-                    view.getFormPanel().setVisible(false);
-                    view.getPanel().addIconButton();
-                    view.getPanel().setVisible(true);
-                    ControllerUtility.iconListener(view, cdb);
+                    if(!view.getFormPanel().controlErrors()){
+                        Model.addClient(view.getFormPanel().getData("client"));
+                        cdb.insertClient(Model.getClientList().get(Model.getClientList().size() - 1));
+                        view.remove(view.getFormPanel());
+                        view.getFormPanel().setVisible(false);
+                        view.getPanel().addIconButton();
+                        view.getPanel().setVisible(true);
+                        ControllerUtility.iconListener(view, cdb);
+                    }
                 });
                 
             });

@@ -29,13 +29,15 @@ public class ItemController {
                 view.addForm("item");
                 
                 view.getFormPanel().getSaveButton().addActionListener(e2 ->{
-                    Model.addItem(view.getFormPanel().getData());
-                    idb.insertItem(Model.getItemList().get(Model.getItemList().size() - 1), cdb);
-                    view.remove(view.getFormPanel());
-                    view.getFormPanel().setVisible(false);
-                    view.getPanel().addIconButton();
-                    view.getPanel().setVisible(true);
-                    ControllerUtility.iconListener(view, idb);
+                    if(!view.getFormPanel().controlErrors()){
+                        Model.addItem(view.getFormPanel().getData());
+                        idb.insertItem(Model.getItemList().get(Model.getItemList().size() - 1), cdb);
+                        view.remove(view.getFormPanel());
+                        view.getFormPanel().setVisible(false);
+                        view.getPanel().addIconButton();
+                        view.getPanel().setVisible(true);
+                        ControllerUtility.iconListener(view, idb);
+                    }
                 });
             });
             ControllerUtility.iconListener(view, idb);
