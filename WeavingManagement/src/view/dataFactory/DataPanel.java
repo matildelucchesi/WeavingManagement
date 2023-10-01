@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import view.Label;
 
@@ -40,6 +41,7 @@ public abstract class DataPanel extends JPanel{
     List<List<JTextArea>> textList = new ArrayList<>();
     
     public void createDataPanel(List<Label> label, List<JTextArea> text){
+        
         setBackground(Color.WHITE);
         setLayout(new GridBagLayout());
         this.text = text;
@@ -69,6 +71,7 @@ public abstract class DataPanel extends JPanel{
         
         this.endGBCX = this.gbc.gridx;
         this.endGBCY = this.gbc.gridy;
+        
     }
     
     public void createDataPanelWithList(List<Label> label, List<List<JTextArea>> text){

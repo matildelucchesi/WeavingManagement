@@ -15,6 +15,7 @@ import javax.swing.*;
  */
 public class LeftPanel extends JPanel{
     private JButton backButton = ButtonFactory.createBackButton();
+    private JButton loomButton = new JButton("loom");
     private JButton itemButton = new JButton("Item");
     private JButton clientButton = new JButton("Client");
     private JButton chronologyButton = new JButton("Chronology");
@@ -32,6 +33,11 @@ public class LeftPanel extends JPanel{
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         
+        this.loomButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(this.loomButton);
+
+        add(Box.createVerticalStrut(10));
+        
         this.itemButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(this.itemButton);
 
@@ -48,6 +54,7 @@ public class LeftPanel extends JPanel{
         this.forecastsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(this.forecastsButton);
         
+        this.saveLeftButton.add(this.loomButton);
         this.saveLeftButton.add(this.itemButton);
         this.saveLeftButton.add(this.clientButton);
         this.saveLeftButton.add(this.chronologyButton);
@@ -99,6 +106,10 @@ public class LeftPanel extends JPanel{
     
     public JButton getForecastsButton(){
         return this.forecastsButton;
+    }
+    
+    public JButton getLoomButton(){
+        return this.loomButton;
     }
     
 }

@@ -4,6 +4,8 @@
  */
 package view.formFactory;
 
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author Matilde

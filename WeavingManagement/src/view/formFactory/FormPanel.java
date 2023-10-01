@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import model.Model;
 import view.ErrorDialog;
 import view.Label;
@@ -33,14 +34,14 @@ public abstract class FormPanel extends JPanel{
     String type = new String();
     
     void createFormPanel(List<Label> label, String type){
+        setBackground(Color.WHITE);
+        setLayout(new GridBagLayout());
+        this.save = new JButton("save");
+        
         this.label = label;
         this.addRef = new JButton("add");
         this.addPhone = new JButton("add");
         this.type = type;
-        
-        setBackground(Color.WHITE);
-        setLayout(new GridBagLayout());
-        this.save = new JButton("save");
         
         this.gbc.fill = GridBagConstraints.HORIZONTAL;
         this.gbc.anchor = GridBagConstraints.CENTER;
@@ -93,7 +94,6 @@ public abstract class FormPanel extends JPanel{
                 }
             }
         }
-        
         
         add(this.save, this.gbc);
         
@@ -302,4 +302,11 @@ public abstract class FormPanel extends JPanel{
         
         return anyConditionMet;
     }
+    
+    public void updateSize(JPanel panel){
+        setSize(panel.getSize());
+        revalidate();
+        repaint();
+    }
+    
 }

@@ -10,6 +10,8 @@ import SQLite.LoomDAOImpl;
 import javax.swing.JButton;
 import model.Model;
 import view.MainView;
+import view.dataFactory.DataPanel;
+import view.panelFactory.Panel;
 
 /**
  *
@@ -22,6 +24,8 @@ public class ControllerUtility {
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
                 view.addData("loom", button.getText());
+                view.getLeftPanel().addBackButton();
+               
                 view.getDataPanel().getAddMetersRunButton().addActionListener(e1 ->{
                     String number = button.getText();
                     Model.getLoom(number).updateBecauseMetersRun(view.getDataPanel().getMetersRun());
@@ -31,12 +35,14 @@ public class ControllerUtility {
                 });
                 
                 view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
+                    view.getLeftPanel().restore();
                     db.removeLoom(Model.getLoom(button.getText()));
                     Model.removeLoom(Integer.parseInt(button.getText()));
                     view.remove(view.getDataPanel());
                     view.getDataPanel().setVisible(false);
                     view.getPanel().removeIconButton(button.getText());
                     view.getPanel().setVisible(true);
+                    view.getPanel().getScrollPane().setVisible(true);
                     view.getCentralPanel().add(view.getPanel());
                 });
             });
@@ -48,6 +54,7 @@ public class ControllerUtility {
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
                 view.addData("client", button.getText());
+                view.getLeftPanel().addBackButton();
                     
                 view.getDataPanel().getModifyButton().addActionListener(e1 ->{
                         
@@ -63,12 +70,14 @@ public class ControllerUtility {
                 });
                 
                 view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
+                    view.getLeftPanel().restore();
                     cdb.removeClient(Model.getClient(button.getText()));
                     Model.removeClient(button.getText());
                     view.remove(view.getDataPanel());
                     view.getDataPanel().setVisible(false);
                     view.getPanel().removeIconButton(button.getText());
                     view.getPanel().setVisible(true);
+                    view.getPanel().getScrollPane().setVisible(true);
                     view.getCentralPanel().add(view.getPanel());
                 });
                 
@@ -81,19 +90,23 @@ public class ControllerUtility {
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
                 view.addData("item", button.getText());
+                view.getLeftPanel().addBackButton();
                 
                 view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
+                    view.getLeftPanel().restore();
                     idb.removeItem(Model.getItem(button.getText()));
                     Model.removeItem(button.getText());
                     view.remove(view.getDataPanel());
                     view.getDataPanel().setVisible(false);
                     view.getPanel().removeIconButton(button.getText());
                     view.getPanel().setVisible(true);
+                    view.getPanel().getScrollPane().setVisible(true);
                     view.getCentralPanel().add(view.getPanel());
                 });
             });
         }
     }
+    
     
     
 }

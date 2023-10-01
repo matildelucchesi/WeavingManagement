@@ -15,16 +15,26 @@ import view.MainView;
  * @author Matilde
  */
 public class ClientController {
+    private MainView view;
+    private Model model;
+    private ClientDAOImpl cdb;
     
     public ClientController(MainView view, Model model, ClientDAOImpl cdb){
         Model.setClientList(cdb.getClientList());
-        view.getLeftPanel().getClientButton().addActionListener(e0 ->{
-            view.addPanel("client");
+        this.view = view;
+        this.model = model;
+        this.cdb = cdb;
+    }
+    
+    public void handleAction(){
+        view.addPanel("client");
             view.getPanel().setVisible(true);
             
             view.getPanel().getPlusButton().addActionListener(e1 ->{
                 view.getPanel().setVisible(false);
+                view.getPanel().getScrollPane().setVisible(false);
                 view.addForm("client");
+                view.getLeftPanel().addBackButton();
                 
                 view.getFormPanel().getAddPhone().addActionListener(e2 ->{
                     view.getFormPanel().updateField("phone");
@@ -42,14 +52,16 @@ public class ClientController {
                         view.getFormPanel().setVisible(false);
                         view.getPanel().addIconButton();
                         view.getPanel().setVisible(true);
+                        view.getPanel().getScrollPane().setVisible(true);
+                        view.getLeftPanel().restore();
                         ControllerUtility.iconListener(view, cdb);
                     }
                 });
                 
             });
             ControllerUtility.iconListener(view, cdb);
-        });
         
-        }
+        
+    }
 }
     

@@ -16,17 +16,29 @@ import view.MainView;
  * @author Matilde
  */
 public class ItemController {
-    public ItemController(MainView view, Model model, LoomDAOImpl db, ItemDAOImpl idb, ClientDAOImpl cdb){
+    private MainView view;
+    private Model model;
+    private ClientDAOImpl cdb;
+    private ItemDAOImpl idb;
+    
+    public ItemController(MainView view, Model model, ItemDAOImpl idb, ClientDAOImpl cdb){
         Model.setItemList(idb.getItemList());
-        System.out.print("size: "+ Model.getItemList().get(0).getName());
-        
-        view.getLeftPanel().getItemButton().addActionListener(e0 ->{
-            view.addPanel("item");
+         
+        this.view = view;
+        this.model = model;
+        this.idb = idb;
+        this.cdb = cdb;
+    }
+    
+    public void handleAction(){
+        view.addPanel("item");
             view.getPanel().setVisible(true);
             
             view.getPanel().getPlusButton().addActionListener(e1 ->{
                 view.getPanel().setVisible(false);
+                view.getPanel().getScrollPane().setVisible(false);
                 view.addForm("item");
+                view.getLeftPanel().addBackButton();
                 
                 view.getFormPanel().getSaveButton().addActionListener(e2 ->{
                     if(!view.getFormPanel().controlErrors()){
@@ -36,12 +48,13 @@ public class ItemController {
                         view.getFormPanel().setVisible(false);
                         view.getPanel().addIconButton();
                         view.getPanel().setVisible(true);
+                        view.getPanel().getScrollPane().setVisible(true);
+                        view.getLeftPanel().restore();
                         ControllerUtility.iconListener(view, idb);
                     }
                 });
             });
             ControllerUtility.iconListener(view, idb);
-        });
     }
         
 }

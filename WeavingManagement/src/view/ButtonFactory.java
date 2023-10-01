@@ -28,7 +28,7 @@ public class ButtonFactory {
     }
     
     public static JButton createBackButton(){
-        return ButtonUtility.createButton("", "././icon/back.png");
+        return ButtonUtility.createButton("", "././icon/back-button.png");
     }
     
     public static JButton createClientButton(String name){

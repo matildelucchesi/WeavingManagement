@@ -23,7 +23,7 @@ public class MainView extends JFrame {
     private view.panelFactory.Panel panel;
     private view.formFactory.FormPanel formPanel;
     private view.dataFactory.DataPanel dataPanel;
-    List<JButton> saveButton = new ArrayList<>();
+    private List<JButton> saveButton = new ArrayList<>();
 
     
     public MainView(){
@@ -127,5 +127,6 @@ public class MainView extends JFrame {
     public view.dataFactory.DataPanel getDataPanel(){
         return this.dataPanel;
     }
+
 }
  

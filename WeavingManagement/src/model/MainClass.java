@@ -25,9 +25,10 @@ public class MainClass {
         ItemDAOImpl idb = new ItemDAOImpl();
         ClientDAOImpl cdb = new ClientDAOImpl();
        
-        ItemController item = new ItemController(view, model, db, idb, cdb);
+        ItemController item = new ItemController(view, model, idb, cdb);
         LoomController loom = new LoomController(view,model, db, idb );
         ClientController client = new ClientController(view, model, cdb);
+        LeftPanelController left = new LeftPanelController(view, loom, item, client);
         
         
     }
