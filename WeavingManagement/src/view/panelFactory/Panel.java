@@ -9,10 +9,12 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
 import model.Model;
 import view.ButtonFactory;
 import view.ButtonUtility;
@@ -83,6 +85,7 @@ public abstract class Panel extends JPanel {
             if(!Model.getChronologyList().isEmpty()){
                     for (int i = 0; i < Model.getChronologyList().size(); i++) {
                         JButton button = ButtonFactory.createItemButton(Model.getChronologyList().get(i).getItemName());
+                        button.setBorder(new EmptyBorder(15, 15, 0, 0));
                         add(button);
                         this.saveIconButton.add(button);
                     }

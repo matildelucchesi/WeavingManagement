@@ -28,7 +28,9 @@ public class ButtonFactory {
     }
     
     public static JButton createPlusButton(){
-        return ButtonUtility.createButton("", "././icon/plus.png");
+        JButton plus = ButtonUtility.createButton("", "././icon/plus.png");
+        plus.setBorder(new EmptyBorder(10, 10, 0, 0));
+        return plus;
     }
     
     public static JButton createBackButton(){
@@ -37,7 +39,7 @@ public class ButtonFactory {
     
     public static JButton createClientButton(String name){
         JButton client = ButtonUtility.createButton(name, "././icon/company.png");
-        client.setBorder(new EmptyBorder(0, 15, 0, 0));
+        client.setBorder(new EmptyBorder(15, 15, 0, 0));
         return client;
     }
 }
