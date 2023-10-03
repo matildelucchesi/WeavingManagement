@@ -18,6 +18,10 @@ public class ButtonFactory {
         return ButtonUtility.createButton(Integer.toString(loomCode), "././icon/loom.png");
     }
     
+    public static JButton createEndLoomButton(int loomCode){
+        return ButtonUtility.createButton(Integer.toString(loomCode), "././icon/endloom.png");
+    }
+    
     public static JButton createItemButton(String itemName){
         JButton item = ButtonUtility.createButton(itemName, "././icon/textile.png");
         return item;

@@ -16,7 +16,7 @@ import javax.swing.JButton;
  * @author Matilde
  */
 public class ButtonUtility {
-    static JButton createButton(String label, String iconPath){
+    public static JButton createButton(String label, String iconPath){
         JButton button = new JButton();
         
         ImageIcon icon = new ImageIcon(iconPath);
