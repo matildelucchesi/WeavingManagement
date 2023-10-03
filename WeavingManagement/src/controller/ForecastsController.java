@@ -18,6 +18,7 @@ public class ForecastsController {
     private MainView view;
     private static ForecastsPanel forecasts;
     static boolean calculate = false;
+    private Forecasts f;
     
     public ForecastsController(MainView view){
         this.view = view;
@@ -38,9 +39,9 @@ public class ForecastsController {
             if(!forecasts.controlErrors()){
                 if(!calculate){
                     Item item = Model.getForecastsItem(forecasts.getItemData());
-                    Model.addForecasts(new Forecasts(Model.getForecastsList().size(), item, Model.getForecastsLoom(forecasts.getLoomData(), item)));
-                    System.out.print(Model.getForecastsList().get(0).getLoomList().get(0).getMetersToGo());
-                    forecasts.seeResult(Model.getForecastsList().get(Model.getForecastsList().size() - 1).getExpectedEndDate().toString());
+                    f = new Forecasts(item, Model.getForecastsLoom(forecasts.getLoomData(), item));
+                    System.out.print(f.getLoomList().get(0).getMetersToGo());
+                    forecasts.seeResult(f.getExpectedEndDate().toString());
                     calculate = true;
                 }else{
                     forecasts.restore();

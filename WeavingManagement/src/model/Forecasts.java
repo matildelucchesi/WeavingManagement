@@ -16,10 +16,8 @@ public class Forecasts {
     private Item item;
     private List<Loom> loomList = new ArrayList<>();
     private LocalDate expectedEndDate;
-    private int id;
     
-    public Forecasts(int id, Item item, List<Loom> loomList){
-        this.id = id;
+    public Forecasts(Item item, List<Loom> loomList){
         this.item = item;
         this.loomList = loomList;
         this.expectedEndDate = item.getExpectedEndDate();

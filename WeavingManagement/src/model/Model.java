@@ -18,7 +18,6 @@ public class Model {
     private static List<Item> itemList = new ArrayList<>();
     private static List<Client> clientList = new ArrayList<>();
     private static List<Chronology> chronologyList = new ArrayList<>();
-    private static List<Forecasts> forecastsList = new ArrayList<>();
     //Loom
     public static void addLoom(List<String> data){
         Loom loom = new LoomBuilder()

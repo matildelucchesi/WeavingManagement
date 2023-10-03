@@ -201,6 +201,7 @@ public class ForecastsPanel extends JPanel{
                 }
             }
             data.get(k).add(Integer.valueOf(this.text.get(save).getText()) / index );
+            System.out.print(Integer.valueOf(this.text.get(save).getText()) / index);
         }
         
         return data;
