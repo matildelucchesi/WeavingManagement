@@ -4,10 +4,20 @@
  */
 package view;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Matilde
  */
-public class RightPanel {
+public class RightPanel extends JPanel{
     
+    public RightPanel(JFrame frame){
+        setPreferredSize(new Dimension(frame.getWidth() / 6, frame.getHeight()));
+        setBackground(Color.BLUE);
+        
+    }
 }

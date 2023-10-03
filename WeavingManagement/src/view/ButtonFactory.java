@@ -42,4 +42,9 @@ public class ButtonFactory {
         client.setBorder(new EmptyBorder(15, 15, 0, 0));
         return client;
     }
+    
+    public static JButton createForecastsButton(int index){
+        JButton forecast = ButtonUtility.createButton(Integer.toString(index), "././icon/forecast.png");
+        return forecast;
+    }
 }
