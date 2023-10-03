@@ -33,7 +33,8 @@ public class MainClass {
         ItemController item = new ItemController(view, model, idb, db, cdb, c);
         LoomController loom = new LoomController(view,model, db, idb );
         ClientController client = new ClientController(view, model, cdb);
-        LeftPanelController left = new LeftPanelController(view, loom, item, client, chronology);
+        ForecastsController forecasts = new ForecastsController(view);
+        LeftPanelController left = new LeftPanelController(view, loom, item, client, chronology, forecasts);
         
         
     }

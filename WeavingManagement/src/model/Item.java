@@ -41,6 +41,13 @@ public final class Item implements Observer{
         this.client.getItem().add(this);
     }
     
+    public Item(int meters, int rowNumber, int hits){
+        this.meters = meters;
+        this.rowNumber = rowNumber;
+        this.hits = hits;
+        this.calculateTotalHits();
+    }
+    
     //getter methods
     public String getName(){
         return this.name;

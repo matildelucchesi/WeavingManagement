@@ -18,6 +18,7 @@ public class Model {
     private static List<Item> itemList = new ArrayList<>();
     private static List<Client> clientList = new ArrayList<>();
     private static List<Chronology> chronologyList = new ArrayList<>();
+    private static List<Forecasts> forecastsList = new ArrayList<>();
     //Loom
     public static void addLoom(List<String> data){
         Loom loom = new LoomBuilder()
@@ -74,6 +75,16 @@ public class Model {
         return loom;
     }
     
+    public static List<Loom> getForecastsLoom(List<List<Integer>> data, Item item){
+        List<Loom> list = new ArrayList<>();
+        
+        for(int i=0; i < data.size(); i ++){
+            list.add(new Loom(data.get(i).get(0), data.get(i).get(1), data.get(i).get(2), item));
+        }
+        
+        return list;
+    }
+    
     //Item
     public static void addItem(List<String> data){
         Item item = new ItemBuilder()
@@ -117,6 +128,10 @@ public class Model {
             }
         }
         return item;
+    }
+    
+    public static Item getForecastsItem(List<Integer> data){
+        return new Item(data.get(0), data.get(1), data.get(2));
     }
     
     //Client
@@ -182,6 +197,15 @@ public class Model {
             }
         }
         Model.chronologyList.remove(s);
+    }
+    
+    //forecast
+    public static void addForecasts(Forecasts f){
+        forecastsList.add(f);
+    }
+    
+    public static List<Forecasts> getForecastsList(){
+        return forecastsList;
     }
      
 }

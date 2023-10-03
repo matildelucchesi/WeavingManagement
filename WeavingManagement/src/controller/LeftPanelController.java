@@ -14,16 +14,16 @@ public class LeftPanelController {
     private LoomController loom;
     private ItemController item;
     private ClientController client;
+    private ForecastsController forecasts;
     
-    public LeftPanelController(MainView view, LoomController loom, ItemController item, ClientController client, ChronologyController chronology){
-        this.loom = loom;
-        this.item = item;
-        this.client= client;
+    public LeftPanelController(MainView view, LoomController loom, ItemController item, ClientController client, ChronologyController chronology, ForecastsController forecasts){
+        
         
         view.getLeftPanel().getLoomButton().addActionListener(e0 -> loom.handleAction());
         view.getLeftPanel().getItemButton().addActionListener(e1 -> item.handleAction());
         view.getLeftPanel().getClientButton().addActionListener(e2 -> client.handleAction());
         view.getLeftPanel().getChronologyButton().addActionListener(e3 -> chronology.handleAction());
+        view.getLeftPanel().getForecastsButton().addActionListener(e4 -> forecasts.handleAction());
        
         view.getLeftPanel().getBackButton().addActionListener(e->{
             view.getLeftPanel().restore();

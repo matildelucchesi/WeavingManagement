@@ -46,6 +46,19 @@ public final class Loom implements Observable{
        this.notifyLoomAtWork();
     }
     
+    public Loom(int speed, int surrender, int totalMeters, Item item){
+        this.speed = speed;
+        this.surrender = surrender;
+        this.totalMeters = totalMeters;
+        this.metersToGo = totalMeters;
+        this.item = item;
+        this.startDate = LocalDate.now();
+        this.calculateExpectedEndDate();
+        this.addObserver(item);
+        this.notifyExpectedEndDate();
+        this.notifyLoomAtWork();
+    }
+    
     //setter methods
     public void setItem(Item item){
         this.item = item;
@@ -146,9 +159,11 @@ public final class Loom implements Observable{
     
     //other methods
     public void calculateExpectedEndDate(){
-        int speedPerDay = this.speed * 60 * 24;
-        double days = (this.item.getTotalHits() * this.metersToGo) / speedPerDay; //days without surrender
+        double speedPerDay = this.speed * 60 * 24;
+        double days = ((double) this.item.getTotalHits() * this.metersToGo) / speedPerDay; //days without surrender
         double expectedDays = days * this.surrender / 100;
+        System.out.print(this.metersToGo);
+        System.out.print(this.item.getTotalHits());
         this.expectedEndDate = this.startDate.plusDays((long) expectedDays);
     }
     
