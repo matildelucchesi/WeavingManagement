@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class LeftPanel extends JPanel{
     private JButton backButton = ButtonFactory.createBackButton();
-    private JButton loomButton = new JButton("loom");
+    private JButton loomButton = new JButton("Loom");
     private JButton itemButton = new JButton("Item");
     private JButton clientButton = new JButton("Client");
     private JButton chronologyButton = new JButton("Chronology");
