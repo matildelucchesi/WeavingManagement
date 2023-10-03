@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import model.Model;
 import view.ButtonFactory;
+import view.ButtonUtility;
 
 /**
  *
@@ -31,7 +32,6 @@ public abstract class Panel extends JPanel {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         setBackground(Color.WHITE);
         this.plusButton = ButtonFactory.createPlusButton();
-        add(this.plusButton);
         
         if(layout.equals("grid")){
            setLayout(new GridLayout(0, 5, 90, 90));
@@ -53,9 +53,16 @@ public abstract class Panel extends JPanel {
         }
         if(this.type.equals("loom")){
                 if(!Model.getLoomList().isEmpty()){
+                    JButton lButton = new JButton();
                     for (int i = 0; i < Model.getLoomList().size(); i++) {
-                        JButton lButton = ButtonFactory.createLoomButton(Model.getLoomList().get(i).getNumber());
-                        add(lButton);
+                        if(Model.getLoomList().get(i).getMetersToGo() == 0){
+                            lButton = ButtonFactory.createEndLoomButton(Model.getLoomList().get(i).getNumber());
+                            add(lButton);
+                        }else{
+                            lButton = ButtonFactory.createLoomButton(Model.getLoomList().get(i).getNumber());
+                            add(lButton);
+                        }
+                        
                         this.saveIconButton.add(lButton);
                     }
                }
@@ -70,6 +77,16 @@ public abstract class Panel extends JPanel {
                     }
                }
             add(this.plusButton);
+        }
+        
+        if(this.type.equals("chronology")){
+            if(!Model.getChronologyList().isEmpty()){
+                    for (int i = 0; i < Model.getChronologyList().size(); i++) {
+                        JButton button = ButtonFactory.createItemButton(Model.getChronologyList().get(i).getItemName());
+                        add(button);
+                        this.saveIconButton.add(button);
+                    }
+               }
         }
         
         setVisible(true);
@@ -115,7 +132,7 @@ public abstract class Panel extends JPanel {
         this.updateButton();
     }
     
-    void restore(){
+    public void restore(){
         removeAll();
         
         for (Component item : this.saveIconButton) {
@@ -155,6 +172,21 @@ public abstract class Panel extends JPanel {
     
     public JScrollPane getScrollPane(){
         return this.scrollPane;
+    }
+    
+    public void updateLoomIcon(JButton button){
+        int s=0;
+        for(int i=0; i < this.saveIconButton.size(); i++){
+            if(this.saveIconButton.get(i).getText().equals(button.getText())){
+                s = i;
+            }
+        }
+        
+        button = ButtonUtility.createButton(button.getText(),  "././icon/endloom.png");
+        this.saveIconButton.set(s, button);
+        
+        revalidate();
+        repaint();
     }
    
    

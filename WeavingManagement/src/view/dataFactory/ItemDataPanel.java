@@ -49,6 +49,8 @@ public class ItemDataPanel extends DataPanel{
             }
             
             createDataPanelWithList(this.label, this.text);
+            
+            addEndButton();
         }
         
         

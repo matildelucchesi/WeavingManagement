@@ -36,6 +36,7 @@ public abstract class DataPanel extends JPanel{
     JButton addRef = new JButton("add");
     JButton addPhone = new JButton("add");
     JButton delete = new JButton("delete");
+    JButton end = new JButton("end");
     List<JTextArea> text = new ArrayList<>();
     List<Label> label = new ArrayList<>();
     List<List<JTextArea>> textList = new ArrayList<>();
@@ -355,4 +356,16 @@ public abstract class DataPanel extends JPanel{
     public JButton getDeleteButton(){
         return this.delete;
     }
+    
+    public void addEndButton(){
+        this.gbc.gridx = this.endGBCX;
+        this.gbc.gridy = this.endGBCY;
+        add(this.end, this.gbc);
+    }
+    
+    public JButton getEndButton(){
+        return this.end;
+    }
+    
+    
 }

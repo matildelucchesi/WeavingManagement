@@ -4,6 +4,7 @@
  */
 package controller;
 
+import SQLite.ChronologyDB;
 import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
@@ -19,15 +20,19 @@ public class ItemController {
     private MainView view;
     private Model model;
     private ClientDAOImpl cdb;
+    private LoomDAOImpl ldb;
     private ItemDAOImpl idb;
+    private ChronologyDB c;
     
-    public ItemController(MainView view, Model model, ItemDAOImpl idb, ClientDAOImpl cdb){
+    public ItemController(MainView view, Model model, ItemDAOImpl idb, LoomDAOImpl ldb, ClientDAOImpl cdb, ChronologyDB c){
         Model.setItemList(idb.getItemList());
          
         this.view = view;
         this.model = model;
         this.idb = idb;
+        this.ldb = ldb;
         this.cdb = cdb;
+        this.c = c;
     }
     
     public void handleAction(){
@@ -50,11 +55,11 @@ public class ItemController {
                         view.getPanel().setVisible(true);
                         view.getPanel().getScrollPane().setVisible(true);
                         view.getLeftPanel().restore();
-                        ControllerUtility.iconListener(view, idb);
+                        ControllerUtility.iconListener(view, idb, ldb, c);
                     }
                 });
             });
-            ControllerUtility.iconListener(view, idb);
+            ControllerUtility.iconListener(view, idb, ldb, c);
     }
         
 }

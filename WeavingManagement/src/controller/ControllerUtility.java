@@ -4,14 +4,16 @@
  */
 package controller;
 
+import SQLite.ChronologyDB;
 import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import model.Model;
 import view.MainView;
-import view.dataFactory.DataPanel;
-import view.panelFactory.Panel;
 
 /**
  *
@@ -20,6 +22,7 @@ import view.panelFactory.Panel;
 public class ControllerUtility {
     static boolean modify = false;
     
+    //for loom controller
     static void iconListener(MainView view, LoomDAOImpl db){
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
@@ -30,8 +33,10 @@ public class ControllerUtility {
                     String number = button.getText();
                     Model.getLoom(number).updateBecauseMetersRun(view.getDataPanel().getMetersRun());
                     db.updateMetersToGo(Model.getLoom(number));
+                    if(Model.getLoom(number).getMetersToGo() == 0){
+                        view.getPanel().updateLoomIcon(button);
+                    }
                     view.getDataPanel().adjournMetersToGo(Model.getLoom(number).getMetersToGo());
-                    
                 });
                 
                 view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
@@ -49,6 +54,7 @@ public class ControllerUtility {
         }
     }
     
+    //for client controller
     static void iconListener(MainView view, ClientDAOImpl cdb){
         
         for(JButton button : view.getPanel().getSaveIconButtonList()){
@@ -86,7 +92,8 @@ public class ControllerUtility {
         }
     }
     
-    static void iconListener(MainView view, ItemDAOImpl idb){
+    //for item controller
+    static void iconListener(MainView view, ItemDAOImpl idb, LoomDAOImpl ldb, ChronologyDB c){
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
                 view.addData("item", button.getText());
@@ -103,6 +110,57 @@ public class ControllerUtility {
                     view.getPanel().getScrollPane().setVisible(true);
                     view.getCentralPanel().add(view.getPanel());
                 });
+                
+                view.getDataPanel().getEndButton().addActionListener(e3 ->{
+                    Model.addChronology(Model.getItem(button.getText()).getName(), 
+                            Model.getItem(button.getText()).getMeters(),
+                            Model.getItem(button.getText()).getClient().getName(),
+                            LocalDate.now(), 
+                            Model.getItem(button.getText()).getLoomAtWork());
+                    c.insertElement(Model.getItem(button.getText()));
+                    
+                    int[] integerString = new int[Model.getItem(button.getText()).getLoomAtWork().size()];
+                    List<Integer> loomList = new ArrayList<>();
+            
+                    for(int i = 0; i < Model.getItem(button.getText()).getLoomAtWork().size(); i++){
+                        integerString[i] = Model.getItem(button.getText()).getLoomAtWork().get(i);
+                    }
+            
+                    for(int i=0; i < Model.getItem(button.getText()).getLoomAtWork().size(); i++){
+                        ldb.removeLoom(Model.getLoom(integerString[i]));
+                        Model.removeLoom(integerString[i]);
+                    }
+                    idb.removeItem(Model.getItem(button.getText()));
+                    Model.removeItem(button.getText());
+                    view.remove(view.getDataPanel());
+                    view.getDataPanel().setVisible(false);
+                    view.getPanel().removeIconButton(button.getText());
+                    view.getPanel().setVisible(true);
+                    view.getPanel().getScrollPane().setVisible(true);
+                    view.getCentralPanel().add(view.getPanel());
+                });
+            });
+        }
+    }
+    
+    static void iconListener(MainView view, ChronologyDB c){
+        for(JButton button : view.getPanel().getSaveIconButtonList()){
+            button.addActionListener(e ->{
+                view.addData("chronology", button.getText());
+                view.getLeftPanel().addBackButton();
+                
+                view.getDataPanel().getDeleteButton().addActionListener(e2 ->{
+                    view.getLeftPanel().restore();
+                    c.removeChronology(Model.getChronology(button.getText()));
+                    Model.removeChronology(button.getText());
+                    view.remove(view.getDataPanel());
+                    view.getDataPanel().setVisible(false);
+                    view.getPanel().removeIconButton(button.getText());
+                    view.getPanel().setVisible(true);
+                    view.getPanel().getScrollPane().setVisible(true);
+                    view.getCentralPanel().add(view.getPanel());
+                });
+                
             });
         }
     }

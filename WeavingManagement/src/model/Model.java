@@ -17,7 +17,7 @@ public class Model {
     private static List<Loom> loomList = new ArrayList<>();
     private static List<Item> itemList = new ArrayList<>();
     private static List<Client> clientList = new ArrayList<>();
-    
+    private static List<Chronology> chronologyList = new ArrayList<>();
     //Loom
     public static void addLoom(List<String> data){
         Loom loom = new LoomBuilder()
@@ -58,6 +58,16 @@ public class Model {
         Loom loom = null;
         for(int i=0; i< Model.getLoomList().size(); i++){
             if(Integer.parseInt(number) == Model.getLoomList().get(i).getNumber()){
+                loom = Model.getLoomList().get(i);
+            }
+        }
+        return loom;
+    }
+    
+    public static Loom getLoom(int number){
+        Loom loom = null;
+        for(int i=0; i< Model.getLoomList().size(); i++){
+            if(number == Model.getLoomList().get(i).getNumber()){
                 loom = Model.getLoomList().get(i);
             }
         }
@@ -140,4 +150,38 @@ public class Model {
         }
         return client;
     }
+     
+     //chronology
+     public static void addChronology(String itemName, int meters, String clientName, LocalDate endDate, List<Integer> loomAtWork){
+         chronologyList.add(new Chronology(itemName, meters, clientName, endDate, loomAtWork));
+     }
+     
+     public static List<Chronology> getChronologyList(){
+        return chronologyList;
+    }
+    
+    public static void setChronologyList(List<Chronology> chronologyList){
+        Model.chronologyList = chronologyList;
+    }
+    
+    public static Chronology getChronology(String itemName){
+        int s = 0;
+        for(int i = 0; i < Model.chronologyList.size(); i++){
+            if(Model.chronologyList.get(i).getItemName().equals(itemName)){
+                s = i;
+            }
+        }
+        return Model.chronologyList.get(s);
+    }
+     
+    public static void removeChronology(String itemName){
+        int s = 0;
+        for(int i = 0; i < Model.chronologyList.size(); i++){
+            if(Model.chronologyList.get(i).getItemName().equals(itemName)){
+                s = i;
+            }
+        }
+        Model.chronologyList.remove(s);
+    }
+     
 }

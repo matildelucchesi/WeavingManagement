@@ -19,6 +19,9 @@ public class DataPanelFactory {
         if(type.equals("client")){
             return new ClientDataPanel(buttonText);
         }
+        if(type.equals("chronology")){
+            return new ChronologyDataPanel(buttonText);
+        }
         
         return null;
     }

@@ -22,6 +22,9 @@ public class PanelFactory {
         if(type.equals("client")){
             return new ClientPanel();
         }
+        if(type.equals("chronology")){
+            return new ChronologyPanel();
+        }
         
         return null;
     }

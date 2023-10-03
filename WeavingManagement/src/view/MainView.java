@@ -72,6 +72,9 @@ public class MainView extends JFrame {
         if(type.equals("client")){
             this.panel = factory.createPanel("client");
         }
+        if(type.equals("chronology")){
+            this.panel = factory.createPanel("chronology");
+        }
         
         this.centralPanel.add(this.panel.getScrollPane());
         this.centralPanel.revalidate();
@@ -117,6 +120,9 @@ public class MainView extends JFrame {
         }
         if(type.equals("client")){
             this.dataPanel = factory.createDataPanel("client", buttonText);
+        }
+        if(type.equals("chronology")){
+            this.dataPanel = factory.createDataPanel("chronology", buttonText);
         }
         
         this.centralPanel.add(this.dataPanel);

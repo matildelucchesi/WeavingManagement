@@ -31,7 +31,7 @@ public class LoomController {
     
     public void handleAction(){
          view.addPanel("loom");
-
+         
             view.getPanel().getPlusButton().addActionListener(e0 -> {
                 view.getPanel().setVisible(false);
                 view.getPanel().getScrollPane().setVisible(false);

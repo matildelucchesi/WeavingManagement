@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package model;
+import SQLite.ChronologyDB;
 import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
@@ -22,13 +23,17 @@ public class MainClass {
         Model model = new Model();
         MainView view = new MainView();
         LoomDAOImpl db = new LoomDAOImpl();
+        ChronologyDB c = new ChronologyDB();
         ItemDAOImpl idb = new ItemDAOImpl();
         ClientDAOImpl cdb = new ClientDAOImpl();
+        
        
-        ItemController item = new ItemController(view, model, idb, cdb);
+        
+        ChronologyController chronology = new ChronologyController(view, model, c);
+        ItemController item = new ItemController(view, model, idb, db, cdb, c);
         LoomController loom = new LoomController(view,model, db, idb );
         ClientController client = new ClientController(view, model, cdb);
-        LeftPanelController left = new LeftPanelController(view, loom, item, client);
+        LeftPanelController left = new LeftPanelController(view, loom, item, client, chronology);
         
         
     }
