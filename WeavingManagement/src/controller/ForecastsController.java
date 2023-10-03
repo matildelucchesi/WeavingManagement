@@ -34,8 +34,8 @@ public class ForecastsController {
             this.forecasts.addLoomFields();
         });
         
-        
-            this.forecasts.getCalculateButton().addActionListener(e1 ->{
+        this.forecasts.getCalculateButton().addActionListener(e1 ->{
+            if(!this.forecasts.controlErrors()){
                 if(!calculate){
                     Item item = Model.getForecastsItem(this.forecasts.getItemData());
                     Model.addForecasts(new Forecasts(item, Model.getForecastsLoom(this.forecasts.getLoomData(), item)));
@@ -45,7 +45,8 @@ public class ForecastsController {
                     this.forecasts.restore();
                 calculate = false;
                 }
-            });
+            }
+         });
     }
         
          

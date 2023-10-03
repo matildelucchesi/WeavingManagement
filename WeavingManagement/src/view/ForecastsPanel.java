@@ -15,6 +15,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import model.Model;
 
 /**
  *
@@ -267,6 +268,17 @@ public class ForecastsPanel extends JPanel{
         
         revalidate();
         repaint();
+    }
+    
+    public boolean controlErrors(){
+        boolean anyConditionMet = false;
+        for(int i = 0; i < this.label.size(); i++){
+            if(this.text.get(i) != null && this.text.get(i).getText().isBlank()){
+                ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                anyConditionMet = true;
+            }
+        }
+        return anyConditionMet;
     }
     
     
