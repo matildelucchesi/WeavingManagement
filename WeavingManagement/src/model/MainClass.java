@@ -26,7 +26,6 @@ public class MainClass {
         ChronologyDB c = new ChronologyDB();
         ItemDAOImpl idb = new ItemDAOImpl();
         ClientDAOImpl cdb = new ClientDAOImpl();
-        
        
         
         ChronologyController chronology = new ChronologyController(view, model, c);

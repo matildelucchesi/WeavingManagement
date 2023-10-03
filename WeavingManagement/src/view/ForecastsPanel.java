@@ -35,6 +35,8 @@ public class ForecastsPanel extends JPanel{
     private int loomGBCY = 0;
     private Component box = Box.createVerticalStrut(20);
     private Color lightGray = new Color(211, 211, 211);
+    JTextArea area = new JTextArea();
+    private int totalMeters = 0;
     
     public ForecastsPanel(){
         setBackground(Color.WHITE);
@@ -47,8 +49,7 @@ public class ForecastsPanel extends JPanel{
         //loom data
         this.label.add(new Label("Loom " + index, 150));
         this.label.add(new Label("speed:", 150));
-        this.label.add(new Label("surender:", 150));
-        this.label.add(new Label("total meters:", 150));
+        this.label.add(new Label("surrender:", 150));
         
         this.startLabel = new ArrayList<>(this.label);
         
@@ -117,7 +118,6 @@ public class ForecastsPanel extends JPanel{
         label1.add(new Label("Loom " + index, 150));
         label1.add(new Label("speed:", 150));
         label1.add(new Label("surrender:", 150));
-        label1.add(new Label("total meters:", 150));
         
         this.gbc.gridx = 0;
         this.gbc.gridy = this.loomGBCY;
@@ -184,15 +184,23 @@ public class ForecastsPanel extends JPanel{
     
     public List<List<Integer>> getLoomData(){
         List<List<Integer>> data = new ArrayList();
+        int save = 0;
+        for(int s = 0; s < this.label.size(); s++){
+            if(this.label.get(s).getText().equals("meters:")){
+                save = s;
+            }
+        }
+        
         for(int k = 0; k < index; k++){
             data.add(new ArrayList());
-            for(int j = 4; j < this.text.size(); j = j+4){
-                for(int i = j; i < j + 4; i++){
+            for(int j = 4; j < this.text.size(); j = j+3){
+                for(int i = j; i < j + 3; i++){
                     if(this.text.get(i) != null){
                         data.get(k).add(Integer.valueOf(this.text.get(i).getText().trim()));
                     }
                 }
             }
+            data.get(k).add(Integer.valueOf(this.text.get(save).getText()) / index );
         }
         
         return data;
@@ -206,6 +214,8 @@ public class ForecastsPanel extends JPanel{
             }
         }
         
+        
+        
         remove(this.add);
         this.calculate.setText("new forecast");
         
@@ -216,7 +226,7 @@ public class ForecastsPanel extends JPanel{
         this.gbc.gridy++;
         this.gbc.gridx = 0;
         
-        JTextArea area = new JTextArea();
+        
         area.setEditable(false);
         area.setText("The expected end date is: " + expectedEndDate);
         add(area, this.gbc);
@@ -226,45 +236,17 @@ public class ForecastsPanel extends JPanel{
     }
     
     public void restore(){
-        removeAll();
-        this.index = 1;
-        
-        for(int i = 0; i < this.startText.size(); i++){
-            if(this.startText.get(i) != null){
-                this.startText.get(i).setEditable(true);
-                this.startText.get(i).setText(" ");
-                this.startText.get(i).setBackground(lightGray);
+        for(int i = 0; i < this.text.size(); i++){
+            if(this.text.get(i) != null){
+                this.text.get(i).setEditable(true);
+                this.text.get(i).setBackground(lightGray);
             }
             
         }
         
-        for(int k = 0; k < this.startLabel.size(); k++){
-            if(this.startLabel.get(k).getText().equals("Item") || this.startLabel.get(k).getText().equals("Loom " + this.index)){
-                this.gbc.gridx = 0;
-                add(this.startLabel.get(k), this.gbc);
-                this.gbc.gridx++;
-                if(this.startLabel.get(k).getText().equals("Loom "+ this.index)){
-                    this.gbc.gridx = 3;
-                    add(this.add, this.gbc);
-                    this.gbc.gridx = 1;
-                }
-            }
-            else if(this.startText.get(k) != null){
-                add(this.startLabel.get(k), this.gbc);
-                this.gbc.gridx++;
-                add(this.startText.get(k), this.gbc);
-                this.gbc.gridy++;
-                this.gbc.gridx--;
-            }
-        }
-        this.loomGBCY = this.gbc.gridy;
-        
-        add(this.box, this.gbc);
-        this.gbc.gridy++;
+        remove(area);
+        add(this.add);
         this.calculate.setText("calculate");
-        add(this.calculate, this.gbc);
-        this.endGBCX = this.gbc.gridx;
-        this.endGBCY = this.gbc.gridy;
         
         revalidate();
         repaint();

@@ -46,6 +46,7 @@ public final class Item implements Observer{
         this.rowNumber = rowNumber;
         this.hits = hits;
         this.calculateTotalHits();
+        this.expectedEndDate = LocalDate.now();
     }
     
     //getter methods

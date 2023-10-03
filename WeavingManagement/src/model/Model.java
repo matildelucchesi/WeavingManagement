@@ -207,5 +207,9 @@ public class Model {
     public static List<Forecasts> getForecastsList(){
         return forecastsList;
     }
+    
+    public static void setForecastsList(List<Forecasts> forecastsList){
+        Model.forecastsList = forecastsList;
+    }
      
 }

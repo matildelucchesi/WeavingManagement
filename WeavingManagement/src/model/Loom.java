@@ -160,10 +160,8 @@ public final class Loom implements Observable{
     //other methods
     public void calculateExpectedEndDate(){
         double speedPerDay = this.speed * 60 * 24;
-        double days = ((double) this.item.getTotalHits() * this.metersToGo) / speedPerDay; //days without surrender
+        double days = ((double) this.item.getTotalHits()) / speedPerDay; //days without surrender
         double expectedDays = days * this.surrender / 100;
-        System.out.print(this.metersToGo);
-        System.out.print(this.item.getTotalHits());
         this.expectedEndDate = this.startDate.plusDays((long) expectedDays);
     }
     

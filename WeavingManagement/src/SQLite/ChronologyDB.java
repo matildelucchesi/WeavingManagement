@@ -43,19 +43,8 @@ public class ChronologyDB {
             preparedStatement.setString(3, item.getClient().getName());
             preparedStatement.setString(4, LocalDate.now().toString());
             
-            StringBuilder stringBuilder = new StringBuilder("[");
-    
-            for (int i = 0; i < item.getLoomAtWork().size(); i++) {
-                stringBuilder.append(item.getLoomAtWork().get(i));
-                if (i < item.getLoomAtWork().size() - 1) {
-                    stringBuilder.append(", ");
-                }
-            }
-    
-            stringBuilder.append("]");
-            
         
-            preparedStatement.setString(5, stringBuilder.toString());
+            preparedStatement.setString(5, DBUtility.stringBuilder(item.getLoomAtWork()));
             
             // Esegui la query di inserimento
             int rowsAffected = preparedStatement.executeUpdate();
@@ -121,21 +110,9 @@ public class ChronologyDB {
                 
             }catch(ParseException e){
                 System.err.println("Errore durante il parsing della data");
-            }
-                List<Integer> integerList = new ArrayList<>();
-                if(!loom.equals("[]")){
-                    loom = loom.substring(1, loom.length() - 1);
-
-                    String[] value = loom.split(", ");
-                
-                    for(String str : value){
-                        integerList.add(Integer.parseInt(str));
-                    }
-                }
-                
+            }   
             
-            
-            Chronology c = new Chronology(itemName, meters, clientName, end, integerList);
+            Chronology c = new Chronology(itemName, meters, clientName, end, DBUtility.convertStringToInteger(loom));
                 chronology.add(c);
             }
 

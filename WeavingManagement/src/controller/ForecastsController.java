@@ -16,34 +16,35 @@ import view.MainView;
  */
 public class ForecastsController {
     private MainView view;
-    private ForecastsPanel forecasts;
+    private static ForecastsPanel forecasts;
     static boolean calculate = false;
     
     public ForecastsController(MainView view){
         this.view = view;
+        forecasts = new ForecastsPanel();
     }
     
     public void handleAction(){
         this.view.getCentralPanel().removeAll();
-        this.forecasts = new ForecastsPanel();
-        this.view.getCentralPanel().add(this.forecasts);
+        this.view.getCentralPanel().add(forecasts);
         this.view.getCentralPanel().revalidate();
         this.view.getCentralPanel().repaint();
         
-        this.forecasts.getAddButton().addActionListener(e0 ->{
-            this.forecasts.addLoomFields();
+        forecasts.getAddButton().addActionListener(e0 ->{
+            forecasts.addLoomFields();
         });
         
-        this.forecasts.getCalculateButton().addActionListener(e1 ->{
-            if(!this.forecasts.controlErrors()){
+        forecasts.getCalculateButton().addActionListener(e1 ->{
+            if(!forecasts.controlErrors()){
                 if(!calculate){
-                    Item item = Model.getForecastsItem(this.forecasts.getItemData());
-                    Model.addForecasts(new Forecasts(item, Model.getForecastsLoom(this.forecasts.getLoomData(), item)));
-                    this.forecasts.seeResult(Model.getForecastsList().get(Model.getForecastsList().size() - 1).getExpectedEndDate().toString());
+                    Item item = Model.getForecastsItem(forecasts.getItemData());
+                    Model.addForecasts(new Forecasts(Model.getForecastsList().size(), item, Model.getForecastsLoom(forecasts.getLoomData(), item)));
+                    System.out.print(Model.getForecastsList().get(0).getLoomList().get(0).getMetersToGo());
+                    forecasts.seeResult(Model.getForecastsList().get(Model.getForecastsList().size() - 1).getExpectedEndDate().toString());
                     calculate = true;
                 }else{
-                    this.forecasts.restore();
-                calculate = false;
+                    forecasts.restore();
+                    calculate = false;
                 }
             }
          });

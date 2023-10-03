@@ -20,7 +20,7 @@ public class MainView extends JFrame {
     private JButton button = new JButton("Button");
     private JPanel centralPanel;
     private LeftPanel leftPanel;
-    private RightPanel rightPanel;
+    private JPanel rightPanel;
     private view.panelFactory.Panel panel;
     private view.formFactory.FormPanel formPanel;
     private view.dataFactory.DataPanel dataPanel;
@@ -40,7 +40,9 @@ public class MainView extends JFrame {
         this.centralPanel.setLayout(new BoxLayout(this.centralPanel, BoxLayout.Y_AXIS));
         this.centralPanel.setBackground(Color.WHITE);
         
-        this.rightPanel = new RightPanel(this);
+        this.rightPanel = new JPanel();
+        this.rightPanel.setPreferredSize(new Dimension(getWidth() / 6, getHeight()));
+        this.rightPanel.setBackground(Color.BLUE);
         
         mainPanel.add(leftPanel, BorderLayout.WEST);
         mainPanel.add(this.centralPanel, BorderLayout.CENTER);
@@ -56,10 +58,6 @@ public class MainView extends JFrame {
     
     public LeftPanel getLeftPanel(){
         return this.leftPanel;
-    }
-    
-    public RightPanel getRightPanel(){
-        return this.rightPanel;
     }
     
     public void addPanel(String type){
