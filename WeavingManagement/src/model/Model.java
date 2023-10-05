@@ -79,6 +79,7 @@ public class Model {
         
         for(int i=0; i < data.size(); i ++){
             list.add(new Loom(data.get(i).get(0), data.get(i).get(1), data.get(i).get(2), item));
+            System.out.print(list.get(i).getExpectedEndDate());
         }
         
         return list;
@@ -198,17 +199,5 @@ public class Model {
         Model.chronologyList.remove(s);
     }
     
-    //forecast
-    public static void addForecasts(Forecasts f){
-        forecastsList.add(f);
-    }
-    
-    public static List<Forecasts> getForecastsList(){
-        return forecastsList;
-    }
-    
-    public static void setForecastsList(List<Forecasts> forecastsList){
-        Model.forecastsList = forecastsList;
-    }
      
 }

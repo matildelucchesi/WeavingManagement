@@ -40,7 +40,6 @@ public class ForecastsController {
                 if(!calculate){
                     Item item = Model.getForecastsItem(forecasts.getItemData());
                     f = new Forecasts(item, Model.getForecastsLoom(forecasts.getLoomData(), item));
-                    System.out.print(f.getLoomList().get(0).getMetersToGo());
                     forecasts.seeResult(f.getExpectedEndDate().toString());
                     calculate = true;
                 }else{
@@ -49,6 +48,10 @@ public class ForecastsController {
                 }
             }
          });
+        
+        forecasts.getRemoveButton().addActionListener(e2 ->{
+            forecasts.removeLoomFields();
+        });
     }
         
          

@@ -138,7 +138,7 @@ public final class Item implements Observer{
     
     //other methods
     public void calculateTotalHits(){
-        this.totalHits = this.hits * 10 * this.meters;
+        this.totalHits = this.hits * 10;
     }
     
     @Override

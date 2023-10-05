@@ -21,7 +21,6 @@ public class Forecasts {
         this.item = item;
         this.loomList = loomList;
         this.expectedEndDate = item.getExpectedEndDate();
-        
     }
     
     public LocalDate getExpectedEndDate(){

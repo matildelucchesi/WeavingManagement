@@ -29,10 +29,12 @@ public class ForecastsPanel extends JPanel{
     private List<JTextArea> startText = new ArrayList<>();
     private GridBagConstraints gbc = new GridBagConstraints();
     private JButton add = new JButton("add");
+    private JButton remove = new JButton("remove");
     private JButton calculate = new JButton("calculate");
     private int endGBCX = 0;
     private int endGBCY = 0;
     private int loomGBCY = 0;
+    private int addButtonGBCY = 0;
     private Component box = Box.createVerticalStrut(20);
     private Color lightGray = new Color(211, 211, 211);
     JTextArea area = new JTextArea();
@@ -80,7 +82,12 @@ public class ForecastsPanel extends JPanel{
                 this.gbc.gridx++;
                 if(this.label.get(k).getText().equals("Loom "+ index)){
                     this.gbc.gridx = 3;
+                    this.addButtonGBCY = this.gbc.gridy;
                     add(this.add, this.gbc);
+                    if(this.index != 1){
+                        this.gbc.gridx++;
+                        add(this.remove, this.gbc);
+                    }
                     this.gbc.gridx = 1;
                 }
             }
@@ -93,6 +100,7 @@ public class ForecastsPanel extends JPanel{
             }
         }
         this.loomGBCY = this.gbc.gridy;
+        System.out.print(this.addButtonGBCY);
         
         add(this.box, this.gbc);
         this.gbc.gridy++;
@@ -140,20 +148,28 @@ public class ForecastsPanel extends JPanel{
         
         for(int k = 0; k < label1.size(); k++){
             if(label1.get(k).getText().equals("Loom " + index)){
+                this.gbc.gridy = this.addButtonGBCY + 2;
                 add(label1.get(k), this.gbc);
                 this.gbc.gridx = 3;
                 add(this.add, this.gbc);
+                this.addButtonGBCY = this.gbc.gridy;
+                if(this.index != 1){
+                        this.gbc.gridx++;
+                        add(this.remove, this.gbc);
+                }
                 this.gbc.gridx = 1;
             }else{
-                System.out.print(k);
                 add(label1.get(k), this.gbc);
                 this.gbc.gridx++;
                 add(text1.get(k), this.gbc);
                 this.gbc.gridy++;
                 this.gbc.gridx--;
             }
+            
 
         }
+        
+        System.out.print(this.addButtonGBCY);
         
         this.loomGBCY = this.gbc.gridy;
         this.label.addAll(label1);
@@ -201,7 +217,6 @@ public class ForecastsPanel extends JPanel{
                 }
             }
             data.get(k).add(Integer.valueOf(this.text.get(save).getText()) / index );
-            System.out.print(Integer.valueOf(this.text.get(save).getText()) / index);
         }
         
         return data;
@@ -215,9 +230,8 @@ public class ForecastsPanel extends JPanel{
             }
         }
         
-        
-        
         remove(this.add);
+        remove(this.remove);
         this.calculate.setText("new forecast");
         
         this.gbc.gridx = this.endGBCX;
@@ -242,11 +256,17 @@ public class ForecastsPanel extends JPanel{
                 this.text.get(i).setEditable(true);
                 this.text.get(i).setBackground(lightGray);
             }
-            
         }
-        
         remove(area);
-        add(this.add);
+        
+                
+        this.gbc.gridx = 3;
+        this.gbc.gridy = this.addButtonGBCY;
+        add(this.add, this.gbc);
+        if(this.index != 1){
+                        this.gbc.gridx++;
+                        add(this.remove, this.gbc);
+                    }
         this.calculate.setText("calculate");
         
         revalidate();
@@ -264,5 +284,46 @@ public class ForecastsPanel extends JPanel{
         return anyConditionMet;
     }
     
+    public JButton getRemoveButton(){
+        return this.remove;
+    }
     
+    public void removeLoomFields(){
+        int s =0;
+        remove(this.add);
+        remove(this.remove);
+        for(int i = 0; i < this.text.size(); i++){
+            if(this.label.get(i).getText().equals("Loom " + index)){
+                s = i;
+                break;
+            }
+        }
+        
+        for(int j = this.label.size() - 1; j >= s ; j--){
+            remove(this.label.get(j));
+            if(this.text.get(j) != null){
+                remove(this.text.get(j));
+            }
+            this.label.remove(j);
+            this.text.remove(j);
+        }
+       
+        this.index = this.index - 1;
+        
+        
+        this.gbc.gridx = 3;
+        this.gbc.gridy = this.addButtonGBCY - 2;
+        add(this.add, this.gbc);
+        System.out.print(this.gbc.gridy);
+        this.addButtonGBCY = this.gbc.gridy;
+        
+        if(this.index != 1){
+            this.gbc.gridx++;
+            add(this.remove, this.gbc);
+        }
+        
+        revalidate();
+        repaint();
+    }
+            
 }
