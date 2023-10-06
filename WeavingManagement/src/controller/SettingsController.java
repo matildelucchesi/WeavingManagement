@@ -25,6 +25,7 @@ public class SettingsController {
     }
     
     public void handleAction(){
+        this.view.getCentralPanel().removeAll();
         this.view.getCentralPanel().add(this.panel);
         this.view.getCentralPanel().revalidate();
         this.view.getCentralPanel().repaint();
