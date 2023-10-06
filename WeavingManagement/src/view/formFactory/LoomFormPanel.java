@@ -6,7 +6,6 @@ package view.formFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JScrollPane;
 import view.Label;
 import view.TextField;
 

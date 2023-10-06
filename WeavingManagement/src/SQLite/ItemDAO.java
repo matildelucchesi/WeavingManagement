@@ -4,10 +4,8 @@
  */
 package SQLite;
 
-import java.time.LocalDate;
 import java.util.List;
 import model.Item;
-import model.Loom;
 
 /**
  *

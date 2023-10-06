@@ -7,7 +7,6 @@ package controller;
 import view.MainView;
 import model.Model;
 import SQLite.*;
-import java.awt.Color;
        
 
 /**

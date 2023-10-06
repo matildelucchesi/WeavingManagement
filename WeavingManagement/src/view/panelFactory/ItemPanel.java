@@ -4,8 +4,6 @@
  */
 package view.panelFactory;
 
-import view.panelFactory.Panel;
-
 /**
  *
  * @author Matilde

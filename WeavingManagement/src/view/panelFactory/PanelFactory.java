@@ -4,7 +4,6 @@
  */
 package view.panelFactory;
 
-import javax.swing.JPanel;
 
 /**
  *

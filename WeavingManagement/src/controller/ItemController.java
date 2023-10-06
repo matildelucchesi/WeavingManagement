@@ -8,7 +8,6 @@ import SQLite.ChronologyDB;
 import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
-import javax.swing.JButton;
 import model.Model;
 import view.MainView;
 

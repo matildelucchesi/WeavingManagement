@@ -5,7 +5,6 @@
 package SQLite;
 
 import java.util.List;
-import model.Item;
 import model.Loom;
 
 

@@ -5,7 +5,6 @@
 package controller;
 
 import SQLite.ClientDAOImpl;
-import javax.swing.JButton;
 import model.Model;
 import view.MainView;
 
