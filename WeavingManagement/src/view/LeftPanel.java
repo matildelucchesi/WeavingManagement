@@ -25,40 +25,6 @@ public class LeftPanel extends JPanel{
    public LeftPanel(JFrame frame) {
         setPreferredSize(new Dimension(frame.getWidth() / 6, frame.getHeight()));
         setBackground(Color.BLUE);
-
-        this.itemButton.setSize(30, 20);
-        this.clientButton.setSize(30, 20);
-        
-        add(Box.createVerticalStrut(20));
-
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        
-        this.loomButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(this.loomButton);
-
-        add(Box.createVerticalStrut(10));
-        
-        this.itemButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(this.itemButton);
-
-        add(Box.createVerticalStrut(10));
-
-        this.clientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(this.clientButton);
-        
-        add(Box.createVerticalStrut(10));
-        this.chronologyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(this.chronologyButton);
-        
-        add(Box.createVerticalStrut(10));
-        this.forecastsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(this.forecastsButton);
-        
-        this.saveLeftButton.add(this.loomButton);
-        this.saveLeftButton.add(this.itemButton);
-        this.saveLeftButton.add(this.clientButton);
-        this.saveLeftButton.add(this.chronologyButton);
-        this.saveLeftButton.add(this.forecastsButton);
     }
     
     public void addBackButton(){
@@ -112,4 +78,42 @@ public class LeftPanel extends JPanel{
         return this.loomButton;
     }
     
+    public void seeComponents(){
+        this.itemButton.setSize(30, 20);
+        this.clientButton.setSize(30, 20);
+        
+        add(Box.createVerticalStrut(20));
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        
+        this.loomButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(this.loomButton);
+
+        add(Box.createVerticalStrut(10));
+        
+        this.itemButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(this.itemButton);
+
+        add(Box.createVerticalStrut(10));
+
+        this.clientButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(this.clientButton);
+        
+        add(Box.createVerticalStrut(10));
+        this.chronologyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(this.chronologyButton);
+        
+        add(Box.createVerticalStrut(10));
+        this.forecastsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(this.forecastsButton);
+        
+        this.saveLeftButton.add(this.loomButton);
+        this.saveLeftButton.add(this.itemButton);
+        this.saveLeftButton.add(this.clientButton);
+        this.saveLeftButton.add(this.chronologyButton);
+        this.saveLeftButton.add(this.forecastsButton);
+        
+        revalidate();
+        repaint();
+    }
 }

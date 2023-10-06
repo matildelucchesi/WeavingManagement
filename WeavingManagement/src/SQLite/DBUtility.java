@@ -12,6 +12,7 @@ import java.util.List;
  * @author Matilde
  */
 public class DBUtility {
+    
     public static String stringBuilder(List<Integer> list){
         StringBuilder stringBuilder = new StringBuilder("[");
     
@@ -39,4 +40,6 @@ public class DBUtility {
         }
         return integerList;        
     }
+    
+   
 }
