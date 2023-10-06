@@ -99,10 +99,18 @@ public abstract class DataPanel extends JPanel{
             if(this.label.get(i).getText().equals("referent:")){
                 this.refGBCX = this.gbc.gridx;
                 this.refGBCY = this.gbc.gridy;
+                add(this.label.get(i), this.gbc);
             }
             if(this.label.get(i).getText().equals("phone number:")){
+                this.gbc.gridx = 3;
+                this.gbc.gridy = this.refGBCY;
                 this.phoneGBCX = this.gbc.gridx;
                 this.phoneGBCY = this.gbc.gridy;
+                add(this.label.get(i), this.gbc);
+            }
+            if(this.label.get(i).getText().equals("item:")){
+                this.gbc.gridx = 0;
+                add(this.label.get(i), this.gbc);
             }
             this.gbc.gridx++;
             for(int j=0; j < this.textList.get(i).size(); j++){
