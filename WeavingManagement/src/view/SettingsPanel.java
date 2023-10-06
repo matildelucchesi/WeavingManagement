@@ -123,7 +123,7 @@ public class SettingsPanel extends JPanel{
     public List<String> getData1(){
         List<String> data = new ArrayList<>();
         for(int i = 0; i < this.password.size(); i++){
-            data.add(this.password.get(i).getText());
+            data.add(this.password.get(i).getText().trim());
         }
         return data;
     }
@@ -131,8 +131,7 @@ public class SettingsPanel extends JPanel{
     public List<String> getData2(){
         List<String> data = new ArrayList<>();
         for(int i = 0; i < this.credentials.size(); i++){
-            data.add(this.credentials.get(i).getText());
-            System.out.print(data.get(i));
+            data.add(this.credentials.get(i).getText().trim());
         }
         return data;
     }

@@ -58,11 +58,11 @@ public class Authentication extends JPanel {
     }
     
     public String getUsername(){
-        return this.text.get(0).getText();
+        return this.text.get(0).getText().trim();
     }
     
      public String getPassword(){
-        return this.text.get(1).getText();
+        return this.text.get(1).getText().trim();
     }
      
      public JButton getLogInButton(){

@@ -99,7 +99,6 @@ public class ForecastsPanel extends JPanel{
             }
         }
         this.loomGBCY = this.gbc.gridy;
-        System.out.print(this.addButtonGBCY);
         
         add(this.box, this.gbc);
         this.gbc.gridy++;
