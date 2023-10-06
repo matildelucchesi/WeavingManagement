@@ -14,7 +14,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import model.Model;
-import view.ErrorDialog;
+import view.Dialog;
 import view.Label;
 import view.TextField;
 
@@ -195,7 +195,7 @@ public abstract class FormPanel extends JPanel{
             for(int i = 0; i < this.label.size(); i++){
                 if(this.label.get(i).getText().equals("number:")){
                     if(this.text.get(i).getText().isBlank()){
-                        ErrorDialog.showErrorDialog("ERROR: the number cannot be null");
+                        Dialog.showErrorDialog("ERROR: the number cannot be null");
                         anyConditionMet = true;
                     }else{
                         boolean isUnique = true;
@@ -205,14 +205,14 @@ public abstract class FormPanel extends JPanel{
                             }
                         }
                         if(isUnique == false){
-                            ErrorDialog.showErrorDialog("ERROR: the loom must be unique");
+                            Dialog.showErrorDialog("ERROR: the loom must be unique");
                             anyConditionMet = true;
                         }
                     }
                 }
                 else if(this.label.get(i).getText().equals("item name:")){
                     if(this.text.get(i).getText().isBlank()){
-                        ErrorDialog.showErrorDialog("ERROR: the item cannot be null");
+                        Dialog.showErrorDialog("ERROR: the item cannot be null");
                         anyConditionMet = true;
                     }else{
                         boolean exist = false;
@@ -224,7 +224,7 @@ public abstract class FormPanel extends JPanel{
                             }
                         }
                         if(exist == false){
-                            ErrorDialog.showErrorDialog("ERROR: the item must exist");
+                            Dialog.showErrorDialog("ERROR: the item must exist");
                             anyConditionMet = true;
                         }else{
                             
@@ -233,22 +233,22 @@ public abstract class FormPanel extends JPanel{
                 }
                 else if(this.label.get(i).getText().equals("total meters:")){
                     if(this.text.get(i).getText().isBlank()){
-                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        Dialog.showErrorDialog("ERROR: the value cannot be null");
                         anyConditionMet = true;
                     }else{
                         if(item != null && Integer.parseInt(this.text.get(i).getText()) > Model.getItemList().get(s).getDisponibility()){
-                            ErrorDialog.showErrorDialog("ERROR: the value is greater than the item's disponibility; there are" + Model.getItemList().get(s).getDisponibility() + "meters available");
+                            Dialog.showErrorDialog("ERROR: the value is greater than the item's disponibility; there are" + Model.getItemList().get(s).getDisponibility() + "meters available");
                             anyConditionMet = true;
                         }
                     }
                 }
                 else{
                     if(this.text.get(i).getText().isBlank()){
-                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        Dialog.showErrorDialog("ERROR: the value cannot be null");
                         anyConditionMet = true;
                     }else{
                         if(Integer.parseInt(this.text.get(i).getText()) < 0){
-                            ErrorDialog.showErrorDialog("ERROR: the value cannot be less than zero");
+                            Dialog.showErrorDialog("ERROR: the value cannot be less than zero");
                         anyConditionMet = true;
                         }
                 }
@@ -261,28 +261,28 @@ public abstract class FormPanel extends JPanel{
             for(int i = 0; i < this.label.size(); i++){
                 if(this.label.get(i).getText().equals("delivery date:")){
                     if(this.text.get(i).getText().isBlank()){
-                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        Dialog.showErrorDialog("ERROR: the value cannot be null");
                         anyConditionMet = true;
                     }else{
                         if(LocalDate.parse(this.text.get(i).getText(), formatter).isBefore(LocalDate.now())){
-                            ErrorDialog.showErrorDialog("ERROR: delivery date cannot be before today");
+                            Dialog.showErrorDialog("ERROR: delivery date cannot be before today");
                             anyConditionMet = true;
                         }
                     }
                 }
                 else if(this.label.get(i).getText().equals("client name:") || this.label.get(i).getText().equals("name:")){
                     if(this.text.get(i).getText().isBlank()){
-                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        Dialog.showErrorDialog("ERROR: the value cannot be null");
                         anyConditionMet = true;
                     }
                 }
                 else{
                     if(this.text.get(i).getText().isBlank()){
-                        ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                        Dialog.showErrorDialog("ERROR: the value cannot be null");
                         anyConditionMet = true;
                     }else{
                         if(Integer.parseInt(this.text.get(i).getText()) < 0){
-                            ErrorDialog.showErrorDialog("ERROR: the value cannot be less than zero");
+                            Dialog.showErrorDialog("ERROR: the value cannot be less than zero");
                             anyConditionMet = true;
                     }
                 }
@@ -294,7 +294,7 @@ public abstract class FormPanel extends JPanel{
         
         if(this.type.equals("client")){
             if(this.clientText.get(0).get(0).getText().isBlank()){
-                    ErrorDialog.showErrorDialog("ERROR: the value cannot be null");
+                    Dialog.showErrorDialog("ERROR: the value cannot be null");
                     anyConditionMet = true;           
             }
         }

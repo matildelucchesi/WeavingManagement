@@ -4,14 +4,14 @@
  */
 package controller;
 
-import SQLite.AuthenticationDB;
+import SQLite.UsersDB;
 import SQLite.ChronologyDB;
 import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
 import model.Model;
 import view.Authentication;
-import view.ErrorDialog;
+import view.Dialog;
 import view.MainView;
 
 
@@ -28,8 +28,9 @@ public class AuthenticationController {
     private LoomDAOImpl ldb;
     private ClientDAOImpl cdb;
     private ChronologyDB c;
+    private UsersDB u;
     
-    public AuthenticationController(MainView view, Model model, ItemDAOImpl idb, LoomDAOImpl ldb, ClientDAOImpl cdb, ChronologyDB c){
+    public AuthenticationController(MainView view, Model model, ItemDAOImpl idb, LoomDAOImpl ldb, ClientDAOImpl cdb, ChronologyDB c, UsersDB u){
         this.panel = new Authentication();
         this.view = view;
         this.view.getCentralPanel().add(panel);
@@ -40,11 +41,12 @@ public class AuthenticationController {
         this.cdb = cdb;
         this.ldb = ldb;
         this.c = c;
+        this.u = u;
     }
     
     public void authenticateAndProceed(){
         this.panel.getLogInButton().addActionListener(e1 ->{
-            if(AuthenticationDB.authenticate(panel.getUsername(), panel.getPassword())){
+            if(UsersDB.authenticate(panel.getUsername(), panel.getPassword())){
                 this.access = true;
                 this.view.getLeftPanel().seeComponents();
                 this.view.getCentralPanel().remove(this.panel);
@@ -56,10 +58,11 @@ public class AuthenticationController {
                 LoomController loom = new LoomController(view,model, ldb, idb );
                 ClientController client = new ClientController(view, model, cdb);
                 ForecastsController forecasts = new ForecastsController(view);
-                LeftPanelController left = new LeftPanelController(view, loom, item, client, chronology, forecasts);
+                SettingsController settings = new SettingsController(view, u);
+                LeftPanelController left = new LeftPanelController(view, loom, item, client, chronology, forecasts, settings);
             }
             else{
-                ErrorDialog.showErrorDialog("ERROR: wrong credentials");
+                Dialog.showErrorDialog("ERROR: wrong credentials");
                 this.access = false;
             }
         });

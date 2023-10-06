@@ -7,6 +7,7 @@ import SQLite.ChronologyDB;
 import SQLite.ClientDAOImpl;
 import SQLite.ItemDAOImpl;
 import SQLite.LoomDAOImpl;
+import SQLite.UsersDB;
 import controller.*;
 import view.*;
 
@@ -27,8 +28,9 @@ public class MainClass {
         ChronologyDB c = new ChronologyDB();
         ItemDAOImpl idb = new ItemDAOImpl();
         ClientDAOImpl cdb = new ClientDAOImpl();
+        UsersDB u = new UsersDB();
        
-        AuthenticationController authentication = new AuthenticationController(view, model, idb, ldb, cdb, c);
+        AuthenticationController authentication = new AuthenticationController(view, model, idb, ldb, cdb, c,u);
         authentication.authenticateAndProceed();
         
     }
