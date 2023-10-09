@@ -81,6 +81,7 @@ public class ItemBuilder {
             }
             if(this.client == null){
                 this.client = new Client(clientName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                Model.getClientList().add(this.client);
             }
         }else{
             this.client = new Client(clientName, new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
