@@ -284,4 +284,45 @@ public class LoomDAOImpl implements LoomDAO {
             }
         }
     }
+    
+    @Override
+    public void updateExpectedEndDate(Loom loom){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try {
+            Class.forName("org.sqlite.JDBC");
+            String dbURL = "jdbc:sqlite:././Information.db";
+            connection = DriverManager.getConnection(dbURL);
+            
+            String sql = "UPDATE Loom SET expectedEndDate = ? WHERE loom_code = ?";
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, loom.getExpectedEndDate().toString());
+            preparedStatement.setInt(2, loom.getNumber());
+
+            int rowsUpdated = preparedStatement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Il valore di expectedEndDate per il loom " + loom.getNumber() + " è stato aggiornato con successo.");
+            } else {
+                System.out.println("Nessuna riga è stata modificata.");
+            }
+            connection.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

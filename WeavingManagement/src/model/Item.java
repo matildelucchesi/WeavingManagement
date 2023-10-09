@@ -161,6 +161,7 @@ public final class Item implements Observer{
             this.date.add(expectedEndDate);
             this.expectedEndDate = expectedEndDate;
         }
+        System.out.print("ciao" + expectedEndDate);
         
     }
     

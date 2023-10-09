@@ -17,4 +17,5 @@ public interface LoomDAO {
     void removeLoom(Loom loom);
     void updateMetersToGo(Loom loom);
     List<Loom> getLoomList();
+    void updateExpectedEndDate(Loom loom);
 }

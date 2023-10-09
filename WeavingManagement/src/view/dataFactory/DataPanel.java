@@ -8,8 +8,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import static javax.management.Query.value;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -154,6 +156,14 @@ public abstract class DataPanel extends JPanel{
             }
             else if(this.label.get(i).getText().equals("meters run:")){
                 this.text.get(i).setText(Integer.toString(0));
+            }
+        }
+    }
+    
+    public void adjournExpectedEndDate(LocalDate expectedEndDate){
+        for(int i = 0; i < this.label.size(); i++){
+            if(this.label.get(i).getText().equals("expected end date:")){
+                this.text.get(i).setText(expectedEndDate.toString());
             }
         }
     }
