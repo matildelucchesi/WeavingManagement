@@ -37,6 +37,7 @@ public final class Item implements Observer{
         this.deliveryDate = deliveryDate;
         this.calculateTotalHits();
         this.expectedEndDate = expectedEndDate;
+        this.date.add(this.expectedEndDate);
         this.client = client;
         this.client.getItem().add(this);
     }
@@ -148,7 +149,7 @@ public final class Item implements Observer{
     
     @Override
     public void updateExpectedEndDate(LocalDate expectedEndDate){
-        if(!this.date.isEmpty()){
+        if(!(this.date.isEmpty()) && this.date.size() <  1){
             this.date.add(expectedEndDate);
             LocalDate max = this.expectedEndDate;
             for(int i=0; i< date.size(); i++){
@@ -161,7 +162,6 @@ public final class Item implements Observer{
             this.date.add(expectedEndDate);
             this.expectedEndDate = expectedEndDate;
         }
-        System.out.print("ciao" + expectedEndDate);
         
     }
     

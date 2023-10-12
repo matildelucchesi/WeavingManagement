@@ -37,7 +37,7 @@ public final class Loom implements Observable{
        this.item = item;
        LocalDate data = LocalDate.of(1111, 11, 11);
        if(expectedEndDate.isEqual(data)){
-           this.calculateExpectedEndDate(this.totalMeters);
+           this.calculateExpectedEndDate(this.startDate, this.totalMeters);
        }else{
            this.expectedEndDate = expectedEndDate;
        }
@@ -53,7 +53,7 @@ public final class Loom implements Observable{
         this.metersToGo = totalMeters;
         this.item = item;
         this.startDate = LocalDate.now();
-        this.calculateExpectedEndDate(this.totalMeters);
+        this.calculateExpectedEndDate(this.startDate, this.totalMeters);
         this.addObserver(item);
         this.notifyExpectedEndDate();
         this.notifyLoomAtWork();
@@ -158,11 +158,11 @@ public final class Loom implements Observable{
     }
     
     //other methods
-    public void calculateExpectedEndDate(int meters){
+    public void calculateExpectedEndDate(LocalDate date, int meters){
         double speedPerDay = this.speed * 60 * 24;
         double days = ((double) this.item.getTotalHits()) * meters / speedPerDay; //days without surrender
         double expectedDays = days * this.surrender / 100;
-        this.expectedEndDate = this.startDate.plusDays((long) expectedDays);
+        this.expectedEndDate = date.plusDays((long) expectedDays);
     }
     
     public void updateBecauseMetersRun(int metersRun){
@@ -172,7 +172,7 @@ public final class Loom implements Observable{
         if(this.metersToGo == 0){
             this.expectedEndDate = LocalDate.now();
         }else{
-            this.calculateExpectedEndDate(this.metersToGo);
+            this.calculateExpectedEndDate(LocalDate.now(), this.metersToGo);
         }
         this.notifyExpectedEndDate();
         this.metersRun = 0;

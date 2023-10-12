@@ -23,7 +23,7 @@ public class ControllerUtility {
     static boolean modify = false;
     
     //for loom controller
-    static void iconListener(MainView view, LoomDAOImpl db){
+    static void iconListener(MainView view, LoomDAOImpl db, ItemDAOImpl idb){
         for(JButton button : view.getPanel().getSaveIconButtonList()){
             button.addActionListener(e ->{
                 view.addData("loom", button.getText());
@@ -31,12 +31,19 @@ public class ControllerUtility {
                
                 view.getDataPanel().getAddMetersRunButton().addActionListener(e1 ->{
                     String number = button.getText();
+                    if(view.getDataPanel().getMetersRun() <= Model.getLoom(number).getMetersToGo()){
                     Model.getLoom(number).updateBecauseMetersRun(view.getDataPanel().getMetersRun());
                     db.updateMetersToGo(Model.getLoom(number));
                     if(Model.getLoom(number).getMetersToGo() == 0){
                         view.getPanel().updateLoomIcon(button);
                     }
                     view.getDataPanel().adjournMetersToGo(Model.getLoom(number).getMetersToGo());
+                    view.getDataPanel().adjournExpectedEndDate(Model.getLoom(number).getExpectedEndDate());
+                    db.updateExpectedEndDate(Model.getLoom(number));
+                    idb.updateExpectedEndDate(Model.getLoom(number).getItem());
+                    }else{
+                       view.getDataPanel().error();
+                    }
                 });
                 
                 view.getDataPanel().getDeleteButton().addActionListener(e2 ->{

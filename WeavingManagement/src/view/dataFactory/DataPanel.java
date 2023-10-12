@@ -15,6 +15,7 @@ import static javax.management.Query.value;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import view.Dialog;
 import view.Label;
 
 /**
@@ -383,5 +384,8 @@ public abstract class DataPanel extends JPanel{
         return this.end;
     }
     
+    public void error(){
+        Dialog.showErrorDialog("ERROR: you cannot insert a value of meters higher than the meters to go");
+    }
     
 }

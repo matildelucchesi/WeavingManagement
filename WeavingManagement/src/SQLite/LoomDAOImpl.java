@@ -163,7 +163,10 @@ public class LoomDAOImpl implements LoomDAO {
             preparedStatement = connection.prepareStatement(selectItem);
             preparedStatement.setInt(1, loomId);
             ResultSet resultSet1 = preparedStatement.executeQuery();
-            String itemName = resultSet1.getString("item_name");
+            String itemName = new String();
+            while(resultSet1.next()){
+                itemName = resultSet1.getString("item_name");
+            }
             
             Loom loom = new LoomBuilder()
                         .setNumber(loomId)
@@ -196,6 +199,7 @@ public class LoomDAOImpl implements LoomDAO {
         
         
         resultSet.close();
+        
         connection.close();
         
     } catch (ClassNotFoundException | SQLException e) {

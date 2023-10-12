@@ -51,11 +51,11 @@ public class LoomController {
                         view.getPanel().getScrollPane().setVisible(true);
                         view.getLeftPanel().restore();
                     }
-                    ControllerUtility.iconListener(view, db);
+                    ControllerUtility.iconListener(view, db, idb);
                 });
 
             });
 
-            ControllerUtility.iconListener(view, db);
+            ControllerUtility.iconListener(view, db, idb);
     }
 }
