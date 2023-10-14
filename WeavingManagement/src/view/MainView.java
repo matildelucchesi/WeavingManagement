@@ -134,6 +134,10 @@ public class MainView extends JFrame {
     public view.dataFactory.DataPanel getDataPanel(){
         return this.dataPanel;
     }
+    
+    public void deleteDataPanel(){
+        this.dataPanel = null;
+    }
 
 }
  

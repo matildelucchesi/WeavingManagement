@@ -41,6 +41,8 @@ public abstract class DataPanel extends JPanel{
     List<JTextArea> text = new ArrayList<>();
     List<Label> label = new ArrayList<>();
     List<List<JTextArea>> textList = new ArrayList<>();
+    int ref = 0;
+    int phone = 0;
     
     public void createDataPanel(List<Label> label, List<JTextArea> text){
         
@@ -187,25 +189,31 @@ public abstract class DataPanel extends JPanel{
         this.makeTextEditable();
         this.modify.setText("save");
         
-        gbc.gridx = this.refGBCX + 2;
+        gbc.gridx = 2;
         gbc.gridy = this.refGBCY;
         add(addRef, gbc);
         
-        gbc.gridx = this.phoneGBCX + 2;
+        gbc.gridy = this.phoneGBCY;
+        
+        remove(this.label.get(2));
+        this.gbc.gridx = 3;
+        add(this.label.get(2), this.gbc);
+        for(int i=0; i < this.textList.get(2).size(); i++){
+            remove(this.textList.get(2).get(i));
+            this.gbc.gridx++;
+            add(this.textList.get(2).get(i), this.gbc);
+            this.gbc.gridy++;
+        }
+        
+        gbc.gridx = 5;
         gbc.gridy = this.phoneGBCY;
         add(addPhone, gbc);
+        
         
         //listener for addRef button
         addRef.addActionListener(e ->{
             //remove stuff
-            remove(addPhone);
-            for(int i = 1; i < this.label.size(); i++){
-                remove(this.label.get(i));
-                for(int j = 0; j < this.textList.get(i).size(); j++){
-                    remove(this.textList.get(i).get(j));
-                }
-            }
-            remove(this.modify);
+            removeAll();
             
             //add new text area
             JTextArea refArea = new JTextArea();
@@ -216,22 +224,55 @@ public abstract class DataPanel extends JPanel{
             this.textList.get(1).add(refArea);
             
             //add stuff
-            gbc.gridx = 0;
-            gbc.gridy = 1;
-            for(int i = 1; i< this.label.size(); i++){
-                add(this.label.get(i), this.gbc);
-                if(i == 2){
-                    this.phoneGBCY = this.gbc.gridy;
-                    this.gbc.gridx = this.gbc.gridx + 2;
-                    add(addPhone, gbc);
-                    this.gbc.gridx = this.gbc.gridx - 2;
+            ref = 0;
+            phone = 0;
+            
+            for(int i = 0; i< this.label.size(); i++){
+                switch (i) {
+                    case 0:
+                        this.gbc.gridx = 0;
+                        this.gbc.gridy = 0;
+                        add(this.label.get(i), this.gbc);
+                        this.gbc.gridx++;
+                        break;
+                    case 1:
+                        this.gbc.gridx = 0;
+                        this.gbc.gridy = 1;
+                        add(this.label.get(i), this.gbc);
+                        this.gbc.gridx = 2;
+                        add(addRef, this.gbc);
+                        this.gbc.gridx--;
+                        break;
+                    case 2:
+                        this.gbc.gridx = 3;
+                        this.gbc.gridy = this.phoneGBCY - 1;
+                        add(this.label.get(i), this.gbc);
+                        this.gbc.gridx = 5;
+                        add(addPhone, gbc);
+                        this.gbc.gridx--;
+                        break;
+                    case 3:
+                        this.gbc.gridx = 0;
+                        if(phone > ref){
+                            this.gbc.gridy = phone + 1;
+                        }else{
+                            this.gbc.gridy = this.refGBCY + ref + 1;
+                        }
+                        add(this.label.get(i), this.gbc);
+                        break;
+                    default:
+                        break;
                 }
-                this.gbc.gridx++;
                 for(int j=0; j < this.textList.get(i).size(); j++){
                     add(this.textList.get(i).get(j), this.gbc);
                     this.gbc.gridy++;
+                    if(i == 1){
+                        ref++;
+                    }
+                    if(i == 2){
+                        phone++;
+                    }
                 }
-                gbc.gridx--;
             }
             gbc.gridx++;
             add(this.modify, gbc);
@@ -242,6 +283,7 @@ public abstract class DataPanel extends JPanel{
         
         //listener for add phone button
         addPhone.addActionListener(e1 ->{
+            //remove stuff
             for(int i = 2; i < this.label.size(); i++){
                 remove(this.label.get(i));
                 for(int j = 0; j < this.textList.get(i).size(); j++){
@@ -257,19 +299,39 @@ public abstract class DataPanel extends JPanel{
             pArea.setPreferredSize(new Dimension(150, 20));
             this.textList.get(2).add(pArea);
            
-            gbc.gridx = this.phoneGBCX;
-            gbc.gridy = this.phoneGBCY;
-
+            
+            //add stuff
+            
             for(int i = 2; i< this.label.size(); i++){
-                add(this.label.get(i), this.gbc);
-                this.gbc.gridx++;
+                switch(i){
+                    case 2:
+                        this.gbc.gridx = 3;
+                        this.gbc.gridy = this.phoneGBCY - 1;
+                        add(this.label.get(i), this.gbc);
+                        this.gbc.gridx = 5;
+                        add(addPhone, gbc);
+                        this.gbc.gridx--;
+                        break;
+                    case 3:
+                        this.gbc.gridx = 0;
+                        if(phone > ref){
+                            this.gbc.gridy = phone + 1;
+                        }else{
+                            this.gbc.gridy = this.refGBCY + ref + 1;
+                        }
+                        add(this.label.get(i), this.gbc);
+                        break;
+                    default:
+                        break;
+                        
+                }
                 for(int j=0; j < this.textList.get(i).size(); j++){
                     add(this.textList.get(i).get(j), this.gbc);
                     this.gbc.gridy++;
                 }
                 gbc.gridx--;
             }
-            gbc.gridx++;
+            this.gbc.gridx = 1;
             add(this.modify, gbc);
             
             revalidate();
@@ -319,23 +381,14 @@ public abstract class DataPanel extends JPanel{
     }
     
     public void restoreComponents(){
-        remove(this.addPhone);
-        remove(this.addRef);
-        this.modify.setText("modify");
-        
-        for(int i = 1; i < this.label.size(); i++){
-            remove(this.label.get(i));
-            for(int j = 0; j < this.textList.get(i).size(); j++){
-                remove(this.textList.get(i).get(j));
-            }
-        }
+        removeAll();
         
         //add
         this.gbc.gridy = this.refGBCY;
         this.gbc.gridx = this.refGBCX;
         
         for(int i = 1; i < this.textList.size(); i ++){
-            for(int j = 0; j < this.textList.get(i).size(); j++){
+            for(int j = this.textList.get(i).size() - 1; j >= 0; j--){
                 if(this.textList.get(i).get(j).getText().isBlank()){
                     this.textList.get(i).remove(j);
                 }
@@ -343,28 +396,60 @@ public abstract class DataPanel extends JPanel{
             if(this.textList.get(i).isEmpty()){
                 this.textList.get(i).add(new JTextArea());
             }
+            
         }
         
-        for(int i=1; i < this.label.size(); i++){
-            add(this.label.get(i), this.gbc);
-            gbc.gridx++;
+        int s = 0 ;
+        
+        for(int i=0; i < this.label.size(); i++){
+            switch(i){
+                case 0:
+                    this.gbc.gridx = 0;
+                    this.gbc.gridy = 0;
+                    add(this.label.get(i), this.gbc);
+                    this.gbc.gridx++;
+                    break;
+                case 1:
+                    this.gbc.gridx = 0;
+                    this.gbc.gridy = this.refGBCY;
+                    add(this.label.get(i), this.gbc);
+                    this.gbc.gridx++;
+                    break;
+                case 2:
+                    this.gbc.gridx = 2;
+                    this.gbc.gridy = this.phoneGBCY;
+                    add(this.label.get(i), this.gbc);
+                    this.gbc.gridx++;
+                    break;
+                case 3:
+                    this.gbc.gridx = 0;
+                    this.gbc.gridy = this.phoneGBCY + s + 1;
+                    add(this.label.get(i), this.gbc);
+                    this.gbc.gridx++;
+                    break;
+                default:
+                    break;
+            }
+            
             for(int j = 0; j < this.textList.get(i).size(); j++){
                 add(this.textList.get(i).get(j), this.gbc);
+                if(i == 2){
+                    s++;
+                }
                 this.gbc.gridy++;
             }
-            this.gbc.gridx--;
         }
-        this.gbc.gridx++;
+        this.gbc.gridx = 1;
         add(this.delete, this.gbc);
         this.gbc.gridy++;
+        this.modify.setText("modify");
         add(this.modify, this.gbc);
             
         for(int i = 1; i < this.textList.size(); i++){
             for(int j=0; j < this.textList.get(i).size(); j++){
                 this.textList.get(i).get(j).setEditable(false);
                 this.textList.get(i).get(j).setBackground(Color.WHITE);
-            }
-            
+            } 
         }
         revalidate();
         repaint();

@@ -32,6 +32,7 @@ public class LeftPanelController {
             if(view.getDataPanel() != null){
                 view.remove(view.getDataPanel());
                 view.getDataPanel().setVisible(false);
+                view.deleteDataPanel();
             }
             if(view.getFormPanel() != null){
                 view.remove(view.getFormPanel());
