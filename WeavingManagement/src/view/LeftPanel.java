@@ -49,7 +49,6 @@ public class LeftPanel extends JPanel{
         for (Component button : this.saveLeftButton) {
             add(button);
             add(Box.createVerticalStrut(10));
-
         }
         
         revalidate();
@@ -125,12 +124,13 @@ public class LeftPanel extends JPanel{
         add(this.settingsButton);
         
         this.saveLeftButton.add(this.loomButton);
+        this.saveLeftButton.add(this.listButton);
         this.saveLeftButton.add(this.itemButton);
         this.saveLeftButton.add(this.clientButton);
         this.saveLeftButton.add(this.chronologyButton);
         this.saveLeftButton.add(this.forecastsButton);
         this.saveLeftButton.add(this.settingsButton);
-        this.saveLeftButton.add(this.listButton);
+        
         
         revalidate();
         repaint();

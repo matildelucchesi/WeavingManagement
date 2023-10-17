@@ -24,11 +24,12 @@ public class ListPanelController {
         Model.setLoomList(ldb.getLoomList());
         this.view = view;
         this.model = model;
-        this.panel = new ListPanel(Model.getLoomList());
+        
     }
     
     public void handleAction(){
         this.view.getCentralPanel().removeAll();
+        this.panel = new ListPanel(Model.getLoomList());
         this.view.getCentralPanel().add(this.panel);
         this.view.getCentralPanel().revalidate();
         this.view.getCentralPanel().repaint();
