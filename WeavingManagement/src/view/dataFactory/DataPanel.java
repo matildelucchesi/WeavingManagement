@@ -8,10 +8,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import static javax.management.Query.value;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -183,8 +183,6 @@ public abstract class DataPanel extends JPanel{
     }
     
     public void addModifyComponents(){
-        float[] lighterGrayRGB = Color.RGBtoHSB(192, 192, 192, null);
-        Color lighterGray = Color.getHSBColor(lighterGrayRGB[0], lighterGrayRGB[1], lighterGrayRGB[2]);
         remove(this.delete);
         this.makeTextEditable();
         this.modify.setText("save");
@@ -209,9 +207,30 @@ public abstract class DataPanel extends JPanel{
         gbc.gridy = this.phoneGBCY;
         add(addPhone, gbc);
         
+        revalidate();
+        repaint();
         
-        //listener for addRef button
-        addRef.addActionListener(e ->{
+    }
+    
+    public void makeTextEditable(){
+        float[] lighterGrayRGB = Color.RGBtoHSB(192, 192, 192, null);
+        Color lighterGray = Color.getHSBColor(lighterGrayRGB[0], lighterGrayRGB[1], lighterGrayRGB[2]);
+        
+        for(int i = 1; i < this.textList.size() - 1; i++){
+            {
+                for(int j=0; j < this.textList.get(i).size(); j++){
+                    this.textList.get(i).get(j).setEditable(true);
+                    this.textList.get(i).get(j).setBackground(lighterGray);
+                }
+            }
+        }
+        
+    }
+    
+    public void refListener(){
+            float[] lighterGrayRGB = Color.RGBtoHSB(192, 192, 192, null);
+            Color lighterGray = Color.getHSBColor(lighterGrayRGB[0], lighterGrayRGB[1], lighterGrayRGB[2]);
+        
             //remove stuff
             removeAll();
             
@@ -222,6 +241,7 @@ public abstract class DataPanel extends JPanel{
             refArea.setOpaque(true);
             refArea.setPreferredSize(new Dimension(150, 20));
             this.textList.get(1).add(refArea);
+            
             
             //add stuff
             ref = 0;
@@ -279,11 +299,13 @@ public abstract class DataPanel extends JPanel{
            
             revalidate();
             repaint();
-        });
+    }
+    
+    public void phoneListener(){
+        float[] lighterGrayRGB = Color.RGBtoHSB(192, 192, 192, null);
+        Color lighterGray = Color.getHSBColor(lighterGrayRGB[0], lighterGrayRGB[1], lighterGrayRGB[2]);
         
-        //listener for add phone button
-        addPhone.addActionListener(e1 ->{
-            //remove stuff
+        //remove stuff
             for(int i = 2; i < this.label.size(); i++){
                 remove(this.label.get(i));
                 for(int j = 0; j < this.textList.get(i).size(); j++){
@@ -337,23 +359,6 @@ public abstract class DataPanel extends JPanel{
             revalidate();
             repaint();
             
-        });
-        
-    }
-    
-    public void makeTextEditable(){
-        float[] lighterGrayRGB = Color.RGBtoHSB(192, 192, 192, null);
-        Color lighterGray = Color.getHSBColor(lighterGrayRGB[0], lighterGrayRGB[1], lighterGrayRGB[2]);
-        
-        for(int i = 1; i < this.textList.size() - 1; i++){
-            {
-                for(int j=0; j < this.textList.get(i).size(); j++){
-                    this.textList.get(i).get(j).setEditable(true);
-                    this.textList.get(i).get(j).setBackground(lighterGray);
-                }
-            }
-        }
-        
     }
     
     public List<String> getReferentsList(){
@@ -473,4 +478,13 @@ public abstract class DataPanel extends JPanel{
         Dialog.showErrorDialog("ERROR: you cannot insert a value of meters higher than the meters to go");
     }
     
+    public JButton getAddPhone(){
+        return this.addPhone;
+    }
+    
+    public JButton getAddRef(){
+        return this.addRef;
+    }
 }
+
+

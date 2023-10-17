@@ -59,7 +59,8 @@ public class AuthenticationController {
                 ClientController client = new ClientController(view, model, cdb);
                 ForecastsController forecasts = new ForecastsController(view);
                 SettingsController settings = new SettingsController(view, u);
-                LeftPanelController left = new LeftPanelController(view, loom, item, client, chronology, forecasts, settings);
+                ListPanelController list = new ListPanelController(view, model, ldb);
+                LeftPanelController left = new LeftPanelController(view, loom, item, client, chronology, forecasts, settings, list);
             }
             else{
                 Dialog.showErrorDialog("ERROR: wrong credentials");

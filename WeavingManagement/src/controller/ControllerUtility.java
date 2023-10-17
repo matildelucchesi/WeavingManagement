@@ -73,6 +73,8 @@ public class ControllerUtility {
                         
                     if(!modify){
                         view.getDataPanel().addModifyComponents();
+                        //view.getDataPanel().addPhoneListener();
+                        //view.getDataPanel().addRefListener();
                         modify = true;
                     }else{
                         Model.getClient(button.getText()).update(view.getDataPanel().getReferentsList(), view.getDataPanel().getPhoneList());
@@ -92,6 +94,14 @@ public class ControllerUtility {
                     view.getPanel().setVisible(true);
                     view.getPanel().getScrollPane().setVisible(true);
                     view.getCentralPanel().add(view.getPanel());
+                });
+                
+                view.getDataPanel().getAddPhone().addActionListener(e3->{
+                    view.getDataPanel().phoneListener();
+                });
+                
+                view.getDataPanel().getAddRef().addActionListener(e3->{
+                    view.getDataPanel().refListener();
                 });
                 
                 

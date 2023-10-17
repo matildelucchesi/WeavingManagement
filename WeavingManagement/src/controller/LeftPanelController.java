@@ -16,7 +16,7 @@ public class LeftPanelController {
     private ClientController client;
     private ForecastsController forecasts;
     
-    public LeftPanelController(MainView view, LoomController loom, ItemController item, ClientController client, ChronologyController chronology, ForecastsController forecasts, SettingsController settings){
+    public LeftPanelController(MainView view, LoomController loom, ItemController item, ClientController client, ChronologyController chronology, ForecastsController forecasts, SettingsController settings, ListPanelController list){
         
         
         view.getLeftPanel().getLoomButton().addActionListener(e0 -> loom.handleAction());
@@ -25,6 +25,7 @@ public class LeftPanelController {
         view.getLeftPanel().getChronologyButton().addActionListener(e3 -> chronology.handleAction());
         view.getLeftPanel().getForecastsButton().addActionListener(e4 -> forecasts.handleAction());
         view.getLeftPanel().getSettingsButton().addActionListener(e5 -> settings.handleAction());
+        view.getLeftPanel().getListButton().addActionListener(e5 -> list.handleAction());
         
        
         view.getLeftPanel().getBackButton().addActionListener(e->{

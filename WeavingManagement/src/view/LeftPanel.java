@@ -21,6 +21,7 @@ public class LeftPanel extends JPanel{
     private JButton chronologyButton = new JButton("Chronology");
     private JButton forecastsButton = new JButton("Forecasts");
     private JButton settingsButton = new JButton("Settings");
+    private JButton listButton = new JButton("Loom List");
     List<JButton> saveLeftButton = new ArrayList<>();
     
    public LeftPanel(JFrame frame) {
@@ -83,6 +84,10 @@ public class LeftPanel extends JPanel{
         return this.settingsButton;
     }
     
+    public JButton getListButton(){
+        return this.listButton;
+    }
+    
     public void seeComponents(){
         this.itemButton.setSize(30, 20);
         this.clientButton.setSize(30, 20);
@@ -93,7 +98,10 @@ public class LeftPanel extends JPanel{
         
         this.loomButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(this.loomButton);
-
+        add(Box.createVerticalStrut(10));
+        
+        this.listButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(this.listButton);
         add(Box.createVerticalStrut(10));
         
         this.itemButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -121,7 +129,8 @@ public class LeftPanel extends JPanel{
         this.saveLeftButton.add(this.clientButton);
         this.saveLeftButton.add(this.chronologyButton);
         this.saveLeftButton.add(this.forecastsButton);
-         this.saveLeftButton.add(this.settingsButton);
+        this.saveLeftButton.add(this.settingsButton);
+        this.saveLeftButton.add(this.listButton);
         
         revalidate();
         repaint();
