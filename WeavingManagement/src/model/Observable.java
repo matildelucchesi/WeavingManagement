@@ -10,9 +10,9 @@ package model;
  */
 public interface Observable {
     public void addObserver(Observer observer);
-    public void removeObserver(Observer observer);
     public void notifyMetersRun(int metersRun);
     public void notifyExpectedEndDate();
-    public void notifyDisponibility(int meters);
+    public void notifyAvailability(int meters);
     public void notifyLoomAtWork();
+    public void removeObserver();
 }

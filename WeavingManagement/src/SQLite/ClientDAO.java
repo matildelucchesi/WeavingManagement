@@ -12,10 +12,10 @@ import model.Client;
  * @author Matilde
  */
 public interface ClientDAO {
-    void insertClient(Client client);
+    boolean insertClient(Client client);
     List<Client> getClientList();
-    void changeData(Client client, List<String> referents, List<String> phone);
-    void removeClient(Client client);
+    boolean changeData(Client client, List<String> referents, List<String> phone);
+    boolean removeClient(Client client);
     int countClientWithName(String name);
-    void changeData(Client cient);
+    boolean changeData(Client cient);
 }

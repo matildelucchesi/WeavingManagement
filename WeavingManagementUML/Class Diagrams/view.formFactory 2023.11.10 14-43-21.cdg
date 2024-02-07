@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="view.formFactory">
+  <ClassDiagramComponents>
+    <Class name="ClientFormPanel" package="view.formFactory" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+        <Field name="addRef" type="JButton" visibility="private"/>
+        <Field name="addPhone" type="JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FormPanel" package="view.formFactory" visibility="public" isAbstract="true" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="save" type="JButton" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+        <Field name="clientText" type="List&lt;List&lt;TextField&gt;&gt;" visibility="private"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="addRef" type="JButton" visibility="private"/>
+        <Field name="addPhone" type="JButton" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="type" type="String" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createFormPanel" returnType="void" visibility="package">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getSaveButton" returnType="JButton" visibility="public"/>
+        <Method name="getData" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getData" returnType="List&lt;List&lt;String&gt;&gt;" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getPanel" returnType="JPanel" visibility="public"/>
+        <Method name="getText" returnType="List&lt;TextField&gt;" visibility="public"/>
+        <Method name="getLabel" returnType="List&lt;Label&gt;" visibility="public"/>
+        <Method name="getAddRef" returnType="JButton" visibility="public"/>
+        <Method name="getAddPhone" returnType="JButton" visibility="public"/>
+        <Method name="updateField" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="controlErrors" returnType="boolean" visibility="public"/>
+        <Method name="updateSize" returnType="void" visibility="public">
+          <Argument type="JPanel" name="panel"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FormPanelFactory" package="view.formFactory" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createFormPanel" returnType="FormPanel" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemFormPanel" package="view.formFactory" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomFormPanel" package="view.formFactory" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="view.formFactory.ItemFormPanel" target="view.formFactory.FormPanel"/>
+    <IsRelation name="is" source="view.formFactory.LoomFormPanel" target="view.formFactory.FormPanel"/>
+    <UseRelation source="view.formFactory.FormPanelFactory" target="view.formFactory.FormPanel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.formFactory.ClientFormPanel" target="view.formFactory.FormPanel"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

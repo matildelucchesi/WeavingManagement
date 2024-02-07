@@ -22,7 +22,7 @@ import model.Model;
 public class ClientDAOImpl implements ClientDAO{
     
     @Override
-    public void insertClient(Client client){
+    public boolean insertClient(Client client){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -40,55 +40,62 @@ public class ClientDAOImpl implements ClientDAO{
             
             if (rowsAffected > 0) {
                 System.out.println("success");
-            } else {
+                //insert referents
+                if(!client.getReferents().isEmpty()){
+                    String insertReferent = "INSERT INTO Referents (client_name, referent_name) VALUES(?, ?)";
+
+                    for(int i=0; i < client.getReferents().size(); i++){
+                        preparedStatement = connection.prepareStatement(insertReferent);
+                        preparedStatement.setString(1, client.getName());
+                        preparedStatement.setString(2, client.getReferents().get(i));
+
+                        rowsAffected = preparedStatement.executeUpdate();
+
+                        if (rowsAffected > 0) {
+                            System.out.println("success");
+                            //insert phone numbers
+                            if(!client.getPhoneNumber().isEmpty()){
+                                String insertPhone = "INSERT INTO PhoneNumbers (client_name, number) VALUES (?, ?)";
+
+                                for(int k=0; k < client.getPhoneNumber().size(); k++){
+                                    preparedStatement = connection.prepareStatement(insertPhone);
+                                    preparedStatement.setString(1, client.getName());
+                                    preparedStatement.setString(2, client.getPhoneNumber().get(k));
+
+                                    rowsAffected = preparedStatement.executeUpdate();
+
+                                    if (rowsAffected > 0) {
+                                        System.out.println("success");
+                                    } else {
+                                        System.out.println("No data insert");
+                                        connection.close();
+                                        return false;
+                                    }
+                                }
+                            }
+                        } else {
+                            System.out.println("No data insert");
+                            connection.close();
+                            return false;
+                        }
+                    }
+                }
+                connection.close();
+                return true;
+            } 
+            else {
                 System.out.println("No data insert");
+                connection.close();
+                return false;
             }
            
-            
-            //insert referents
-            if(!client.getReferents().isEmpty()){
-                String insertReferent = "INSERT INTO Referents (client_name, referent_name) VALUES(?, ?)";
-
-                for(int i=0; i < client.getReferents().size(); i++){
-                    preparedStatement = connection.prepareStatement(insertReferent);
-                    preparedStatement.setString(1, client.getName());
-                    preparedStatement.setString(2, client.getReferents().get(i));
-
-                    rowsAffected = preparedStatement.executeUpdate();
-
-                    if (rowsAffected > 0) {
-                        System.out.println("success");
-                    } else {
-                        System.out.println("No data insert");
-                    }
-                }
-            }
-            
-            //insert phone numbers
-            if(!client.getPhoneNumber().isEmpty()){
-                String insertPhone = "INSERT INTO PhoneNumbers (client_name, number) VALUES (?, ?)";
-
-                for(int k=0; k < client.getPhoneNumber().size(); k++){
-                    preparedStatement = connection.prepareStatement(insertPhone);
-                    preparedStatement.setString(1, client.getName());
-                    preparedStatement.setString(2, client.getPhoneNumber().get(k));
-
-                    rowsAffected = preparedStatement.executeUpdate();
-
-                    if (rowsAffected > 0) {
-                        System.out.println("success");
-                    } else {
-                        System.out.println("No data insert");
-                    }
-                }
-            }
-            
-            connection.close();
         }
         catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -99,6 +106,7 @@ public class ClientDAOImpl implements ClientDAO{
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }
@@ -187,7 +195,7 @@ public class ClientDAOImpl implements ClientDAO{
         }
 
     @Override
-    public void changeData(Client client, List<String> referents, List<String> phone){
+    public boolean changeData(Client client, List<String> referents, List<String> phone){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -208,6 +216,8 @@ public class ClientDAOImpl implements ClientDAO{
                         System.out.println("success");
                     } else {
                         System.out.println("No data deleted");
+                        connection.close();
+                        return false;
                     }
                  
                 String insertReferent = "INSERT INTO Referents (client_name, referent_name) VALUES(?, ?)";
@@ -226,6 +236,8 @@ public class ClientDAOImpl implements ClientDAO{
                             System.out.println("success");
                         } else {
                             System.out.println("No data insert");
+                            connection.close();
+                            return false;
                         } 
                     }
                     
@@ -243,6 +255,8 @@ public class ClientDAOImpl implements ClientDAO{
                         System.out.println("success");
                     } else {
                         System.out.println("No data deleted");
+                        connection.close();
+                        return false;
                     }
                     
                 String insertPhone = "INSERT INTO PhoneNumbers (client_name, number) VALUES (?, ?)";
@@ -261,6 +275,8 @@ public class ClientDAOImpl implements ClientDAO{
                             System.out.println("success");
                         } else {
                             System.out.println("No data insert");
+                            connection.close();
+                            return false;
                         }
                     }
                     
@@ -268,8 +284,10 @@ public class ClientDAOImpl implements ClientDAO{
             }
 
             connection.close();
+            return true;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
                 try {
                     if (preparedStatement != null) {
@@ -280,12 +298,13 @@ public class ClientDAOImpl implements ClientDAO{
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    return false;
                 }
         }
     }
     
     @Override
-    public void removeClient(Client client){
+    public boolean removeClient(Client client){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -302,6 +321,8 @@ public class ClientDAOImpl implements ClientDAO{
                 System.out.println("success deleting in Referents");
             } else {
                 System.out.println("fail deleting in Referents");
+                connection.close();
+                return false;
             }
             
             String sql1 = "DELETE FROM PhoneNumbers WHERE client_name = ?";
@@ -312,6 +333,8 @@ public class ClientDAOImpl implements ClientDAO{
                 System.out.println("success deleting in PhoneNumbers");
             } else {
                 System.out.println("fail deleting in PhoneNumbers");
+                connection.close();
+                return false;
             }
             
             String sql2 = "DELETE FROM ClientAssociation WHERE client_name = ?";
@@ -324,6 +347,8 @@ public class ClientDAOImpl implements ClientDAO{
                 System.out.println("success deleting in ClientAssociation");
             } else {
                 System.out.println("fail deleting in ClientAssociation");
+                connection.close();
+                return false;
             }
             
             String sql3 = "DELETE FROM Client WHERE name = ?";
@@ -335,13 +360,18 @@ public class ClientDAOImpl implements ClientDAO{
                 System.out.println("success deleting in Client");
             } else {
                 System.out.println("fail deleting in Client");
+                connection.close();
+                return false;
             }
            
             connection.close();
+            return true;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -352,6 +382,7 @@ public class ClientDAOImpl implements ClientDAO{
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }
@@ -393,7 +424,7 @@ public class ClientDAOImpl implements ClientDAO{
     }
     
     @Override
-    public void changeData(Client client){
+    public boolean changeData(Client client){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -412,6 +443,8 @@ public class ClientDAOImpl implements ClientDAO{
                 System.out.println("success!!");
             } else {
                 System.out.println("No data deleted");
+                connection.close();
+                return false;
             }
             
             if(!client.getReferents().isEmpty()){     
@@ -431,6 +464,8 @@ public class ClientDAOImpl implements ClientDAO{
                             System.out.println("success");
                         } else {
                             System.out.println("No data insert");
+                            connection.close();
+                            return false;
                         } 
                     }
                     
@@ -447,6 +482,8 @@ public class ClientDAOImpl implements ClientDAO{
                 System.out.println("success");
             } else {
                 System.out.println("No data deleted");
+                connection.close();
+                            return false;
             }
                    
             if(!client.getPhoneNumber().isEmpty()){ 
@@ -466,6 +503,8 @@ public class ClientDAOImpl implements ClientDAO{
                             System.out.println("success");
                         } else {
                             System.out.println("No data insert");
+                            connection.close();
+                            return false;
                         }
                     }
                     
@@ -473,8 +512,10 @@ public class ClientDAOImpl implements ClientDAO{
             }
 
             connection.close();
+            return true;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
                 try {
                     if (preparedStatement != null) {
@@ -485,6 +526,7 @@ public class ClientDAOImpl implements ClientDAO{
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
+                    return false;
                 }
         }
     }

@@ -5,8 +5,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -23,7 +21,7 @@ public final class Loom implements Observable{
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalDate expectedEndDate;
-    private List<Observer> observer = new ArrayList<>();
+    private Observer observer ;
     
     //constructor
     public Loom(int number, int speed, LocalDate startDate, int surrender, int totalMeters, int metersToGo, Item item, LocalDate expectedEndDate){
@@ -44,6 +42,7 @@ public final class Loom implements Observable{
        this.addObserver(item);
        this.notifyExpectedEndDate();
        this.notifyLoomAtWork();
+       this.notifyAvailability(totalMeters);
     }
     
     public Loom(int speed, int surrender, int totalMeters, Item item){
@@ -181,46 +180,33 @@ public final class Loom implements Observable{
     //observer
     @Override
     public void addObserver(Observer observer){
-        this.observer.add(observer);
-    }
-    
-    @Override
-    public void removeObserver(Observer observer){
-        int s=0;
-        for(int i=0; i < this.observer.size(); i++){
-            if(this.observer.get(i).equals(observer)){
-                s = i;
-            }
-        }
-        this.observer.remove(s);
+        this.observer = observer;
     }
     
     @Override
     public void notifyMetersRun(int metersRun){
-        for (Observer observer : this.observer) {
-            observer.updateMetersToGo(metersRun);
-        }
+        observer.updateMetersToGo(metersRun);
     }
     
     @Override
     public void notifyExpectedEndDate(){
-        for (Observer observer : this.observer) {
-            observer.updateExpectedEndDate(this.expectedEndDate);
-        }
+        observer.updateExpectedEndDate(this.expectedEndDate);
     }
     
     @Override
-    public void notifyDisponibility(int meters){
-        for (Observer observer : this.observer) {
-            observer.updateDisponibility(meters);
-        }
+    public void notifyAvailability(int meters){
+        observer.updateAvailability(meters);
     }
     
     @Override
     public void notifyLoomAtWork(){
-        for(Observer observer : this.observer){
-            observer.addLoomAtWork(this.number);
-        }
+       observer.addLoomAtWork(this.number);
+    }
+    
+    @Override
+    public void removeObserver(){
+        this.observer.removeLoomAtWork(this.number);
+        this.observer = null;
     }
     
 }

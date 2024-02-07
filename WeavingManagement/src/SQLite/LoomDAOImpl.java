@@ -22,7 +22,7 @@ import model.LoomBuilder;
 public class LoomDAOImpl implements LoomDAO {
     
     @Override
-    public void insertLoom(Loom loom){
+    public boolean insertLoom(Loom loom){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatementAssociation = null;
@@ -54,12 +54,22 @@ public class LoomDAOImpl implements LoomDAO {
             
             preparedStatementAssociation.executeUpdate();
          
+            int rowsAffected = preparedStatementAssociation.executeUpdate();
             
-            connection.close();
+            if (rowsAffected > 0) {
+                    connection.close();
+                    return true;
+                } else {
+                    connection.close();
+                    return false;
+            }
+            
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -70,12 +80,13 @@ public class LoomDAOImpl implements LoomDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }
     
     @Override
-    public void updateMetersToGo(Loom loom) {
+    public boolean updateMetersToGo(Loom loom) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -95,30 +106,37 @@ public class LoomDAOImpl implements LoomDAO {
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Il valore di metersRun per il loom_code " + Integer.toString(loom.getNumber()) + " è stato aggiornato con successo.");
-            } else {
-                System.out.println("Nessuna riga è stata modificata.");
-            }
-            
-            String sql1 = "UPDATE Item SET metersToGo = ? WHERE item_name = ?";
-            preparedStatement = connection.prepareStatement(sql1);
-            
-            int newItemMetersToGo = loom.getItem().getMetersToGo();
-            
-            preparedStatement.setInt(1, newItemMetersToGo);
-            preparedStatement.setString(2, loom.getItem().getName());
+                String sql1 = "UPDATE Item SET metersToGo = ? WHERE item_name = ?";
+                preparedStatement = connection.prepareStatement(sql1);
 
-            rowsUpdated = preparedStatement.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("Il valore di metersRun per il item_name " + loom.getItem().getName() + " è stato aggiornato con successo.");
-            } else {
+                int newItemMetersToGo = loom.getItem().getMetersToGo();
+
+                preparedStatement.setInt(1, newItemMetersToGo);
+                preparedStatement.setString(2, loom.getItem().getName());
+
+                rowsUpdated = preparedStatement.executeUpdate();
+                if (rowsUpdated > 0) {
+                    System.out.println("Il valore di metersRun per il item_name " + loom.getItem().getName() + " è stato aggiornato con successo.");
+                    connection.close();
+                    return true;
+                } else {
+                    System.out.println("Nessuna riga è stata modificata.");
+                    connection.close();
+                    return false;
+                }
+            } 
+            else {
                 System.out.println("Nessuna riga è stata modificata.");
+                connection.close();
+                return false;
             }
             
-            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -129,6 +147,7 @@ public class LoomDAOImpl implements LoomDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }
@@ -220,7 +239,7 @@ public class LoomDAOImpl implements LoomDAO {
     }
     
     @Override
-    public void removeLoom(Loom loom){
+    public boolean removeLoom(Loom loom){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -237,44 +256,54 @@ public class LoomDAOImpl implements LoomDAO {
 
             if (rowsDeleted > 0) {
                 System.out.println("success deleting in LoomAssociation");
-            } else {
+                String sql1 = "DELETE FROM Loom WHERE loom_code = ?";
+                preparedStatement = connection.prepareStatement(sql1);
+
+                preparedStatement.setInt(1, loom.getNumber());
+
+                int rowsDeleted1 = preparedStatement.executeUpdate();
+
+                if (rowsDeleted1 > 0) {
+                    System.out.println("success deleting in Loom");
+                    
+                    String updateAvailability = "UPDATE Item SET availability = ? WHERE item_name = ?";
+                    preparedStatement = connection.prepareStatement(updateAvailability);
+            
+                    int newAvailability = loom.getItem().getAvailability() + loom.getMetersToGo();
+
+                    preparedStatement.setInt(1, newAvailability);
+                    preparedStatement.setString(2, loom.getItem().getName());
+
+                    int rowsUpdate1 = preparedStatement.executeUpdate();
+
+                    if (rowsUpdate1 > 0) {
+                        System.out.println("success deleting in Loom");
+                        connection.close();
+                        return true;
+                    } else {
+                        System.out.println("fail deleting in Loom");
+                        connection.close();
+                        return false;
+                    }
+                } else {
+                    System.out.println("fail deleting in Loom");
+                    connection.close();
+                    return false;
+                }
+            
+            } 
+            else {
                 System.out.println("fail deleting in LoomAssociation");
+                connection.close();
+                return false;
             }
             
-            String sql1 = "DELETE FROM Loom WHERE loom_code = ?";
-            preparedStatement = connection.prepareStatement(sql1);
-
-            preparedStatement.setInt(1, loom.getNumber());
-
-            int rowsDeleted1 = preparedStatement.executeUpdate();
-
-            if (rowsDeleted1 > 0) {
-                System.out.println("success deleting in Loom");
-            } else {
-                System.out.println("fail deleting in Loom");
-            }
-            
-            String updateDisponibility = "UPDATE Item SET disponibility = ? WHERE item_name = ?";
-            preparedStatement = connection.prepareStatement(updateDisponibility);
-            
-            int newDisponibility = loom.getItem().getDisponibility() + loom.getMetersToGo();
-
-            preparedStatement.setInt(1, newDisponibility);
-            preparedStatement.setString(2, loom.getItem().getName());
-            
-            int rowsUpdate1 = preparedStatement.executeUpdate();
-
-            if (rowsUpdate1 > 0) {
-                System.out.println("success deleting in Loom");
-            } else {
-                System.out.println("fail deleting in Loom");
-            }
-            
-            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+             return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -285,12 +314,13 @@ public class LoomDAOImpl implements LoomDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }
     
     @Override
-    public void updateExpectedEndDate(Loom loom){
+    public boolean updateExpectedEndDate(Loom loom){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -308,14 +338,20 @@ public class LoomDAOImpl implements LoomDAO {
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Il valore di expectedEndDate per il loom " + loom.getNumber() + " è stato aggiornato con successo.");
+                connection.close();
+                return true;
             } else {
                 System.out.println("Nessuna riga è stata modificata.");
+                connection.close();
+                return false;
             }
-            connection.close();
+            
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -326,6 +362,7 @@ public class LoomDAOImpl implements LoomDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }

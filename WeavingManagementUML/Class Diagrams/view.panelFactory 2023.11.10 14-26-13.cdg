@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="view.panelFactory">
+  <ClassDiagramComponents>
+    <Class name="ChronologyPanel" package="view.panelFactory" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ClientPanel" package="view.panelFactory" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ItemPanel" package="view.panelFactory" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomPanel" package="view.panelFactory" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Panel" package="view.panelFactory" visibility="public" isAbstract="true" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="saveIconButton" type="List&lt;JButton&gt;" visibility="private"/>
+        <Field name="plusButton" type="JButton" visibility="private"/>
+        <Field name="type" type="String" visibility="private"/>
+        <Field name="scrollPane" type="JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createPanel" returnType="void" visibility="package">
+          <Argument type="String" name="layout"/>
+          <Argument type="String" name="buttonType"/>
+        </Method>
+        <Method name="getPlusButton" returnType="JButton" visibility="public"/>
+        <Method name="updateButton" returnType="void" visibility="package"/>
+        <Method name="addIconButton" returnType="void" visibility="public"/>
+        <Method name="restore" returnType="void" visibility="public"/>
+        <Method name="getSaveIconButtonList" returnType="List&lt;JButton&gt;" visibility="public"/>
+        <Method name="removeIconButton" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="removeIconButton" returnType="void" visibility="public">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="getScrollPane" returnType="JScrollPane" visibility="public"/>
+        <Method name="updateLoomIcon" returnType="void" visibility="public">
+          <Argument type="JButton" name="button"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelFactory" package="view.panelFactory" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createPanel" returnType="Panel" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="view.panelFactory.ItemPanel" target="view.panelFactory.Panel"/>
+    <IsRelation name="is" source="view.panelFactory.ChronologyPanel" target="view.panelFactory.Panel"/>
+    <UseRelation source="view.panelFactory.PanelFactory" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.panelFactory.LoomPanel" target="view.panelFactory.Panel"/>
+    <IsRelation name="is" source="view.panelFactory.ClientPanel" target="view.panelFactory.Panel"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

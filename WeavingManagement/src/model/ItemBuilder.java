@@ -20,7 +20,7 @@ public class ItemBuilder {
     private LocalDate deliveryDate;
     private Client client;
     private LocalDate expectedEndDate;
-    private int disponibility;
+    private int availability;
     private int metersToGo;
     
     public ItemBuilder setName(String name){
@@ -66,8 +66,8 @@ public class ItemBuilder {
         return this;
     }
     
-    public ItemBuilder setDisponibility(int disponibility){
-        this.disponibility = disponibility;
+    public ItemBuilder setAvailability(int availability){
+        this.availability = availability;
         return this;
     }
    
@@ -92,6 +92,6 @@ public class ItemBuilder {
    
     public Item build(){
         System.out.print(this.client);
-        return new Item(this.name, this.meters, this.metersToGo, this.disponibility, this.rowNumber, this.hits, this.deliveryDate, this.expectedEndDate, this.client);
+        return new Item(this.name, this.meters, this.metersToGo, this.availability, this.rowNumber, this.hits, this.deliveryDate, this.expectedEndDate, this.client);
     }
 }

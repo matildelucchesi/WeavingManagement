@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="view.dataFactory">
+  <ClassDiagramComponents>
+    <Class name="ChronologyDataPanel" package="view.dataFactory" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="buttonText"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ClientDataPanel" package="view.dataFactory" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DataPanel" package="view.dataFactory" visibility="public" isAbstract="true" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="metersRunGBCX" type="int" visibility="private"/>
+        <Field name="metersRunGBCY" type="int" visibility="private"/>
+        <Field name="endGBCX" type="int" visibility="private"/>
+        <Field name="endGBCY" type="int" visibility="private"/>
+        <Field name="refGBCX" type="int" visibility="private"/>
+        <Field name="refGBCY" type="int" visibility="private"/>
+        <Field name="phoneGBCX" type="int" visibility="private"/>
+        <Field name="phoneGBCY" type="int" visibility="private"/>
+        <Field name="addMetersRun" type="JButton" visibility="package"/>
+        <Field name="modify" type="JButton" visibility="package"/>
+        <Field name="addRef" type="JButton" visibility="package"/>
+        <Field name="addPhone" type="JButton" visibility="package"/>
+        <Field name="delete" type="JButton" visibility="package"/>
+        <Field name="end" type="JButton" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="textList" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+        <Field name="ref" type="int" visibility="package"/>
+        <Field name="phone" type="int" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createDataPanel" returnType="void" visibility="public">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="List&lt;JTextArea&gt;" name="text"/>
+        </Method>
+        <Method name="createDataPanelWithList" returnType="void" visibility="public">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="List&lt;List&lt;JTextArea&gt;&gt;" name="text"/>
+        </Method>
+        <Method name="addMetersRunButton" returnType="void" visibility="public"/>
+        <Method name="getAddMetersRunButton" returnType="JButton" visibility="public"/>
+        <Method name="getMetersRun" returnType="int" visibility="public"/>
+        <Method name="adjournMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="value"/>
+        </Method>
+        <Method name="adjournExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="addModifyButton" returnType="void" visibility="public"/>
+        <Method name="getModifyButton" returnType="JButton" visibility="public"/>
+        <Method name="addModifyComponents" returnType="void" visibility="public"/>
+        <Method name="makeTextEditable" returnType="void" visibility="public"/>
+        <Method name="refListener" returnType="void" visibility="public"/>
+        <Method name="phoneListener" returnType="void" visibility="public"/>
+        <Method name="getReferentsList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getPhoneList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="restoreComponents" returnType="void" visibility="public"/>
+        <Method name="getDeleteButton" returnType="JButton" visibility="public"/>
+        <Method name="addEndButton" returnType="void" visibility="public"/>
+        <Method name="getEndButton" returnType="JButton" visibility="public"/>
+        <Method name="error" returnType="void" visibility="public"/>
+        <Method name="getAddPhone" returnType="JButton" visibility="public"/>
+        <Method name="getAddRef" returnType="JButton" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DataPanelFactory" package="view.dataFactory" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createDataPanel" returnType="DataPanel" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="buttonText"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemDataPanel" package="view.dataFactory" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomDataPanel" package="view.dataFactory" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="number"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="NonEditableTextArea" package="view.dataFactory" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="view.dataFactory.ClientDataPanel" target="view.dataFactory.DataPanel"/>
+    <IsRelation name="is" source="view.dataFactory.LoomDataPanel" target="view.dataFactory.DataPanel"/>
+    <UseRelation source="view.dataFactory.DataPanelFactory" target="view.dataFactory.DataPanel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.dataFactory.ChronologyDataPanel" target="view.dataFactory.DataPanel"/>
+    <IsRelation name="is" source="view.dataFactory.ItemDataPanel" target="view.dataFactory.DataPanel"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

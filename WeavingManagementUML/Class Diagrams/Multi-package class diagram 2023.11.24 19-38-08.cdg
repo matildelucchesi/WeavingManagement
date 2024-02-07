@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-package class diagram">
+  <ClassDiagramComponents>
+    <Class name="Chronology" package="model" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="itemName" type="String" visibility="private"/>
+        <Field name="meters" type="int" visibility="private"/>
+        <Field name="clientName" type="String" visibility="private"/>
+        <Field name="endDate" type="LocalDate" visibility="private"/>
+        <Field name="loomAtWork" type="List&lt;Integer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="int" name="meters"/>
+          <Argument type="String" name="clientName"/>
+          <Argument type="LocalDate" name="endDate"/>
+          <Argument type="List&lt;Integer&gt;" name="loomAtWork"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getItemName" returnType="String" visibility="public"/>
+        <Method name="getMeters" returnType="int" visibility="public"/>
+        <Method name="getClientName" returnType="String" visibility="public"/>
+        <Method name="getEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getLoomAtWork" returnType="List&lt;Integer&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Client" package="model" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="referents" type="List&lt;String&gt;" visibility="private"/>
+        <Field name="phoneNumber" type="List&lt;String&gt;" visibility="private"/>
+        <Field name="item" type="List&lt;Item&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phoneNumber"/>
+          <Argument type="List&lt;Item&gt;" name="item"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setReferents" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="referents"/>
+        </Method>
+        <Method name="setPhoneNumber" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="phoneNumber"/>
+        </Method>
+        <Method name="setItem" returnType="void" visibility="public">
+          <Argument type="List&lt;Item&gt;" name="item"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getReferents" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getPhoneNumber" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getItem" returnType="List&lt;Item&gt;" visibility="public"/>
+        <Method name="update" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phone"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Forecasts" package="model" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="item" type="Item" visibility="private"/>
+        <Field name="loomList" type="List&lt;Loom&gt;" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Item" name="item"/>
+          <Argument type="List&lt;Loom&gt;" name="loomList"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getExpectedEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="public"/>
+        <Method name="getItemValues" returnType="List&lt;Integer&gt;" visibility="public"/>
+        <Method name="getLoomNumber" returnType="int" visibility="public"/>
+        <Method name="getLoomValues" returnType="List&lt;Integer&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Item" package="model" visibility="public" isFinal="true" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="rowNumber" type="int" visibility="private"/>
+        <Field name="hits" type="int" visibility="private"/>
+        <Field name="totalHits" type="int" visibility="private"/>
+        <Field name="meters" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+        <Field name="disponibility" type="int" visibility="private"/>
+        <Field name="deliveryDate" type="LocalDate" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+        <Field name="date" type="List&lt;LocalDate&gt;" visibility="private"/>
+        <Field name="client" type="Client" visibility="private"/>
+        <Field name="loomAtWork" type="List&lt;Integer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="meters"/>
+          <Argument type="int" name="metersToGo"/>
+          <Argument type="int" name="disponibility"/>
+          <Argument type="int" name="rowNumber"/>
+          <Argument type="int" name="hits"/>
+          <Argument type="LocalDate" name="deliveryDate"/>
+          <Argument type="LocalDate" name="expectedEndDate"/>
+          <Argument type="Client" name="client"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="meters"/>
+          <Argument type="int" name="rowNumber"/>
+          <Argument type="int" name="hits"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getRowNumber" returnType="int" visibility="public"/>
+        <Method name="getHits" returnType="int" visibility="public"/>
+        <Method name="getTotalHits" returnType="int" visibility="public"/>
+        <Method name="getMeters" returnType="int" visibility="public"/>
+        <Method name="getMetersToGo" returnType="int" visibility="public"/>
+        <Method name="getDisponibility" returnType="int" visibility="public"/>
+        <Method name="getExpectedEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getDeliveryDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getClient" returnType="Client" visibility="public"/>
+        <Method name="getLoomAtWork" returnType="List&lt;Integer&gt;" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setRowNumber" returnType="void" visibility="public">
+          <Argument type="int" name="rowNumber"/>
+        </Method>
+        <Method name="setHits" returnType="void" visibility="public">
+          <Argument type="int" name="hits"/>
+        </Method>
+        <Method name="setTotalHits" returnType="void" visibility="public">
+          <Argument type="int" name="totalHits"/>
+        </Method>
+        <Method name="setMeters" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="setDeliveryDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="deliveryDate"/>
+        </Method>
+        <Method name="setDisponibility" returnType="void" visibility="public">
+          <Argument type="int" name="disponibility"/>
+        </Method>
+        <Method name="calculateTotalHits" returnType="void" visibility="public"/>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="updateDisponibility" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="addLoomAtWork" returnType="void" visibility="public">
+          <Argument type="int" name="loomNumber"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemBuilder" package="model" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="meters" type="int" visibility="private"/>
+        <Field name="rowNumber" type="int" visibility="private"/>
+        <Field name="hits" type="int" visibility="private"/>
+        <Field name="deliveryDate" type="LocalDate" visibility="private"/>
+        <Field name="client" type="Client" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+        <Field name="disponibility" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setName" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setMeters" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="setMetersToGo" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="setRowNumber" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="rowNumber"/>
+        </Method>
+        <Method name="setHits" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="hits"/>
+        </Method>
+        <Method name="setDeliveryDate" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="deliveryDate"/>
+        </Method>
+        <Method name="setExpectedEndDate" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="expectedEndDate"/>
+        </Method>
+        <Method name="setDisponibility" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="disponibility"/>
+        </Method>
+        <Method name="setClient" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="clientName"/>
+        </Method>
+        <Method name="build" returnType="Item" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Loom" package="model" visibility="public" isFinal="true" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="number" type="int" visibility="private"/>
+        <Field name="item" type="Item" visibility="private"/>
+        <Field name="speed" type="int" visibility="private"/>
+        <Field name="surrender" type="int" visibility="private"/>
+        <Field name="totalMeters" type="int" visibility="private"/>
+        <Field name="metersRun" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+        <Field name="startDate" type="LocalDate" visibility="private"/>
+        <Field name="endDate" type="LocalDate" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+        <Field name="observer" type="List&lt;Observer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="number"/>
+          <Argument type="int" name="speed"/>
+          <Argument type="LocalDate" name="startDate"/>
+          <Argument type="int" name="surrender"/>
+          <Argument type="int" name="totalMeters"/>
+          <Argument type="int" name="metersToGo"/>
+          <Argument type="Item" name="item"/>
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="speed"/>
+          <Argument type="int" name="surrender"/>
+          <Argument type="int" name="totalMeters"/>
+          <Argument type="Item" name="item"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setItem" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="setNumber" returnType="void" visibility="public">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="setSpeed" returnType="void" visibility="public">
+          <Argument type="int" name="speed"/>
+        </Method>
+        <Method name="setSurrender" returnType="void" visibility="public">
+          <Argument type="int" name="surrender"/>
+        </Method>
+        <Method name="setMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="setMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="metersToGo"/>
+        </Method>
+        <Method name="setStartDate" returnType="void" visibility="public"/>
+        <Method name="setEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="endDate"/>
+        </Method>
+        <Method name="setExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="getItem" returnType="Item" visibility="public"/>
+        <Method name="getNumber" returnType="int" visibility="public"/>
+        <Method name="getSpeed" returnType="int" visibility="public"/>
+        <Method name="getSurrender" returnType="int" visibility="public"/>
+        <Method name="getMetersRun" returnType="int" visibility="public"/>
+        <Method name="getTotalMeters" returnType="int" visibility="public"/>
+        <Method name="getMetersToGo" returnType="int" visibility="public"/>
+        <Method name="getStartDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getExpectedEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="calculateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="updateBecauseMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="addObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="removeObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="notifyMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="notifyExpectedEndDate" returnType="void" visibility="public"/>
+        <Method name="notifyDisponibility" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="notifyLoomAtWork" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LoomBuilder" package="model" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="number" type="int" visibility="private"/>
+        <Field name="speed" type="int" visibility="private"/>
+        <Field name="surrender" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+        <Field name="totalMeters" type="int" visibility="private"/>
+        <Field name="item" type="Item" visibility="private"/>
+        <Field name="startDate" type="LocalDate" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setNumber" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="setSpeed" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="speed"/>
+        </Method>
+        <Method name="setStartDate" returnType="LoomBuilder" visibility="public">
+          <Argument type="LocalDate" name="startDate"/>
+        </Method>
+        <Method name="setSurrender" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="surrender"/>
+        </Method>
+        <Method name="setTotalMeters" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="totalMeters"/>
+        </Method>
+        <Method name="setMetersToGo" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="metersToGo"/>
+        </Method>
+        <Method name="setItem" returnType="LoomBuilder" visibility="public">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="setExpectedEndDate" returnType="LoomBuilder" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="build" returnType="Loom" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MainClass" package="model" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Model" package="model" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="loomList" type="List&lt;Loom&gt;" visibility="private" isStatic="true"/>
+        <Field name="itemList" type="List&lt;Item&gt;" visibility="private" isStatic="true"/>
+        <Field name="clientList" type="List&lt;Client&gt;" visibility="private" isStatic="true"/>
+        <Field name="chronologyList" type="List&lt;Chronology&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="addLoom" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;String&gt;" name="data"/>
+        </Method>
+        <Method name="removeLoom" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="public" isStatic="true"/>
+        <Method name="setLoomList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Loom&gt;" name="loomList"/>
+        </Method>
+        <Method name="getLoom" returnType="Loom" visibility="public" isStatic="true">
+          <Argument type="String" name="number"/>
+        </Method>
+        <Method name="getLoom" returnType="Loom" visibility="public" isStatic="true">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="getForecastsLoom" returnType="List&lt;Loom&gt;" visibility="public" isStatic="true">
+          <Argument type="List&lt;List&lt;Integer&gt;&gt;" name="data"/>
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="addItem" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;String&gt;" name="data"/>
+        </Method>
+        <Method name="removeItem" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getItemList" returnType="List&lt;Item&gt;" visibility="public" isStatic="true"/>
+        <Method name="setItemList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Item&gt;" name="itemList"/>
+        </Method>
+        <Method name="getItem" returnType="Item" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="getForecastsItem" returnType="Item" visibility="public" isStatic="true">
+          <Argument type="List&lt;Integer&gt;" name="data"/>
+        </Method>
+        <Method name="addClient" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;List&lt;String&gt;&gt;" name="data"/>
+        </Method>
+        <Method name="removeClient" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getClientList" returnType="List&lt;Client&gt;" visibility="public" isStatic="true"/>
+        <Method name="setClientList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Client&gt;" name="clientList"/>
+        </Method>
+        <Method name="getClient" returnType="Client" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addChronology" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+          <Argument type="int" name="meters"/>
+          <Argument type="String" name="clientName"/>
+          <Argument type="LocalDate" name="endDate"/>
+          <Argument type="List&lt;Integer&gt;" name="loomAtWork"/>
+        </Method>
+        <Method name="getChronologyList" returnType="List&lt;Chronology&gt;" visibility="public" isStatic="true"/>
+        <Method name="setChronologyList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Chronology&gt;" name="chronologyList"/>
+        </Method>
+        <Method name="getChronology" returnType="Chronology" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="removeChronology" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="Observable" package="model" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Methods>
+        <Method name="addObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="removeObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="notifyMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="notifyExpectedEndDate" returnType="void" visibility="public"/>
+        <Method name="notifyDisponibility" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="notifyLoomAtWork" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="Observer" package="model" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Methods>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="updateDisponibility" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="addLoomAtWork" returnType="void" visibility="public">
+          <Argument type="int" name="loomNumber"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="AuthenticationController" package="controller" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="panel" type="Authentication" visibility="package"/>
+        <Field name="access" type="boolean" visibility="private"/>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="idb" type="ItemDAOImpl" visibility="private"/>
+        <Field name="ldb" type="LoomDAOImpl" visibility="private"/>
+        <Field name="cdb" type="ClientDAOImpl" visibility="private"/>
+        <Field name="c" type="ChronologyDB" visibility="private"/>
+        <Field name="u" type="UsersDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+          <Argument type="ChronologyDB" name="c"/>
+          <Argument type="UsersDB" name="u"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="authenticateAndProceed" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ChronologyController" package="controller" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="c" type="ChronologyDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClientController" package="controller" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="cdb" type="ClientDAOImpl" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ControllerUtility" package="controller" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="modify" type="boolean" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="LoomDAOImpl" name="db"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+        </Method>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Method>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Method>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ForecastsController" package="controller" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="forecasts" type="ForecastsPanel" visibility="private" isStatic="true"/>
+        <Field name="calculate" type="boolean" visibility="package" isStatic="true"/>
+        <Field name="f" type="Forecasts" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ItemController" package="controller" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="cdb" type="ClientDAOImpl" visibility="private"/>
+        <Field name="ldb" type="LoomDAOImpl" visibility="private"/>
+        <Field name="idb" type="ItemDAOImpl" visibility="private"/>
+        <Field name="c" type="ChronologyDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LeftPanelController" package="controller" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="loom" type="LoomController" visibility="private"/>
+        <Field name="item" type="ItemController" visibility="private"/>
+        <Field name="client" type="ClientController" visibility="private"/>
+        <Field name="forecasts" type="ForecastsController" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="LoomController" name="loom"/>
+          <Argument type="ItemController" name="item"/>
+          <Argument type="ClientController" name="client"/>
+          <Argument type="ChronologyController" name="chronology"/>
+          <Argument type="ForecastsController" name="forecasts"/>
+          <Argument type="SettingsController" name="settings"/>
+          <Argument type="ListPanelController" name="list"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ListPanelController" package="controller" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="panel" type="ListPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LoomController" package="controller" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="db" type="LoomDAOImpl" visibility="private"/>
+        <Field name="idb" type="ItemDAOImpl" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="LoomDAOImpl" name="db"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PrintHandler" package="controller" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="dataToPrint" type="List&lt;List&lt;String&gt;&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="List&lt;List&lt;String&gt;&gt;" name="dataToPrint"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="print" returnType="int" visibility="public">
+          <Argument type="Graphics" name="g"/>
+          <Argument type="PageFormat" name="pf"/>
+          <Argument type="int" name="pageIndex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SettingsController" package="controller" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="panel" type="SettingsPanel" visibility="private"/>
+        <Field name="u" type="UsersDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="UsersDB" name="u"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Authentication" package="view" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;JTextField&gt;" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="button" type="JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getData" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getLogInButton" returnType="JButton" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ButtonFactory" package="view" visibility="public" xPosition="2120.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createLoomButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="int" name="loomCode"/>
+        </Method>
+        <Method name="createEndLoomButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="int" name="loomCode"/>
+        </Method>
+        <Method name="createItemButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="createPlusButton" returnType="JButton" visibility="public" isStatic="true"/>
+        <Method name="createBackButton" returnType="JButton" visibility="public" isStatic="true"/>
+        <Method name="createClientButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ButtonUtility" package="view" visibility="public" xPosition="20.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="String" name="label"/>
+          <Argument type="String" name="iconPath"/>
+        </Method>
+        <Method name="changeIconColor" returnType="ImageIcon" visibility="package" isStatic="true">
+          <Argument type="Image" name="image"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ChronologyDataPanel" package="view.dataFactory" visibility="public" xPosition="320.0" yPosition="1220.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="buttonText"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ClientDataPanel" package="view.dataFactory" visibility="public" xPosition="620.0" yPosition="1220.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DataPanel" package="view.dataFactory" visibility="public" isAbstract="true" xPosition="920.0" yPosition="1220.0">
+      <Fields>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="metersRunGBCX" type="int" visibility="private"/>
+        <Field name="metersRunGBCY" type="int" visibility="private"/>
+        <Field name="endGBCX" type="int" visibility="private"/>
+        <Field name="endGBCY" type="int" visibility="private"/>
+        <Field name="refGBCX" type="int" visibility="private"/>
+        <Field name="refGBCY" type="int" visibility="private"/>
+        <Field name="phoneGBCX" type="int" visibility="private"/>
+        <Field name="phoneGBCY" type="int" visibility="private"/>
+        <Field name="addMetersRun" type="JButton" visibility="package"/>
+        <Field name="modify" type="JButton" visibility="package"/>
+        <Field name="addRef" type="JButton" visibility="package"/>
+        <Field name="addPhone" type="JButton" visibility="package"/>
+        <Field name="delete" type="JButton" visibility="package"/>
+        <Field name="end" type="JButton" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="textList" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+        <Field name="ref" type="int" visibility="package"/>
+        <Field name="phone" type="int" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createDataPanel" returnType="void" visibility="public">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="List&lt;JTextArea&gt;" name="text"/>
+        </Method>
+        <Method name="createDataPanelWithList" returnType="void" visibility="public">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="List&lt;List&lt;JTextArea&gt;&gt;" name="text"/>
+        </Method>
+        <Method name="addMetersRunButton" returnType="void" visibility="public"/>
+        <Method name="getAddMetersRunButton" returnType="JButton" visibility="public"/>
+        <Method name="getMetersRun" returnType="int" visibility="public"/>
+        <Method name="adjournMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="value"/>
+        </Method>
+        <Method name="adjournExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="addModifyButton" returnType="void" visibility="public"/>
+        <Method name="getModifyButton" returnType="JButton" visibility="public"/>
+        <Method name="addModifyComponents" returnType="void" visibility="public"/>
+        <Method name="makeTextEditable" returnType="void" visibility="public"/>
+        <Method name="refListener" returnType="void" visibility="public"/>
+        <Method name="phoneListener" returnType="void" visibility="public"/>
+        <Method name="getReferentsList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getPhoneList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="restoreComponents" returnType="void" visibility="public"/>
+        <Method name="getDeleteButton" returnType="JButton" visibility="public"/>
+        <Method name="addEndButton" returnType="void" visibility="public"/>
+        <Method name="getEndButton" returnType="JButton" visibility="public"/>
+        <Method name="error" returnType="void" visibility="public"/>
+        <Method name="getAddPhone" returnType="JButton" visibility="public"/>
+        <Method name="getAddRef" returnType="JButton" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DataPanelFactory" package="view.dataFactory" visibility="public" xPosition="1220.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createDataPanel" returnType="DataPanel" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="buttonText"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemDataPanel" package="view.dataFactory" visibility="public" xPosition="1520.0" yPosition="1220.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomDataPanel" package="view.dataFactory" visibility="public" xPosition="1820.0" yPosition="1220.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="number"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="NonEditableTextArea" package="view.dataFactory" visibility="public" xPosition="2120.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Dialog" package="view" visibility="public" xPosition="20.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="showErrorDialog" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="showDialog" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ForecastsPanel" package="view" visibility="public" xPosition="320.0" yPosition="1620.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="startLabel" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="index" type="int" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="private"/>
+        <Field name="startText" type="List&lt;JTextArea&gt;" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="add" type="JButton" visibility="private"/>
+        <Field name="remove" type="JButton" visibility="private"/>
+        <Field name="calculate" type="JButton" visibility="private"/>
+        <Field name="endGBCX" type="int" visibility="private"/>
+        <Field name="endGBCY" type="int" visibility="private"/>
+        <Field name="loomGBCY" type="int" visibility="private"/>
+        <Field name="addButtonGBCY" type="int" visibility="private"/>
+        <Field name="box" type="Component" visibility="private"/>
+        <Field name="lightGray" type="Color" visibility="private"/>
+        <Field name="area" type="JTextArea" visibility="package"/>
+        <Field name="totalMeters" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getAddButton" returnType="JButton" visibility="public"/>
+        <Method name="getCalculateButton" returnType="JButton" visibility="public"/>
+        <Method name="addLoomFields" returnType="void" visibility="public"/>
+        <Method name="getItemData" returnType="List&lt;Integer&gt;" visibility="public"/>
+        <Method name="getLoomData" returnType="List&lt;List&lt;Integer&gt;&gt;" visibility="public"/>
+        <Method name="seeResult" returnType="void" visibility="public">
+          <Argument type="String" name="expectedEndDate"/>
+        </Method>
+        <Method name="restore" returnType="void" visibility="public"/>
+        <Method name="controlErrors" returnType="boolean" visibility="public"/>
+        <Method name="getRemoveButton" returnType="JButton" visibility="public"/>
+        <Method name="removeLoomFields" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClientFormPanel" package="view.formFactory" visibility="public" xPosition="620.0" yPosition="1620.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+        <Field name="addRef" type="JButton" visibility="private"/>
+        <Field name="addPhone" type="JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FormPanel" package="view.formFactory" visibility="public" isAbstract="true" xPosition="920.0" yPosition="1620.0">
+      <Fields>
+        <Field name="save" type="JButton" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+        <Field name="clientText" type="List&lt;List&lt;TextField&gt;&gt;" visibility="private"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="addRef" type="JButton" visibility="private"/>
+        <Field name="addPhone" type="JButton" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="type" type="String" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createFormPanel" returnType="void" visibility="package">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getSaveButton" returnType="JButton" visibility="public"/>
+        <Method name="getData" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getData" returnType="List&lt;List&lt;String&gt;&gt;" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getPanel" returnType="JPanel" visibility="public"/>
+        <Method name="getText" returnType="List&lt;TextField&gt;" visibility="public"/>
+        <Method name="getLabel" returnType="List&lt;Label&gt;" visibility="public"/>
+        <Method name="getAddRef" returnType="JButton" visibility="public"/>
+        <Method name="getAddPhone" returnType="JButton" visibility="public"/>
+        <Method name="updateField" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="controlErrors" returnType="boolean" visibility="public"/>
+        <Method name="updateSize" returnType="void" visibility="public">
+          <Argument type="JPanel" name="panel"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FormPanelFactory" package="view.formFactory" visibility="public" xPosition="1220.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createFormPanel" returnType="FormPanel" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemFormPanel" package="view.formFactory" visibility="public" xPosition="1520.0" yPosition="1620.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomFormPanel" package="view.formFactory" visibility="public" xPosition="1820.0" yPosition="1620.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Label" package="view" visibility="public" xPosition="2120.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="text"/>
+          <Argument type="int" name="x"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LeftPanel" package="view" visibility="public" xPosition="20.0" yPosition="2020.0">
+      <Fields>
+        <Field name="backButton" type="JButton" visibility="private"/>
+        <Field name="loomButton" type="JButton" visibility="private"/>
+        <Field name="itemButton" type="JButton" visibility="private"/>
+        <Field name="clientButton" type="JButton" visibility="private"/>
+        <Field name="chronologyButton" type="JButton" visibility="private"/>
+        <Field name="forecastsButton" type="JButton" visibility="private"/>
+        <Field name="settingsButton" type="JButton" visibility="private"/>
+        <Field name="listButton" type="JButton" visibility="private"/>
+        <Field name="saveLeftButton" type="List&lt;JButton&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="JFrame" name="frame"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addBackButton" returnType="void" visibility="public"/>
+        <Method name="restore" returnType="void" visibility="public"/>
+        <Method name="getBackButton" returnType="JButton" visibility="public"/>
+        <Method name="getItemButton" returnType="JButton" visibility="public"/>
+        <Method name="getClientButton" returnType="JButton" visibility="public"/>
+        <Method name="getChronologyButton" returnType="JButton" visibility="public"/>
+        <Method name="getForecastsButton" returnType="JButton" visibility="public"/>
+        <Method name="getLoomButton" returnType="JButton" visibility="public"/>
+        <Method name="getSettingsButton" returnType="JButton" visibility="public"/>
+        <Method name="getListButton" returnType="JButton" visibility="public"/>
+        <Method name="seeComponents" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ListPanel" package="view" visibility="public" xPosition="320.0" yPosition="2020.0">
+      <Fields>
+        <Field name="scrollPane" type="JScrollPane" visibility="private"/>
+        <Field name="loomList" type="List&lt;Loom&gt;" visibility="private"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="private"/>
+        <Field name="contentList" type="List&lt;JPanel&gt;" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="principal" type="GridBagConstraints" visibility="private"/>
+        <Field name="print" type="JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="List&lt;Loom&gt;" name="loomList"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPrintButton" returnType="JButton" visibility="public"/>
+        <Method name="getDataToPrint" returnType="List&lt;List&lt;String&gt;&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MainView" package="view" visibility="public" xPosition="620.0" yPosition="2020.0">
+      <Fields>
+        <Field name="button" type="JButton" visibility="private"/>
+        <Field name="centralPanel" type="JPanel" visibility="private"/>
+        <Field name="leftPanel" type="LeftPanel" visibility="private"/>
+        <Field name="rightPanel" type="JPanel" visibility="private"/>
+        <Field name="panel" type="view.panelFactory.Panel" visibility="private"/>
+        <Field name="formPanel" type="view.formFactory.FormPanel" visibility="private"/>
+        <Field name="dataPanel" type="view.dataFactory.DataPanel" visibility="private"/>
+        <Field name="saveButton" type="List&lt;JButton&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCentralPanel" returnType="JPanel" visibility="public"/>
+        <Method name="getLeftPanel" returnType="LeftPanel" visibility="public"/>
+        <Method name="addPanel" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getPanel" returnType="view.panelFactory.Panel" visibility="public"/>
+        <Method name="addForm" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getFormPanel" returnType="view.formFactory.FormPanel" visibility="public"/>
+        <Method name="addData" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="buttonText"/>
+        </Method>
+        <Method name="getDataPanel" returnType="view.dataFactory.DataPanel" visibility="public"/>
+        <Method name="deleteDataPanel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ChronologyPanel" package="view.panelFactory" visibility="public" xPosition="920.0" yPosition="2020.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ClientPanel" package="view.panelFactory" visibility="public" xPosition="1220.0" yPosition="2020.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ItemPanel" package="view.panelFactory" visibility="public" xPosition="1520.0" yPosition="2020.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomPanel" package="view.panelFactory" visibility="public" xPosition="1820.0" yPosition="2020.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Panel" package="view.panelFactory" visibility="public" isAbstract="true" xPosition="2120.0" yPosition="2020.0">
+      <Fields>
+        <Field name="saveIconButton" type="List&lt;JButton&gt;" visibility="private"/>
+        <Field name="plusButton" type="JButton" visibility="private"/>
+        <Field name="type" type="String" visibility="private"/>
+        <Field name="scrollPane" type="JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createPanel" returnType="void" visibility="package">
+          <Argument type="String" name="layout"/>
+          <Argument type="String" name="buttonType"/>
+        </Method>
+        <Method name="getPlusButton" returnType="JButton" visibility="public"/>
+        <Method name="updateButton" returnType="void" visibility="package"/>
+        <Method name="addIconButton" returnType="void" visibility="public"/>
+        <Method name="restore" returnType="void" visibility="public"/>
+        <Method name="getSaveIconButtonList" returnType="List&lt;JButton&gt;" visibility="public"/>
+        <Method name="removeIconButton" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="removeIconButton" returnType="void" visibility="public">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="getScrollPane" returnType="JScrollPane" visibility="public"/>
+        <Method name="updateLoomIcon" returnType="void" visibility="public">
+          <Argument type="JButton" name="button"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelFactory" package="view.panelFactory" visibility="public" xPosition="20.0" yPosition="2420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createPanel" returnType="Panel" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SettingsPanel" package="view" visibility="public" xPosition="320.0" yPosition="2420.0">
+      <Fields>
+        <Field name="changePassword" type="JButton" visibility="private"/>
+        <Field name="addUser" type="JButton" visibility="private"/>
+        <Field name="save1" type="JButton" visibility="private"/>
+        <Field name="save2" type="JButton" visibility="private"/>
+        <Field name="back" type="JButton" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="password" type="List&lt;JTextField&gt;" visibility="private"/>
+        <Field name="credentials" type="List&lt;JTextField&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getChangePasswordButton" returnType="JButton" visibility="public"/>
+        <Method name="getAddUserButton" returnType="JButton" visibility="public"/>
+        <Method name="getSave1Button" returnType="JButton" visibility="public"/>
+        <Method name="getSave2Button" returnType="JButton" visibility="public"/>
+        <Method name="getBackButton" returnType="JButton" visibility="public"/>
+        <Method name="changePassword" returnType="void" visibility="public"/>
+        <Method name="addUser" returnType="void" visibility="public"/>
+        <Method name="getData1" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getData2" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="restore" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TextField" package="view" visibility="public" xPosition="620.0" yPosition="2420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="loomList" source="model.Model" target="model.Loom" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loom&gt;"/>
+    <HasRelation name="label" source="view.dataFactory.DataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="model" source="controller.ListPanelController" target="model.Model" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="itemList" source="model.Model" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Item&gt;"/>
+    <UseRelation source="view.dataFactory.DataPanelFactory" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.dataFactory.ClientDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="model" source="controller.ChronologyController" target="model.Model" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.ListPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="view" source="controller.ItemController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="panel" source="controller.AuthenticationController" target="view.Authentication" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="forecasts" source="controller.ForecastsController" target="view.ForecastsPanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="observer" source="model.Loom" target="model.Observer" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Observer&gt;"/>
+    <HasRelation name="view" source="controller.ClientController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="controller.AuthenticationController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.ItemBuilder" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="model.Loom" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="controller.ChronologyController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="model.LoomBuilder" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.dataFactory.ChronologyDataPanel" target="view.dataFactory.DataPanel"/>
+    <HasRelation name="startLabel" source="view.ForecastsPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="model" source="controller.ItemController" target="model.Model" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.dataFactory.DataPanel" target="view.Label" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="model.Item" target="model.Observer"/>
+    <UseRelation source="model.Model" target="model.Loom" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.dataFactory.ItemDataPanel" target="view.dataFactory.DataPanel"/>
+    <HasRelation name="client" source="model.ItemBuilder" target="model.Client" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.ItemBuilder" target="model.ItemBuilder" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.panelFactory.ItemPanel" target="view.panelFactory.Panel"/>
+    <HasRelation name="item" source="model.Forecasts" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="panel" source="controller.SettingsController" target="view.SettingsPanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="SettingsPanel"/>
+    <UseRelation source="view.MainView" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.formFactory.ItemFormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <UseRelation source="view.panelFactory.PanelFactory" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="controller.LeftPanelController" target="controller.ItemController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="model" source="controller.LoomController" target="model.Model" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.formFactory.FormPanel" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="leftPanel" source="view.MainView" target="view.LeftPanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="model.Loom" target="model.Observable"/>
+    <HasRelation name="panel" source="controller.ListPanelController" target="view.ListPanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ListPanel"/>
+    <UseRelation source="view.formFactory.FormPanel" target="view.Label" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="controller.ListPanelController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="loomList" source="view.ListPanel" target="model.Loom" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loom&gt;"/>
+    <IsRelation name="is" source="view.panelFactory.ClientPanel" target="view.panelFactory.Panel"/>
+    <HasRelation name="model" source="controller.AuthenticationController" target="model.Model" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Loom" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.dataFactory.ChronologyDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="clientText" source="view.formFactory.FormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;List&lt;TextField&gt;&gt;"/>
+    <UseRelation source="view.formFactory.FormPanel" target="view.TextField" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Client" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.LoomBuilder" target="model.Loom" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.Authentication" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <UseRelation source="model.Model" target="model.Client" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="controller.LoomController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.formFactory.ItemFormPanel" target="view.formFactory.FormPanel"/>
+    <HasRelation name="forecasts" source="controller.LeftPanelController" target="controller.ForecastsController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.dataFactory.LoomDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <UseRelation source="model.Model" target="model.Chronology" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="client" source="controller.LeftPanelController" target="controller.ClientController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.formFactory.ClientFormPanel" target="view.formFactory.FormPanel"/>
+    <HasRelation name="text" source="view.formFactory.ItemFormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <UseRelation source="model.Model" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.LoomBuilder" target="model.LoomBuilder" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.ForecastsPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <IsRelation name="is" source="view.formFactory.LoomFormPanel" target="view.formFactory.FormPanel"/>
+    <IsRelation name="is" source="view.dataFactory.ClientDataPanel" target="view.dataFactory.DataPanel"/>
+    <HasRelation name="label" source="view.formFactory.FormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <UseRelation source="model.Forecasts" target="model.Loom" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.formFactory.FormPanelFactory" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="text" source="view.formFactory.ClientFormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <IsRelation name="is" source="view.panelFactory.LoomPanel" target="view.panelFactory.Panel"/>
+    <UseRelation source="model.Observable" target="model.Observer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="chronologyList" source="model.Model" target="model.Chronology" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Chronology&gt;"/>
+    <UseRelation source="controller.ControllerUtility" target="view.MainView" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="text" source="view.formFactory.LoomFormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <HasRelation name="model" source="controller.ClientController" target="model.Model" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="view" source="controller.ForecastsController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="loomList" source="model.Forecasts" target="model.Loom" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loom&gt;"/>
+    <HasRelation name="client" source="model.Item" target="model.Client" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Item" target="model.Client" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.dataFactory.ItemDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <UseRelation source="model.Loom" target="model.Observer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="f" source="controller.ForecastsController" target="model.Forecasts" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="clientList" source="model.Model" target="model.Client" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Client&gt;"/>
+    <IsRelation name="is" source="view.panelFactory.ChronologyPanel" target="view.panelFactory.Panel"/>
+    <HasRelation name="label" source="view.formFactory.LoomFormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <IsRelation name="is" source="view.dataFactory.LoomDataPanel" target="view.dataFactory.DataPanel"/>
+    <HasRelation name="item" source="model.Client" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Item&gt;"/>
+    <HasRelation name="view" source="controller.SettingsController" target="view.MainView" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="loom" source="controller.LeftPanelController" target="controller.LoomController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="text" source="view.formFactory.FormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <HasRelation name="label" source="view.formFactory.ClientFormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

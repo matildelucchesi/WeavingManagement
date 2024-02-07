@@ -12,11 +12,11 @@ import model.Item;
  * @author Matilde
  */
 public interface ItemDAO {
-    void insertItem(Item item, ClientDAOImpl cdb);
+    boolean insertItem(Item item, ClientDAOImpl cdb);
     List<Item> getItemList();
-    void updateMetersToGo(Item item);
-    void updateExpectedEndDate(Item item);
-    void setDisponibility();
-    void updateDisponibility(Item item, int metersUsed);
-    void removeItem(Item item);
+    boolean updateMetersToGo(Item item);
+    boolean updateExpectedEndDate(Item item);
+    boolean setAvailability();
+    boolean updateAvailability(Item item, int metersUsed);
+    boolean removeItem(Item item);
 }

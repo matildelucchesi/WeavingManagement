@@ -24,7 +24,8 @@ import model.ItemBuilder;
 public class ItemDAOImpl implements ItemDAO {
     
    @Override
-   public void insertItem(Item item, ClientDAOImpl cdb) {
+   public boolean insertItem(Item item, ClientDAOImpl cdb) {
+        
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatementAssociation = null;
@@ -35,13 +36,13 @@ public class ItemDAOImpl implements ItemDAO {
             connection = DriverManager.getConnection(dbURL);
             
             // insert Query
-            String insertQuery = "INSERT INTO Item (item_name, meters, metersToGo, disponibility, rowNumber, hits, deliveryDate, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO Item (item_name, meters, metersToGo, availability, rowNumber, hits, deliveryDate, expectedEndDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
      
             preparedStatement = connection.prepareStatement(insertQuery);
             preparedStatement.setString(1, item.getName());
             preparedStatement.setInt(2, item.getMeters());
             preparedStatement.setInt(3, item.getMetersToGo());
-            preparedStatement.setInt(4, item.getDisponibility());
+            preparedStatement.setInt(4, item.getAvailability());
             preparedStatement.setInt(5, item.getRowNumber());
             preparedStatement.setInt(6, item.getHits());
             preparedStatement.setString(7, item.getDeliveryDate().toString());
@@ -51,33 +52,36 @@ public class ItemDAOImpl implements ItemDAO {
             int rowsAffected = preparedStatement.executeUpdate();
             
             if (rowsAffected > 0) {
-                System.out.println("success");
+                String insertAssociationQuery = "INSERT INTO ClientAssociation (client_name, item_name) VALUES (?, ?)";
+                preparedStatementAssociation = connection.prepareStatement(insertAssociationQuery);
+                preparedStatementAssociation.setString(1, item.getClient().getName());
+                preparedStatementAssociation.setString(2, item.getName()); 
+
+                rowsAffected = preparedStatementAssociation.executeUpdate();
+
+                if(cdb.countClientWithName(item.getClient().getName()) == 0){
+                    cdb.insertClient(item.getClient());
+                }
+
+                if (rowsAffected > 0) {
+                    connection.close();
+                    return true;
+                } else {
+                    connection.close();
+                    return false;
+                }
+            
             } else {
-                System.out.println("No data insert");
+                return false;
             }
             
-            String insertAssociationQuery = "INSERT INTO ClientAssociation (client_name, item_name) VALUES (?, ?)";
-            preparedStatementAssociation = connection.prepareStatement(insertAssociationQuery);
-            preparedStatementAssociation.setString(1, item.getClient().getName());
-            preparedStatementAssociation.setString(2, item.getName()); 
             
-            rowsAffected = preparedStatementAssociation.executeUpdate();
-            
-            if (rowsAffected > 0) {
-                System.out.println("success");
-            } else {
-                System.out.println("No data insert");
-            }
-            
-            if(cdb.countClientWithName(item.getClient().getName()) == 0){
-                cdb.insertClient(item.getClient());
-            }
-            
-            connection.close();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -88,6 +92,7 @@ public class ItemDAOImpl implements ItemDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }
@@ -112,7 +117,7 @@ public class ItemDAOImpl implements ItemDAO {
             String itemName = resultSet.getString("item_name");
             int meters = resultSet.getInt("meters");
             int metersToGo = resultSet.getInt("metersToGo");
-            int disponibility = resultSet.getInt("disponibility");
+            int availability = resultSet.getInt("availability");
             int rowNumber = resultSet.getInt("rowNumber");
             int hits = resultSet.getInt("hits");
             String deliveryDate = resultSet.getString("deliveryDate");
@@ -149,7 +154,7 @@ public class ItemDAOImpl implements ItemDAO {
                     .setName(itemName)
                     .setMeters(meters)
                     .setMetersToGo(metersToGo)
-                    .setDisponibility(disponibility)
+                    .setAvailability(availability)
                     .setRowNumber(rowNumber)
                     .setHits(hits)
                     .setDeliveryDate(formattedDelivDate)
@@ -170,7 +175,7 @@ public class ItemDAOImpl implements ItemDAO {
     }
    
    @Override
-   public void updateMetersToGo(Item item){
+   public boolean updateMetersToGo(Item item){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -190,14 +195,20 @@ public class ItemDAOImpl implements ItemDAO {
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Il valore di metersRun per il item_name " + item.getName() + " è stato aggiornato con successo.");
+                connection.close();
+                return true;
             } else {
                 System.out.println("Nessuna riga è stata modificata.");
+                connection.close();
+                return false;
             }
-            connection.close();
+            
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -208,12 +219,13 @@ public class ItemDAOImpl implements ItemDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
    }
    
    @Override
-   public void updateExpectedEndDate(Item item){
+   public boolean updateExpectedEndDate(Item item){
        Connection connection = null;
         PreparedStatement preparedStatement = null;
         
@@ -231,14 +243,20 @@ public class ItemDAOImpl implements ItemDAO {
             int rowsUpdated = preparedStatement.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Il valore di expectedEndDate per il item_name " + item.getName() + " è stato aggiornato con successo.");
+                connection.close();
+                return true;
             } else {
                 System.out.println("Nessuna riga è stata modificata.");
+                connection.close();
+                return false;
             }
-            connection.close();
+            
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -249,12 +267,13 @@ public class ItemDAOImpl implements ItemDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
    }
    
    @Override
-   public void setDisponibility(){
+   public boolean setAvailability(){
        Connection connection = null;
        PreparedStatement preparedStatement = null;
        try {
@@ -262,16 +281,20 @@ public class ItemDAOImpl implements ItemDAO {
         String dbURL = "jdbc:sqlite:././Information.db";
         connection = DriverManager.getConnection(dbURL);
 
-        String sql = "UPDATE Item SET disponibility = meters - (SELECT SUM(totalMeters) FROM Loom WHERE Loom.item_code = Item.item_code)";
+        String sql = "UPDATE Item SET availability = meters - (SELECT SUM(totalMeters) FROM Loom WHERE Loom.item_code = Item.item_code)";
         preparedStatement = connection.prepareStatement(sql);
 
         preparedStatement.executeUpdate();
 
+        connection.close();
+        return true;
 
     }  catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -282,13 +305,14 @@ public class ItemDAOImpl implements ItemDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
 
    }
    
     @Override
-    public void updateDisponibility(Item item, int metersUsed){
+    public boolean updateAvailability(Item item, int metersUsed){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
@@ -296,26 +320,32 @@ public class ItemDAOImpl implements ItemDAO {
         String dbURL = "jdbc:sqlite:././Information.db";
         connection = DriverManager.getConnection(dbURL);
 
-        String sql = "UPDATE Item SET disponibility = ? WHERE item_name = ?";
+        String sql = "UPDATE Item SET availability = ? WHERE item_name = ?";
         preparedStatement = connection.prepareStatement(sql);
 
-        preparedStatement.setString(1, String.valueOf(item.getDisponibility()));
+        preparedStatement.setString(1, String.valueOf(item.getAvailability()));
         preparedStatement.setString(2, item.getName());
         preparedStatement.executeUpdate();
         
         int rowsUpdated = preparedStatement.executeUpdate();
         if (rowsUpdated > 0) {
             System.out.println("success");
+            connection.close();
+            return true;
         } else {
                 System.out.println("Nessuna riga è stata modificata.");
+                connection.close();
+                return false;
         }
             
-        connection.close();
+        
         
     }  catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -326,14 +356,16 @@ public class ItemDAOImpl implements ItemDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
    }
     
     @Override
-    public void removeItem(Item item){
+    public boolean removeItem(Item item){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        boolean change = false;
         
         try{
             Class.forName("org.sqlite.JDBC");
@@ -348,8 +380,10 @@ public class ItemDAOImpl implements ItemDAO {
 
             if (rowsDeleted > 0) {
                 System.out.println("success deleting in ClientAssociation");
+                change = true;
             } else {
                 System.out.println("fail deleting in ClientAssociation");
+                change = false;
             }
             
             String sql1 = "DELETE FROM LoomAssociation WHERE item_name = ?";
@@ -360,8 +394,10 @@ public class ItemDAOImpl implements ItemDAO {
 
             if (rowsDeleted > 0) {
                 System.out.println("success deleting in LoomAssociation");
+                change = true;
             } else {
                 System.out.println("fail deleting in LoomAssociation");
+                change = false;
             }
             
             String sql2 = "DELETE FROM Item WHERE item_name = ?";
@@ -373,15 +409,20 @@ public class ItemDAOImpl implements ItemDAO {
 
             if (rowsDeleted1 > 0) {
                 System.out.println("success deleting in Item");
+                change = true;
             } else {
                 System.out.println("fail deleting in Item");
+                change = false;
             }
             
             connection.close();
+            return change;
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            return false;
         }catch (SQLException e) {
             e.printStackTrace();
+            return false;
         } finally {
             try {
                 if (preparedStatement != null) {
@@ -392,6 +433,7 @@ public class ItemDAOImpl implements ItemDAO {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
         }
     }

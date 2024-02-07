@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-package class diagram">
+  <ClassDiagramComponents>
+    <Class name="AssociationDB" package="SQLite" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="getAssociationList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="String" name="itemCode"/>
+        </Method>
+        <Method name="getExpectedEndDate" returnType="LocalDate" visibility="public">
+          <Argument type="String" name="itemCode"/>
+        </Method>
+        <Method name="getItemAssociationClientList" returnType="List&lt;String&gt;" visibility="public">
+          <Argument type="String" name="clientName"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ChronologyDB" package="SQLite" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="insertElement" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="getChronologyList" returnType="List&lt;Chronology&gt;" visibility="public"/>
+        <Method name="removeChronology" returnType="void" visibility="public">
+          <Argument type="Chronology" name="chronology"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="ClientDAO" package="SQLite" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Methods>
+        <Method name="insertClient" returnType="void" visibility="package">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="getClientList" returnType="List&lt;Client&gt;" visibility="package"/>
+        <Method name="changeData" returnType="void" visibility="package">
+          <Argument type="Client" name="client"/>
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phone"/>
+        </Method>
+        <Method name="removeClient" returnType="void" visibility="package">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="countClientWithName" returnType="int" visibility="package">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="changeData" returnType="void" visibility="package">
+          <Argument type="Client" name="cient"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="ClientDAOImpl" package="SQLite" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="insertClient" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="getClientList" returnType="List&lt;Client&gt;" visibility="public"/>
+        <Method name="changeData" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phone"/>
+        </Method>
+        <Method name="removeClient" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="countClientWithName" returnType="int" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="changeData" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DBUtility" package="SQLite" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="stringBuilder" returnType="String" visibility="public" isStatic="true">
+          <Argument type="List&lt;Integer&gt;" name="list"/>
+        </Method>
+        <Method name="convertStringToInteger" returnType="List&lt;Integer&gt;" visibility="public" isStatic="true">
+          <Argument type="String" name="string"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="ItemDAO" package="SQLite" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Methods>
+        <Method name="insertItem" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Method>
+        <Method name="getItemList" returnType="List&lt;Item&gt;" visibility="package"/>
+        <Method name="updateMetersToGo" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="setDisponibility" returnType="void" visibility="package"/>
+        <Method name="updateDisponibility" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+          <Argument type="int" name="metersUsed"/>
+        </Method>
+        <Method name="removeItem" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="ItemDAOImpl" package="SQLite" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="insertItem" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Method>
+        <Method name="getItemList" returnType="List&lt;Item&gt;" visibility="public"/>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="setDisponibility" returnType="void" visibility="public"/>
+        <Method name="updateDisponibility" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+          <Argument type="int" name="metersUsed"/>
+        </Method>
+        <Method name="removeItem" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="LoomDAO" package="SQLite" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Methods>
+        <Method name="insertLoom" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="removeLoom" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="updateMetersToGo" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="package"/>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="LoomDAOImpl" package="SQLite" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="insertLoom" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="public"/>
+        <Method name="removeLoom" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UsersDB" package="SQLite" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="authenticate" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="changePassword" returnType="boolean" visibility="public">
+          <Argument type="List&lt;String&gt;" name="password"/>
+        </Method>
+        <Method name="addUser" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="data"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="AuthenticationController" package="controller" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="panel" type="Authentication" visibility="package"/>
+        <Field name="access" type="boolean" visibility="private"/>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="idb" type="ItemDAOImpl" visibility="private"/>
+        <Field name="ldb" type="LoomDAOImpl" visibility="private"/>
+        <Field name="cdb" type="ClientDAOImpl" visibility="private"/>
+        <Field name="c" type="ChronologyDB" visibility="private"/>
+        <Field name="u" type="UsersDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+          <Argument type="ChronologyDB" name="c"/>
+          <Argument type="UsersDB" name="u"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="authenticateAndProceed" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ChronologyController" package="controller" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="c" type="ChronologyDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClientController" package="controller" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="cdb" type="ClientDAOImpl" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ControllerUtility" package="controller" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="modify" type="boolean" visibility="package" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="LoomDAOImpl" name="db"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+        </Method>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Method>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Method>
+        <Method name="iconListener" returnType="void" visibility="package" isStatic="true">
+          <Argument type="MainView" name="view"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ForecastsController" package="controller" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="forecasts" type="ForecastsPanel" visibility="private" isStatic="true"/>
+        <Field name="calculate" type="boolean" visibility="package" isStatic="true"/>
+        <Field name="f" type="Forecasts" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ItemController" package="controller" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="cdb" type="ClientDAOImpl" visibility="private"/>
+        <Field name="ldb" type="LoomDAOImpl" visibility="private"/>
+        <Field name="idb" type="ItemDAOImpl" visibility="private"/>
+        <Field name="c" type="ChronologyDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+          <Argument type="ChronologyDB" name="c"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LeftPanelController" package="controller" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="loom" type="LoomController" visibility="private"/>
+        <Field name="item" type="ItemController" visibility="private"/>
+        <Field name="client" type="ClientController" visibility="private"/>
+        <Field name="forecasts" type="ForecastsController" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="LoomController" name="loom"/>
+          <Argument type="ItemController" name="item"/>
+          <Argument type="ClientController" name="client"/>
+          <Argument type="ChronologyController" name="chronology"/>
+          <Argument type="ForecastsController" name="forecasts"/>
+          <Argument type="SettingsController" name="settings"/>
+          <Argument type="ListPanelController" name="list"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ListPanelController" package="controller" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="panel" type="ListPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="LoomDAOImpl" name="ldb"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LoomController" package="controller" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="model" type="Model" visibility="private"/>
+        <Field name="db" type="LoomDAOImpl" visibility="private"/>
+        <Field name="idb" type="ItemDAOImpl" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="Model" name="model"/>
+          <Argument type="LoomDAOImpl" name="db"/>
+          <Argument type="ItemDAOImpl" name="idb"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PrintHandler" package="controller" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="dataToPrint" type="List&lt;List&lt;String&gt;&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="List&lt;List&lt;String&gt;&gt;" name="dataToPrint"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="print" returnType="int" visibility="public">
+          <Argument type="Graphics" name="g"/>
+          <Argument type="PageFormat" name="pf"/>
+          <Argument type="int" name="pageIndex"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SettingsController" package="controller" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="view" type="MainView" visibility="private"/>
+        <Field name="panel" type="SettingsPanel" visibility="private"/>
+        <Field name="u" type="UsersDB" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MainView" name="view"/>
+          <Argument type="UsersDB" name="u"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="handleAction" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="loom" source="controller.LeftPanelController" target="controller.LoomController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="client" source="controller.LeftPanelController" target="controller.ClientController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idb" source="controller.ItemController" target="SQLite.ItemDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="c" source="controller.ItemController" target="SQLite.ChronologyDB" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="c" source="controller.AuthenticationController" target="SQLite.ChronologyDB" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="controller.ControllerUtility" target="SQLite.ChronologyDB" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idb" source="controller.AuthenticationController" target="SQLite.ItemDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="SQLite.ClientDAOImpl" target="SQLite.ClientDAO"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="SQLite.ItemDAOImpl" target="SQLite.ItemDAO"/>
+    <HasRelation name="u" source="controller.AuthenticationController" target="SQLite.UsersDB" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="SQLite.ItemDAO" target="SQLite.ClientDAOImpl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ldb" source="controller.AuthenticationController" target="SQLite.LoomDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="c" source="controller.ChronologyController" target="SQLite.ChronologyDB" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cdb" source="controller.ItemController" target="SQLite.ClientDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="controller.LeftPanelController" target="controller.ItemController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="u" source="controller.SettingsController" target="SQLite.UsersDB" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="controller.ControllerUtility" target="SQLite.ClientDAOImpl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idb" source="controller.LoomController" target="SQLite.ItemDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="forecasts" source="controller.LeftPanelController" target="controller.ForecastsController" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cdb" source="controller.ClientController" target="SQLite.ClientDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="db" source="controller.LoomController" target="SQLite.LoomDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="SQLite.ItemDAOImpl" target="SQLite.ClientDAOImpl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ldb" source="controller.ItemController" target="SQLite.LoomDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cdb" source="controller.AuthenticationController" target="SQLite.ClientDAOImpl" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="controller.ControllerUtility" target="SQLite.LoomDAOImpl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="SQLite.LoomDAOImpl" target="SQLite.LoomDAO"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="SQLite">
+  <ClassDiagramComponents>
+    <Class name="ClientDAOImpl" package="SQLite" visibility="public" xPosition="423.0" yPosition="303.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="insertClient" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="getClientList" returnType="List&lt;Client&gt;" visibility="public"/>
+        <Method name="changeData" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phone"/>
+        </Method>
+        <Method name="removeClient" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="countClientWithName" returnType="int" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="changeData" returnType="void" visibility="public">
+          <Argument type="Client" name="client"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemDAOImpl" package="SQLite" visibility="public" xPosition="1090.0" yPosition="87.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="insertItem" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Method>
+        <Method name="getItemList" returnType="List&lt;Item&gt;" visibility="public"/>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="setDisponibility" returnType="void" visibility="public"/>
+        <Method name="updateDisponibility" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+          <Argument type="int" name="metersUsed"/>
+        </Method>
+        <Method name="removeItem" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LoomDAOImpl" package="SQLite" visibility="public" xPosition="1551.0" yPosition="381.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="insertLoom" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="public"/>
+        <Method name="removeLoom" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="ClientDAO" package="SQLite" visibility="public" xPosition="423.0" yPosition="31.0">
+      <Methods>
+        <Method name="insertClient" returnType="void" visibility="package">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="getClientList" returnType="List&lt;Client&gt;" visibility="package"/>
+        <Method name="changeData" returnType="void" visibility="package">
+          <Argument type="Client" name="client"/>
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phone"/>
+        </Method>
+        <Method name="removeClient" returnType="void" visibility="package">
+          <Argument type="Client" name="client"/>
+        </Method>
+        <Method name="countClientWithName" returnType="int" visibility="package">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="changeData" returnType="void" visibility="package">
+          <Argument type="Client" name="cient"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="ItemDAO" package="SQLite" visibility="public" xPosition="1186.0" yPosition="453.0">
+      <Methods>
+        <Method name="insertItem" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+          <Argument type="ClientDAOImpl" name="cdb"/>
+        </Method>
+        <Method name="getItemList" returnType="List&lt;Item&gt;" visibility="package"/>
+        <Method name="updateMetersToGo" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="setDisponibility" returnType="void" visibility="package"/>
+        <Method name="updateDisponibility" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+          <Argument type="int" name="metersUsed"/>
+        </Method>
+        <Method name="removeItem" returnType="void" visibility="package">
+          <Argument type="Item" name="item"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Interface name="LoomDAO" package="SQLite" visibility="public" xPosition="1551.0" yPosition="136.0">
+      <Methods>
+        <Method name="insertLoom" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="removeLoom" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="updateMetersToGo" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="package"/>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="package">
+          <Argument type="Loom" name="loom"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="SQLite.ClientDAOImpl" target="SQLite.ClientDAO"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="SQLite.LoomDAOImpl" target="SQLite.LoomDAO"/>
+    <UseRelation source="SQLite.ItemDAO" target="SQLite.ClientDAOImpl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="SQLite.ItemDAOImpl" target="SQLite.ClientDAOImpl" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="SQLite.ItemDAOImpl" target="SQLite.ItemDAO"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

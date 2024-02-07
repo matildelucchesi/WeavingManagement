@@ -41,8 +41,8 @@ public class Model {
                 s = i;
             }
         }
-        int newDisponibility = loomList.get(s).getItem().getDisponibility() + loomList.get(s).getMetersToGo();
-        loomList.get(s).getItem().setDisponibility(newDisponibility);
+        int newAvailability = loomList.get(s).getItem().getAvailability() + loomList.get(s).getMetersToGo();
+        loomList.get(s).getItem().setAvailability(newAvailability);
         loomList.remove(s);
     }
     
@@ -89,7 +89,7 @@ public class Model {
                 .setName(data.get(0))
                 .setMeters(Integer.parseInt(data.get(1)))
                 .setMetersToGo(Integer.parseInt(data.get(1)))
-                .setDisponibility(Integer.parseInt(data.get(1)))
+                .setAvailability(Integer.parseInt(data.get(1)))
                 .setRowNumber(Integer.parseInt(data.get(2)))
                 .setHits(Integer.parseInt(data.get(3)))
                 .setDeliveryDate(data.get(4))

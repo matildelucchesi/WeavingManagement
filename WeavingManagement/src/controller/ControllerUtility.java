@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
+import model.Item;
 import model.Model;
 import view.MainView;
 

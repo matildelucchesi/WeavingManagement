@@ -13,9 +13,9 @@ import model.Loom;
  * @author Matilde
  */
 public interface LoomDAO {
-    void insertLoom(Loom loom);
-    void removeLoom(Loom loom);
-    void updateMetersToGo(Loom loom);
+    boolean insertLoom(Loom loom);
+    boolean removeLoom(Loom loom);
+    boolean updateMetersToGo(Loom loom);
     List<Loom> getLoomList();
-    void updateExpectedEndDate(Loom loom);
+    boolean updateExpectedEndDate(Loom loom);
 }

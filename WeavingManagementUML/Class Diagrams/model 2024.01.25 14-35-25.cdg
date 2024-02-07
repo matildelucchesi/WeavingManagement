@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="model">
+  <ClassDiagramComponents>
+    <Class name="Chronology" package="model" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="itemName" type="String" visibility="private"/>
+        <Field name="meters" type="int" visibility="private"/>
+        <Field name="clientName" type="String" visibility="private"/>
+        <Field name="endDate" type="LocalDate" visibility="private"/>
+        <Field name="loomAtWork" type="List&lt;Integer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="itemName"/>
+          <Argument type="int" name="meters"/>
+          <Argument type="String" name="clientName"/>
+          <Argument type="LocalDate" name="endDate"/>
+          <Argument type="List&lt;Integer&gt;" name="loomAtWork"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getItemName" returnType="String" visibility="public"/>
+        <Method name="getMeters" returnType="int" visibility="public"/>
+        <Method name="getClientName" returnType="String" visibility="public"/>
+        <Method name="getEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getLoomAtWork" returnType="List&lt;Integer&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Client" package="model" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="referents" type="List&lt;String&gt;" visibility="private"/>
+        <Field name="phoneNumber" type="List&lt;String&gt;" visibility="private"/>
+        <Field name="item" type="List&lt;Item&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phoneNumber"/>
+          <Argument type="List&lt;Item&gt;" name="item"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setReferents" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="referents"/>
+        </Method>
+        <Method name="setPhoneNumber" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="phoneNumber"/>
+        </Method>
+        <Method name="setItem" returnType="void" visibility="public">
+          <Argument type="List&lt;Item&gt;" name="item"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getReferents" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getPhoneNumber" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getItem" returnType="List&lt;Item&gt;" visibility="public"/>
+        <Method name="update" returnType="void" visibility="public">
+          <Argument type="List&lt;String&gt;" name="referents"/>
+          <Argument type="List&lt;String&gt;" name="phone"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Forecasts" package="model" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="item" type="Item" visibility="private"/>
+        <Field name="loomList" type="List&lt;Loom&gt;" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Item" name="item"/>
+          <Argument type="List&lt;Loom&gt;" name="loomList"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getExpectedEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="public"/>
+        <Method name="getItemValues" returnType="List&lt;Integer&gt;" visibility="public"/>
+        <Method name="getLoomNumber" returnType="int" visibility="public"/>
+        <Method name="getLoomValues" returnType="List&lt;Integer&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Item" package="model" visibility="public" isFinal="true" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="rowNumber" type="int" visibility="private"/>
+        <Field name="hits" type="int" visibility="private"/>
+        <Field name="totalHits" type="int" visibility="private"/>
+        <Field name="meters" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+        <Field name="availability" type="int" visibility="private"/>
+        <Field name="deliveryDate" type="LocalDate" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+        <Field name="date" type="List&lt;LocalDate&gt;" visibility="private"/>
+        <Field name="client" type="Client" visibility="private"/>
+        <Field name="loomAtWork" type="List&lt;Integer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="meters"/>
+          <Argument type="int" name="metersToGo"/>
+          <Argument type="int" name="availability"/>
+          <Argument type="int" name="rowNumber"/>
+          <Argument type="int" name="hits"/>
+          <Argument type="LocalDate" name="deliveryDate"/>
+          <Argument type="LocalDate" name="expectedEndDate"/>
+          <Argument type="Client" name="client"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="meters"/>
+          <Argument type="int" name="rowNumber"/>
+          <Argument type="int" name="hits"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getRowNumber" returnType="int" visibility="public"/>
+        <Method name="getHits" returnType="int" visibility="public"/>
+        <Method name="getTotalHits" returnType="int" visibility="public"/>
+        <Method name="getMeters" returnType="int" visibility="public"/>
+        <Method name="getMetersToGo" returnType="int" visibility="public"/>
+        <Method name="getAvailability" returnType="int" visibility="public"/>
+        <Method name="getExpectedEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getDeliveryDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getClient" returnType="Client" visibility="public"/>
+        <Method name="getLoomAtWork" returnType="List&lt;Integer&gt;" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setRowNumber" returnType="void" visibility="public">
+          <Argument type="int" name="rowNumber"/>
+        </Method>
+        <Method name="setHits" returnType="void" visibility="public">
+          <Argument type="int" name="hits"/>
+        </Method>
+        <Method name="setTotalHits" returnType="void" visibility="public">
+          <Argument type="int" name="totalHits"/>
+        </Method>
+        <Method name="setMeters" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="setDeliveryDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="deliveryDate"/>
+        </Method>
+        <Method name="setAvailability" returnType="void" visibility="public">
+          <Argument type="int" name="availability"/>
+        </Method>
+        <Method name="calculateTotalHits" returnType="void" visibility="public"/>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="updateAvailability" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="addLoomAtWork" returnType="void" visibility="public">
+          <Argument type="int" name="loomNumber"/>
+        </Method>
+        <Method name="removeLoomAtWork" returnType="void" visibility="public">
+          <Argument type="int" name="loomNumber"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemBuilder" package="model" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="meters" type="int" visibility="private"/>
+        <Field name="rowNumber" type="int" visibility="private"/>
+        <Field name="hits" type="int" visibility="private"/>
+        <Field name="deliveryDate" type="LocalDate" visibility="private"/>
+        <Field name="client" type="Client" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+        <Field name="availability" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setName" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setMeters" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="setMetersToGo" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="setRowNumber" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="rowNumber"/>
+        </Method>
+        <Method name="setHits" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="hits"/>
+        </Method>
+        <Method name="setDeliveryDate" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="deliveryDate"/>
+        </Method>
+        <Method name="setExpectedEndDate" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="expectedEndDate"/>
+        </Method>
+        <Method name="setAvailability" returnType="ItemBuilder" visibility="public">
+          <Argument type="int" name="availability"/>
+        </Method>
+        <Method name="setClient" returnType="ItemBuilder" visibility="public">
+          <Argument type="String" name="clientName"/>
+        </Method>
+        <Method name="build" returnType="Item" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Loom" package="model" visibility="public" isFinal="true" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="number" type="int" visibility="private"/>
+        <Field name="item" type="Item" visibility="private"/>
+        <Field name="speed" type="int" visibility="private"/>
+        <Field name="surrender" type="int" visibility="private"/>
+        <Field name="totalMeters" type="int" visibility="private"/>
+        <Field name="metersRun" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+        <Field name="startDate" type="LocalDate" visibility="private"/>
+        <Field name="endDate" type="LocalDate" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+        <Field name="observer" type="List&lt;Observer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="number"/>
+          <Argument type="int" name="speed"/>
+          <Argument type="LocalDate" name="startDate"/>
+          <Argument type="int" name="surrender"/>
+          <Argument type="int" name="totalMeters"/>
+          <Argument type="int" name="metersToGo"/>
+          <Argument type="Item" name="item"/>
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="speed"/>
+          <Argument type="int" name="surrender"/>
+          <Argument type="int" name="totalMeters"/>
+          <Argument type="Item" name="item"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="setItem" returnType="void" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="setNumber" returnType="void" visibility="public">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="setSpeed" returnType="void" visibility="public">
+          <Argument type="int" name="speed"/>
+        </Method>
+        <Method name="setSurrender" returnType="void" visibility="public">
+          <Argument type="int" name="surrender"/>
+        </Method>
+        <Method name="setMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="setMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="metersToGo"/>
+        </Method>
+        <Method name="setStartDate" returnType="void" visibility="public"/>
+        <Method name="setEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="endDate"/>
+        </Method>
+        <Method name="setExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="getItem" returnType="Item" visibility="public"/>
+        <Method name="getNumber" returnType="int" visibility="public"/>
+        <Method name="getSpeed" returnType="int" visibility="public"/>
+        <Method name="getSurrender" returnType="int" visibility="public"/>
+        <Method name="getMetersRun" returnType="int" visibility="public"/>
+        <Method name="getTotalMeters" returnType="int" visibility="public"/>
+        <Method name="getMetersToGo" returnType="int" visibility="public"/>
+        <Method name="getStartDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="getExpectedEndDate" returnType="LocalDate" visibility="public"/>
+        <Method name="calculateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="date"/>
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="updateBecauseMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="addObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="removeObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="notifyMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="notifyExpectedEndDate" returnType="void" visibility="public"/>
+        <Method name="notifyAvailability" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="notifyLoomAtWork" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="LoomBuilder" package="model" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="number" type="int" visibility="private"/>
+        <Field name="speed" type="int" visibility="private"/>
+        <Field name="surrender" type="int" visibility="private"/>
+        <Field name="metersToGo" type="int" visibility="private"/>
+        <Field name="totalMeters" type="int" visibility="private"/>
+        <Field name="item" type="Item" visibility="private"/>
+        <Field name="startDate" type="LocalDate" visibility="private"/>
+        <Field name="expectedEndDate" type="LocalDate" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setNumber" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="setSpeed" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="speed"/>
+        </Method>
+        <Method name="setStartDate" returnType="LoomBuilder" visibility="public">
+          <Argument type="LocalDate" name="startDate"/>
+        </Method>
+        <Method name="setSurrender" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="surrender"/>
+        </Method>
+        <Method name="setTotalMeters" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="totalMeters"/>
+        </Method>
+        <Method name="setMetersToGo" returnType="LoomBuilder" visibility="public">
+          <Argument type="int" name="metersToGo"/>
+        </Method>
+        <Method name="setItem" returnType="LoomBuilder" visibility="public">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="setItem" returnType="LoomBuilder" visibility="public">
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="setExpectedEndDate" returnType="LoomBuilder" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="build" returnType="Loom" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MainClass" package="model" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Model" package="model" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="loomList" type="List&lt;Loom&gt;" visibility="private" isStatic="true"/>
+        <Field name="itemList" type="List&lt;Item&gt;" visibility="private" isStatic="true"/>
+        <Field name="clientList" type="List&lt;Client&gt;" visibility="private" isStatic="true"/>
+        <Field name="chronologyList" type="List&lt;Chronology&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="addLoom" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;String&gt;" name="data"/>
+        </Method>
+        <Method name="removeLoom" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="getLoomList" returnType="List&lt;Loom&gt;" visibility="public" isStatic="true"/>
+        <Method name="setLoomList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Loom&gt;" name="loomList"/>
+        </Method>
+        <Method name="getLoom" returnType="Loom" visibility="public" isStatic="true">
+          <Argument type="String" name="number"/>
+        </Method>
+        <Method name="getLoom" returnType="Loom" visibility="public" isStatic="true">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="getForecastsLoom" returnType="List&lt;Loom&gt;" visibility="public" isStatic="true">
+          <Argument type="List&lt;List&lt;Integer&gt;&gt;" name="data"/>
+          <Argument type="Item" name="item"/>
+        </Method>
+        <Method name="addItem" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;String&gt;" name="data"/>
+        </Method>
+        <Method name="removeItem" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getItemList" returnType="List&lt;Item&gt;" visibility="public" isStatic="true"/>
+        <Method name="setItemList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Item&gt;" name="itemList"/>
+        </Method>
+        <Method name="getItem" returnType="Item" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="getForecastsItem" returnType="Item" visibility="public" isStatic="true">
+          <Argument type="List&lt;Integer&gt;" name="data"/>
+        </Method>
+        <Method name="addClient" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;List&lt;String&gt;&gt;" name="data"/>
+        </Method>
+        <Method name="removeClient" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getClientList" returnType="List&lt;Client&gt;" visibility="public" isStatic="true"/>
+        <Method name="setClientList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Client&gt;" name="clientList"/>
+        </Method>
+        <Method name="getClient" returnType="Client" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="addChronology" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+          <Argument type="int" name="meters"/>
+          <Argument type="String" name="clientName"/>
+          <Argument type="LocalDate" name="endDate"/>
+          <Argument type="List&lt;Integer&gt;" name="loomAtWork"/>
+        </Method>
+        <Method name="getChronologyList" returnType="List&lt;Chronology&gt;" visibility="public" isStatic="true"/>
+        <Method name="setChronologyList" returnType="void" visibility="public" isStatic="true">
+          <Argument type="List&lt;Chronology&gt;" name="chronologyList"/>
+        </Method>
+        <Method name="getChronology" returnType="Chronology" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="removeChronology" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="Observable" package="model" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Methods>
+        <Method name="addObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="removeObserver" returnType="void" visibility="public">
+          <Argument type="Observer" name="observer"/>
+        </Method>
+        <Method name="notifyMetersRun" returnType="void" visibility="public">
+          <Argument type="int" name="metersRun"/>
+        </Method>
+        <Method name="notifyExpectedEndDate" returnType="void" visibility="public"/>
+        <Method name="notifyAvailability" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="notifyLoomAtWork" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Interface name="Observer" package="model" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Methods>
+        <Method name="updateMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="updateExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="updateAvailability" returnType="void" visibility="public">
+          <Argument type="int" name="meters"/>
+        </Method>
+        <Method name="addLoomAtWork" returnType="void" visibility="public">
+          <Argument type="int" name="loomNumber"/>
+        </Method>
+        <Method name="removeLoomAtWork" returnType="void" visibility="public">
+          <Argument type="int" name="loomNumber"/>
+        </Method>
+      </Methods>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="model.Model" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Forecasts" target="model.Loom" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.LoomBuilder" target="model.LoomBuilder" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="loomList" source="model.Forecasts" target="model.Loom" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loom&gt;"/>
+    <UseRelation source="model.Loom" target="model.Observer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Client" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="client" source="model.ItemBuilder" target="model.Client" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="model.Client" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Item&gt;"/>
+    <UseRelation source="model.Model" target="model.Chronology" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="loomList" source="model.Model" target="model.Loom" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Loom&gt;"/>
+    <HasRelation name="clientList" source="model.Model" target="model.Client" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Client&gt;"/>
+    <UseRelation source="model.LoomBuilder" target="model.Loom" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.ItemBuilder" target="model.ItemBuilder" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Item" target="model.Client" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="model.Item" target="model.Observer"/>
+    <UseRelation source="model.ItemBuilder" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="model.Loom" target="model.Observable"/>
+    <HasRelation name="chronologyList" source="model.Model" target="model.Chronology" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Chronology&gt;"/>
+    <HasRelation name="observer" source="model.Loom" target="model.Observer" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Observer&gt;"/>
+    <HasRelation name="itemList" source="model.Model" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Item&gt;"/>
+    <HasRelation name="client" source="model.Item" target="model.Client" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="model.Loom" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Loom" target="model.Item" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Observable" target="model.Observer" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Model" target="model.Loom" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="model.LoomBuilder" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="item" source="model.Forecasts" target="model.Item" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="model.Model" target="model.Client" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

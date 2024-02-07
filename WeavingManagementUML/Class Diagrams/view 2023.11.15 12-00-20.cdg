@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="view">
+  <ClassDiagramComponents>
+    <Class name="Authentication" package="view" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;JTextField&gt;" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="button" type="JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getData" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="getLogInButton" returnType="JButton" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ButtonFactory" package="view" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createLoomButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="int" name="loomCode"/>
+        </Method>
+        <Method name="createEndLoomButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="int" name="loomCode"/>
+        </Method>
+        <Method name="createItemButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="String" name="itemName"/>
+        </Method>
+        <Method name="createPlusButton" returnType="JButton" visibility="public" isStatic="true"/>
+        <Method name="createBackButton" returnType="JButton" visibility="public" isStatic="true"/>
+        <Method name="createClientButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="String" name="name"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ButtonUtility" package="view" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createButton" returnType="JButton" visibility="public" isStatic="true">
+          <Argument type="String" name="label"/>
+          <Argument type="String" name="iconPath"/>
+        </Method>
+        <Method name="changeIconColor" returnType="ImageIcon" visibility="package" isStatic="true">
+          <Argument type="Image" name="image"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ChronologyDataPanel" package="view.dataFactory" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="buttonText"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ClientDataPanel" package="view.dataFactory" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="DataPanel" package="view.dataFactory" visibility="public" isAbstract="true" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="metersRunGBCX" type="int" visibility="private"/>
+        <Field name="metersRunGBCY" type="int" visibility="private"/>
+        <Field name="endGBCX" type="int" visibility="private"/>
+        <Field name="endGBCY" type="int" visibility="private"/>
+        <Field name="refGBCX" type="int" visibility="private"/>
+        <Field name="refGBCY" type="int" visibility="private"/>
+        <Field name="phoneGBCX" type="int" visibility="private"/>
+        <Field name="phoneGBCY" type="int" visibility="private"/>
+        <Field name="addMetersRun" type="JButton" visibility="package"/>
+        <Field name="modify" type="JButton" visibility="package"/>
+        <Field name="addRef" type="JButton" visibility="package"/>
+        <Field name="addPhone" type="JButton" visibility="package"/>
+        <Field name="delete" type="JButton" visibility="package"/>
+        <Field name="end" type="JButton" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="textList" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+        <Field name="ref" type="int" visibility="package"/>
+        <Field name="phone" type="int" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createDataPanel" returnType="void" visibility="public">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="List&lt;JTextArea&gt;" name="text"/>
+        </Method>
+        <Method name="createDataPanelWithList" returnType="void" visibility="public">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="List&lt;List&lt;JTextArea&gt;&gt;" name="text"/>
+        </Method>
+        <Method name="addMetersRunButton" returnType="void" visibility="public"/>
+        <Method name="getAddMetersRunButton" returnType="JButton" visibility="public"/>
+        <Method name="getMetersRun" returnType="int" visibility="public"/>
+        <Method name="adjournMetersToGo" returnType="void" visibility="public">
+          <Argument type="int" name="value"/>
+        </Method>
+        <Method name="adjournExpectedEndDate" returnType="void" visibility="public">
+          <Argument type="LocalDate" name="expectedEndDate"/>
+        </Method>
+        <Method name="addModifyButton" returnType="void" visibility="public"/>
+        <Method name="getModifyButton" returnType="JButton" visibility="public"/>
+        <Method name="addModifyComponents" returnType="void" visibility="public"/>
+        <Method name="makeTextEditable" returnType="void" visibility="public"/>
+        <Method name="refListener" returnType="void" visibility="public"/>
+        <Method name="phoneListener" returnType="void" visibility="public"/>
+        <Method name="getReferentsList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getPhoneList" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="restoreComponents" returnType="void" visibility="public"/>
+        <Method name="getDeleteButton" returnType="JButton" visibility="public"/>
+        <Method name="addEndButton" returnType="void" visibility="public"/>
+        <Method name="getEndButton" returnType="JButton" visibility="public"/>
+        <Method name="error" returnType="void" visibility="public"/>
+        <Method name="getAddPhone" returnType="JButton" visibility="public"/>
+        <Method name="getAddRef" returnType="JButton" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="DataPanelFactory" package="view.dataFactory" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createDataPanel" returnType="DataPanel" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="buttonText"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemDataPanel" package="view.dataFactory" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomDataPanel" package="view.dataFactory" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="number"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="NonEditableTextArea" package="view.dataFactory" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="text"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Dialog" package="view" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="showErrorDialog" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+        <Method name="showDialog" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="message"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ForecastsPanel" package="view" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="startLabel" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="index" type="int" visibility="package"/>
+        <Field name="text" type="List&lt;JTextArea&gt;" visibility="private"/>
+        <Field name="startText" type="List&lt;JTextArea&gt;" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="add" type="JButton" visibility="private"/>
+        <Field name="remove" type="JButton" visibility="private"/>
+        <Field name="calculate" type="JButton" visibility="private"/>
+        <Field name="endGBCX" type="int" visibility="private"/>
+        <Field name="endGBCY" type="int" visibility="private"/>
+        <Field name="loomGBCY" type="int" visibility="private"/>
+        <Field name="addButtonGBCY" type="int" visibility="private"/>
+        <Field name="box" type="Component" visibility="private"/>
+        <Field name="lightGray" type="Color" visibility="private"/>
+        <Field name="area" type="JTextArea" visibility="package"/>
+        <Field name="totalMeters" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getAddButton" returnType="JButton" visibility="public"/>
+        <Method name="getCalculateButton" returnType="JButton" visibility="public"/>
+        <Method name="addLoomFields" returnType="void" visibility="public"/>
+        <Method name="getItemData" returnType="List&lt;Integer&gt;" visibility="public"/>
+        <Method name="getLoomData" returnType="List&lt;List&lt;Integer&gt;&gt;" visibility="public"/>
+        <Method name="seeResult" returnType="void" visibility="public">
+          <Argument type="String" name="expectedEndDate"/>
+        </Method>
+        <Method name="restore" returnType="void" visibility="public"/>
+        <Method name="controlErrors" returnType="boolean" visibility="public"/>
+        <Method name="getRemoveButton" returnType="JButton" visibility="public"/>
+        <Method name="removeLoomFields" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ClientFormPanel" package="view.formFactory" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+        <Field name="addRef" type="JButton" visibility="private"/>
+        <Field name="addPhone" type="JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FormPanel" package="view.formFactory" visibility="public" isAbstract="true" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="save" type="JButton" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+        <Field name="clientText" type="List&lt;List&lt;TextField&gt;&gt;" visibility="private"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="addRef" type="JButton" visibility="private"/>
+        <Field name="addPhone" type="JButton" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="type" type="String" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createFormPanel" returnType="void" visibility="package">
+          <Argument type="List&lt;Label&gt;" name="label"/>
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getSaveButton" returnType="JButton" visibility="public"/>
+        <Method name="getData" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getData" returnType="List&lt;List&lt;String&gt;&gt;" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getPanel" returnType="JPanel" visibility="public"/>
+        <Method name="getText" returnType="List&lt;TextField&gt;" visibility="public"/>
+        <Method name="getLabel" returnType="List&lt;Label&gt;" visibility="public"/>
+        <Method name="getAddRef" returnType="JButton" visibility="public"/>
+        <Method name="getAddPhone" returnType="JButton" visibility="public"/>
+        <Method name="updateField" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="controlErrors" returnType="boolean" visibility="public"/>
+        <Method name="updateSize" returnType="void" visibility="public">
+          <Argument type="JPanel" name="panel"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FormPanelFactory" package="view.formFactory" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createFormPanel" returnType="FormPanel" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ItemFormPanel" package="view.formFactory" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="package"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomFormPanel" package="view.formFactory" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;TextField&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Label" package="view" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="text"/>
+          <Argument type="int" name="x"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LeftPanel" package="view" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="backButton" type="JButton" visibility="private"/>
+        <Field name="loomButton" type="JButton" visibility="private"/>
+        <Field name="itemButton" type="JButton" visibility="private"/>
+        <Field name="clientButton" type="JButton" visibility="private"/>
+        <Field name="chronologyButton" type="JButton" visibility="private"/>
+        <Field name="forecastsButton" type="JButton" visibility="private"/>
+        <Field name="settingsButton" type="JButton" visibility="private"/>
+        <Field name="listButton" type="JButton" visibility="private"/>
+        <Field name="saveLeftButton" type="List&lt;JButton&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="JFrame" name="frame"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addBackButton" returnType="void" visibility="public"/>
+        <Method name="restore" returnType="void" visibility="public"/>
+        <Method name="getBackButton" returnType="JButton" visibility="public"/>
+        <Method name="getItemButton" returnType="JButton" visibility="public"/>
+        <Method name="getClientButton" returnType="JButton" visibility="public"/>
+        <Method name="getChronologyButton" returnType="JButton" visibility="public"/>
+        <Method name="getForecastsButton" returnType="JButton" visibility="public"/>
+        <Method name="getLoomButton" returnType="JButton" visibility="public"/>
+        <Method name="getSettingsButton" returnType="JButton" visibility="public"/>
+        <Method name="getListButton" returnType="JButton" visibility="public"/>
+        <Method name="seeComponents" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ListPanel" package="view" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields>
+        <Field name="scrollPane" type="JScrollPane" visibility="private"/>
+        <Field name="loomList" type="List&lt;Loom&gt;" visibility="private"/>
+        <Field name="label" type="List&lt;Label&gt;" visibility="private"/>
+        <Field name="text" type="List&lt;List&lt;JTextArea&gt;&gt;" visibility="private"/>
+        <Field name="contentList" type="List&lt;JPanel&gt;" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="principal" type="GridBagConstraints" visibility="private"/>
+        <Field name="print" type="JButton" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="List&lt;Loom&gt;" name="loomList"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPrintButton" returnType="JButton" visibility="public"/>
+        <Method name="getDataToPrint" returnType="List&lt;List&lt;String&gt;&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MainView" package="view" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="button" type="JButton" visibility="private"/>
+        <Field name="centralPanel" type="JPanel" visibility="private"/>
+        <Field name="leftPanel" type="LeftPanel" visibility="private"/>
+        <Field name="rightPanel" type="JPanel" visibility="private"/>
+        <Field name="panel" type="view.panelFactory.Panel" visibility="private"/>
+        <Field name="formPanel" type="view.formFactory.FormPanel" visibility="private"/>
+        <Field name="dataPanel" type="view.dataFactory.DataPanel" visibility="private"/>
+        <Field name="saveButton" type="List&lt;JButton&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCentralPanel" returnType="JPanel" visibility="public"/>
+        <Method name="getLeftPanel" returnType="LeftPanel" visibility="public"/>
+        <Method name="addPanel" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getPanel" returnType="view.panelFactory.Panel" visibility="public"/>
+        <Method name="addForm" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getFormPanel" returnType="view.formFactory.FormPanel" visibility="public"/>
+        <Method name="addData" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+          <Argument type="String" name="buttonText"/>
+        </Method>
+        <Method name="getDataPanel" returnType="view.dataFactory.DataPanel" visibility="public"/>
+        <Method name="deleteDataPanel" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ChronologyPanel" package="view.panelFactory" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ClientPanel" package="view.panelFactory" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ItemPanel" package="view.panelFactory" visibility="public" xPosition="2120.0" yPosition="820.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="LoomPanel" package="view.panelFactory" visibility="public" xPosition="20.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Panel" package="view.panelFactory" visibility="public" isAbstract="true" xPosition="320.0" yPosition="1220.0">
+      <Fields>
+        <Field name="saveIconButton" type="List&lt;JButton&gt;" visibility="private"/>
+        <Field name="plusButton" type="JButton" visibility="private"/>
+        <Field name="type" type="String" visibility="private"/>
+        <Field name="scrollPane" type="JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="createPanel" returnType="void" visibility="package">
+          <Argument type="String" name="layout"/>
+          <Argument type="String" name="buttonType"/>
+        </Method>
+        <Method name="getPlusButton" returnType="JButton" visibility="public"/>
+        <Method name="updateButton" returnType="void" visibility="package"/>
+        <Method name="addIconButton" returnType="void" visibility="public"/>
+        <Method name="restore" returnType="void" visibility="public"/>
+        <Method name="getSaveIconButtonList" returnType="List&lt;JButton&gt;" visibility="public"/>
+        <Method name="removeIconButton" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="removeIconButton" returnType="void" visibility="public">
+          <Argument type="int" name="number"/>
+        </Method>
+        <Method name="getScrollPane" returnType="JScrollPane" visibility="public"/>
+        <Method name="updateLoomIcon" returnType="void" visibility="public">
+          <Argument type="JButton" name="button"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelFactory" package="view.panelFactory" visibility="public" xPosition="620.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="createPanel" returnType="Panel" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="SettingsPanel" package="view" visibility="public" xPosition="920.0" yPosition="1220.0">
+      <Fields>
+        <Field name="changePassword" type="JButton" visibility="private"/>
+        <Field name="addUser" type="JButton" visibility="private"/>
+        <Field name="save1" type="JButton" visibility="private"/>
+        <Field name="save2" type="JButton" visibility="private"/>
+        <Field name="back" type="JButton" visibility="private"/>
+        <Field name="gbc" type="GridBagConstraints" visibility="private"/>
+        <Field name="password" type="List&lt;JTextField&gt;" visibility="private"/>
+        <Field name="credentials" type="List&lt;JTextField&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getChangePasswordButton" returnType="JButton" visibility="public"/>
+        <Method name="getAddUserButton" returnType="JButton" visibility="public"/>
+        <Method name="getSave1Button" returnType="JButton" visibility="public"/>
+        <Method name="getSave2Button" returnType="JButton" visibility="public"/>
+        <Method name="getBackButton" returnType="JButton" visibility="public"/>
+        <Method name="changePassword" returnType="void" visibility="public"/>
+        <Method name="addUser" returnType="void" visibility="public"/>
+        <Method name="getData1" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="getData2" returnType="List&lt;String&gt;" visibility="public"/>
+        <Method name="restore" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="TextField" package="view" visibility="public" xPosition="1220.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="clientText" source="view.formFactory.FormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;List&lt;TextField&gt;&gt;"/>
+    <UseRelation source="view.dataFactory.DataPanel" target="view.Label" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.formFactory.FormPanelFactory" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.formFactory.FormPanel" target="view.Label" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.panelFactory.LoomPanel" target="view.panelFactory.Panel"/>
+    <HasRelation name="label" source="view.dataFactory.ChronologyDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <IsRelation name="is" source="view.panelFactory.ChronologyPanel" target="view.panelFactory.Panel"/>
+    <HasRelation name="startLabel" source="view.ForecastsPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <IsRelation name="is" source="view.formFactory.ItemFormPanel" target="view.formFactory.FormPanel"/>
+    <HasRelation name="label" source="view.Authentication" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <IsRelation name="is" source="view.dataFactory.ClientDataPanel" target="view.dataFactory.DataPanel"/>
+    <HasRelation name="label" source="view.dataFactory.DataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="label" source="view.formFactory.ClientFormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="leftPanel" source="view.MainView" target="view.LeftPanel" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="view.MainView" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.panelFactory.ClientPanel" target="view.panelFactory.Panel"/>
+    <UseRelation source="view.formFactory.FormPanel" target="view.TextField" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.panelFactory.ItemPanel" target="view.panelFactory.Panel"/>
+    <HasRelation name="label" source="view.dataFactory.ClientDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <IsRelation name="is" source="view.dataFactory.ChronologyDataPanel" target="view.dataFactory.DataPanel"/>
+    <HasRelation name="label" source="view.formFactory.FormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="label" source="view.dataFactory.LoomDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <UseRelation source="view.dataFactory.DataPanelFactory" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="view.dataFactory.LoomDataPanel" target="view.dataFactory.DataPanel"/>
+    <UseRelation source="view.formFactory.FormPanel" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.formFactory.ItemFormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="text" source="view.formFactory.LoomFormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <HasRelation name="label" source="view.dataFactory.ItemDataPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <UseRelation source="view.panelFactory.PanelFactory" target="view.panelFactory.Panel" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="label" source="view.ForecastsPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <IsRelation name="is" source="view.dataFactory.ItemDataPanel" target="view.dataFactory.DataPanel"/>
+    <HasRelation name="text" source="view.formFactory.FormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <IsRelation name="is" source="view.formFactory.LoomFormPanel" target="view.formFactory.FormPanel"/>
+    <HasRelation name="text" source="view.formFactory.ItemFormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <IsRelation name="is" source="view.formFactory.ClientFormPanel" target="view.formFactory.FormPanel"/>
+    <HasRelation name="text" source="view.formFactory.ClientFormPanel" target="view.TextField" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;TextField&gt;"/>
+    <HasRelation name="label" source="view.formFactory.LoomFormPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+    <HasRelation name="label" source="view.ListPanel" target="view.Label" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Label&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

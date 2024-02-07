@@ -236,8 +236,8 @@ public abstract class FormPanel extends JPanel{
                         Dialog.showErrorDialog("ERROR: the value cannot be null");
                         anyConditionMet = true;
                     }else{
-                        if(item != null && Integer.parseInt(this.text.get(i).getText()) > Model.getItemList().get(s).getDisponibility()){
-                            Dialog.showErrorDialog("ERROR: the value is greater than the item's disponibility; there are" + Model.getItemList().get(s).getDisponibility() + "meters available");
+                        if(item != null && Integer.parseInt(this.text.get(i).getText()) > Model.getItemList().get(s).getAvailability()){
+                            Dialog.showErrorDialog("ERROR: the value is greater than the item's availability; there are" + Model.getItemList().get(s).getAvailability() + "meters available");
                             anyConditionMet = true;
                         }
                     }

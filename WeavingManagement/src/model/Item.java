@@ -19,7 +19,7 @@ public final class Item implements Observer{
     private int totalHits; 
     private int meters;
     private int metersToGo;
-    private int disponibility;
+    private int availability;
     private LocalDate deliveryDate;
     private LocalDate expectedEndDate;
     private List<LocalDate> date = new ArrayList<>();
@@ -27,10 +27,10 @@ public final class Item implements Observer{
     private List<Integer> loomAtWork = new ArrayList<>();
     
     //constructor
-    public Item(String name, int meters, int metersToGo, int disponibility, int rowNumber, int hits, LocalDate deliveryDate, LocalDate expectedEndDate, Client client){
+    public Item(String name, int meters, int metersToGo, int availability, int rowNumber, int hits, LocalDate deliveryDate, LocalDate expectedEndDate, Client client){
         this.name = name;
         this.meters = meters;
-        this.disponibility = disponibility;
+        this.availability = availability;
         this.metersToGo = metersToGo;
         this.rowNumber = rowNumber;
         this.hits = hits;
@@ -75,8 +75,8 @@ public final class Item implements Observer{
         return this.metersToGo;
     }
     
-    public int getDisponibility(){
-        return this.disponibility;
+    public int getAvailability(){
+        return this.availability;
     }
     
     
@@ -133,8 +133,8 @@ public final class Item implements Observer{
         this.deliveryDate = deliveryDate;
     }
     
-    public void setDisponibility(int disponibility){
-        this.disponibility = disponibility;
+    public void setAvailability(int availability){
+        this.availability = availability;
     }
     
     //other methods
@@ -166,13 +166,22 @@ public final class Item implements Observer{
     }
     
     @Override 
-    public void updateDisponibility(int meters){
-        this.disponibility = this.disponibility - meters;
+    public void updateAvailability(int meters){
+        this.availability = this.availability - meters;
     }
     
     @Override
     public void addLoomAtWork(int loomNumber){
         this.loomAtWork.add(loomNumber);
+    }
+    
+    @Override
+    public void removeLoomAtWork(int loomNumber){
+       for(int k=0; k < this.loomAtWork.size(); k++){
+           if(this.loomAtWork.get(k) == loomNumber){
+               this.loomAtWork.remove(k);
+           }
+       }
     }
 }
 
